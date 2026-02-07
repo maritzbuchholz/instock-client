@@ -5,17 +5,19 @@
 .warehouses-form{
     &__contain-all{
         background-color: $color-primary-white;
-        margin-left: pxToRem(128);
-        margin-right: pxToRem(128);
         box-shadow: 0 pxToRem(2) pxToRem(5) 0 #13182C1A;
         border-radius: pxToRem(3);
+        margin: 0 pxToRem(16);
+        @include tablet{
+            margin: 0 pxToRem(32);
+        }
+        @include desktop{
+            margin: 0 pxToRem(128);
+        }
     }
     &__form-header{
         border-bottom: $color-secondary-cloud solid 1px;
-        padding-left: pxToRem(32);
-        padding-right: pxToRem(32);
-        padding-bottom: pxToRem(32);
-        padding-top: pxToRem(40);
+        padding: pxToRem(40) pxToRem(32) pxToRem(32) pxToRem(32)
     }
     &__typography-text{
         margin: auto;
@@ -24,35 +26,58 @@
             margin-bottom: pxToRem(32);
         }
     }
-    &__form-wrapper{
+    &__form-input-wrapper{
         display: flex;
         justify-content: flex-start;
-        margin-top: pxToRem(32);
-        margin-bottom: pxToRem(32);
+        flex-direction: column;
+        margin: pxToRem(24) 0;
+        @include tablet{
+            margin: pxToRem(32) 0;
+            flex-direction: row;
+        }
     }
     &__warehouse-details{
         box-sizing: border-box;
-        width: 50%;
-        border-right: $color-secondary-cloud solid 1px;
-        padding-left: pxToRem(32);
-        padding-right: pxToRem(32);
+        width: 100%;
+        padding: 0 pxToRem(32) pxToRem(8) pxToRem(32);
+        border-bottom: $color-secondary-cloud solid 1px;
+        @include tablet{
+            width: 50%;
+            border-bottom: none;
+            border-right: $color-secondary-cloud solid 1px;
+        }
     }
     &__contact-details{
         box-sizing: border-box;
-        width: 50%;
-        padding-left: pxToRem(32);
-        padding-right: pxToRem(32);
+        width: 100%;
+        padding: pxToRem(24) pxToRem(32) 0 pxToRem(32);
+        @include tablet{
+            padding: 0 pxToRem(32);
+            width: 50%;
+        }
     }
     &__button-wrapper{
         display: flex;
-        justify-content: flex-end;
-        padding-right: pxToRem(32);
-        padding-top: pxToRem(16);
-        padding-bottom: pxToRem(16);
         background-color: $color-background-light-grey;
-        
+        justify-content: space-between;
+        @include tablet{
+            justify-content: flex-end;
+            padding: pxToRem(16) pxToRem(32) pxToRem(16) 0;
+        }
     }
     &__add{
-        margin-left: pxToRem(16);
+        box-sizing: border-box;
+        width: 45%;
+        @include tablet{
+            width: auto;
+            margin-left: pxToRem(16);
+        }
+    }
+    &__cancel{
+        box-sizing: border-box;
+        width: 45%;
+        @include tablet{
+            width: auto;
+        }
     }
 }
