@@ -1,0 +1,13 @@
+@use "../../styles/variables" as *;
+@use "../../styles/functions" as *;
+@use "../../styles/mixins" as *;
+
+.footer {
+    display: flex;
+    justify-content: center;
+    &__copy {
+        font-size: 12px;
+        font-weight: 400;
+        color: $color-secondary-slate;
+    }
+}

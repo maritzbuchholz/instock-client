@@ -1,9 +1,12 @@
+import Typography from "../Typography/Typography";
 import "./Footer.scss";
 
 const Footer = () => {
     return (
         <footer className = "footer">
-           <p className = "footer_text">© InStock Inc. All Rights Reserved.</p> 
+           <Typography variant="p" className="footer__copy">
+        &copy; InStock Inc. All Rights Reserved.
+      </Typography>
         </footer>
     )
 
