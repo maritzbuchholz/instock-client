@@ -2,8 +2,8 @@ import "./Footer.scss";
 
 const Footer = () => {
     return (
-        <footer>
-            
+        <footer className = "footer">
+           <p className = "footer_text">© InStock Inc. All Rights Reserved.</p> 
         </footer>
     )
 
