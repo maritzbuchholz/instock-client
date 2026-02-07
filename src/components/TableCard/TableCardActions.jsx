@@ -1,12 +1,11 @@
 import { Link } from "react-router-dom";
-import editIcon from "../../assets/Icons/edit-24px.svg";
-import deleteIcon from "../../assets/Icons/delete_outline-24px.svg";
+import Icon from "../Iconography/Iconography";
 
 const TableCardActions = ({ editTo, onDelete }) => {
     return (
         <div className="card__actions">
             <Link to={editTo} className="card__icon-action" aria-label="Edit">
-                <img src={editIcon} alt="" />
+                <Icon name="edit" />
             </Link>
 
             <button
@@ -15,7 +14,7 @@ const TableCardActions = ({ editTo, onDelete }) => {
                 aria-label="Delete"
                 onClick={onDelete}
             >
-                <img src={deleteIcon} alt="" />
+                <Icon name="delete" />
             </button>
         </div>
     );
