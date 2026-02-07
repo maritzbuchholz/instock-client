@@ -5,33 +5,41 @@
 .warehouses-form{
     &__contain-all{
         background-color: $color-primary-white;
-        margin-left: 128px;
-        margin-right: 128px;
+        margin-left: pxToRem(128);
+        margin-right: pxToRem(128);
+        box-shadow: 0 pxToRem(2) pxToRem(5) 0 #13182C1A;
+        border-radius: pxToRem(3);
     }
-    &__warehouse-details{
-        box-sizing: border-box;
-        width: 50%;
-    }
-    &__contact-details{
-        box-sizing: border-box;
-        width: 50%;
-    }
-    &__header{
+    &__form-header{
         border-bottom: $color-secondary-cloud solid 1px;
         padding-left: pxToRem(32);
         padding-right: pxToRem(32);
+        padding-bottom: pxToRem(32);
+        padding-top: pxToRem(40);
     }
-    &__wrapper{
+    &__typography-text{
+        margin: auto;
+        &--form{
+            margin: auto;
+            margin-bottom: pxToRem(32);
+        }
+    }
+    &__form-wrapper{
         display: flex;
         justify-content: flex-start;
         margin-top: pxToRem(32);
+        margin-bottom: pxToRem(32);
     }
     &__warehouse-details{
+        box-sizing: border-box;
+        width: 50%;
         border-right: $color-secondary-cloud solid 1px;
         padding-left: pxToRem(32);
         padding-right: pxToRem(32);
     }
     &__contact-details{
+        box-sizing: border-box;
+        width: 50%;
         padding-left: pxToRem(32);
         padding-right: pxToRem(32);
     }
@@ -39,7 +47,10 @@
         display: flex;
         justify-content: flex-end;
         padding-right: pxToRem(32);
+        padding-top: pxToRem(16);
+        padding-bottom: pxToRem(16);
         background-color: $color-background-light-grey;
+        
     }
     &__add{
         margin-left: pxToRem(16);
