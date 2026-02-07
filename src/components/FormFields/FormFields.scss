@@ -4,21 +4,26 @@
 
 
 .form-fields{
-    font-family: $font-family-primary;
-    border-radius: pxToRem(20);
-    padding-left: pxToRem(16);
-    padding-right: pxToRem(16);
-    height: pxToRem(36);
-
-    // p2 typography
-    font-size: pxToRem(13);
-    line-height: pxToRem(20);
-    @include tablet {
-        font-size: pxToRem(14);
-        line-height: pxToRem(22);
+    &__label-text{
+        margin: auto;
+        margin-bottom: pxToRem(4);
     }
+    &__input{
+        font-family: $font-family-primary;
+        border-radius: pxToRem(20);
+        padding-left: pxToRem(16);
+        padding-right: pxToRem(16);
+        height: pxToRem(36);
 
-    @include tablet {
-        height: pxToRem(38px);
+        // p2 typography
+        font-size: pxToRem(13);
+        line-height: pxToRem(20);
+
+        @include tablet {
+            height: pxToRem(38px);
+            // p2 typography
+            font-size: pxToRem(14);
+            line-height: pxToRem(22);
+        }
     }
 }

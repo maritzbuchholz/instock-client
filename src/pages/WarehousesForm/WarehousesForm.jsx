@@ -11,7 +11,7 @@ const WarehousesForm = () => {
 
             <div className="warehouses__content">
                 <Typography variant="p1">Warehouse form will be displayed here.</Typography>
-                <FormFields variant="none"/>
+                <FormFields variant="standard"/>
             </div>
         </section>
     );
