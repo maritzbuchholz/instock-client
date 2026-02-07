@@ -1,0 +1,12 @@
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.form-fields{
+    border-radius: 20px;
+    padding-left: 16px;
+    padding-right: 16px;
+    height: 36px;
+    @include tablet {
+        height: 38px;
+    }
+}

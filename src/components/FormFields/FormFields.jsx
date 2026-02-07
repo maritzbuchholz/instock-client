@@ -1,3 +1,4 @@
+import "./FormFields.scss";
 import Typography from "../Typography/Typography.jsx";
 
 // *** Variants ***
@@ -8,7 +9,7 @@ const FormFields = ({
     variant = "none"
 }) => {
     return(
-        <input
+        <input className="form-fields"
             variant={variant}
         />
     );
