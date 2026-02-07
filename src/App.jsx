@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // import Navigation from "./components/Navigation/Navigation.jsx";
 // import Footer from "./components/Footer/Footer.jsx";
 import WarehousesPage from "./pages/WarehousesPage/WarehousesPage.jsx";
+import WarehousesForm from "./pages/WarehousesForm/WarehousesForm.jsx";
 
 const App = () => {
     return (
@@ -12,6 +13,7 @@ const App = () => {
                 <Routes>
                 <Route path="/" element={<WarehousesPage />} />
                 <Route path="/warehouses" element={<WarehousesPage />} />
+                <Route path="/warehouses/form" element={<WarehousesForm />} />
                 </Routes>
             </main>
 
