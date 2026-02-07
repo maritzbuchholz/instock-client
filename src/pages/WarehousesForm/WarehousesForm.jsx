@@ -11,7 +11,7 @@ const WarehousesForm = () => {
                 <Typography className="warehouses-form__typography-text" variant="h1">Add New Warehouse</Typography>
             </div>
 
-            <form onSubmit={console.log("submit")} className="warehouses-form__form-wrapper">
+            <form onSubmit={console.log("submit")} className="warehouses-form__form-input-wrapper">
 
                 <div className="warehouses-form__warehouse-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Warehouse Details</Typography>
