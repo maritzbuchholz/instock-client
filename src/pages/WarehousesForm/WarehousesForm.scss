@@ -60,6 +60,7 @@
         display: flex;
         background-color: $color-background-light-grey;
         justify-content: space-between;
+        padding: pxToRem(16) pxToRem(32);
         @include tablet{
             justify-content: flex-end;
             padding: pxToRem(16) pxToRem(32) pxToRem(16) 0;
@@ -67,7 +68,7 @@
     }
     &__add{
         box-sizing: border-box;
-        width: 45%;
+        width: 47.5%;
         @include tablet{
             width: auto;
             margin-left: pxToRem(16);
@@ -75,7 +76,7 @@
     }
     &__cancel{
         box-sizing: border-box;
-        width: 45%;
+        width: 47.5%;
         @include tablet{
             width: auto;
         }
