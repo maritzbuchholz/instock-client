@@ -3,11 +3,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import WarehousesPage from "./pages/WarehousesPage/WarehousesPage.jsx";
 import WarehousesForm from "./pages/WarehousesForm/WarehousesForm.jsx";
-// import Navigation from "./components/Navigation/Navigation.jsx";
 // import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage.jsx";
-// import InventoriesPage from "./pages/InvetoriesPage/InventoriesPage.jsx";
-// import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetails.jsx";
-
+import InventoryPage from "./pages/InventoryPage/InventoryPage.jsx";
+import Navigation from "./components/Navigation/Navigation.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 
 const App = () => {
@@ -36,17 +34,16 @@ const App = () => {
 
     return (
         <BrowserRouter>
-            {/* <Navigation />  */}
-
+            <Navigation /> 
             <main>
                 <Routes>
-             
-                <Route path="/warehouses/form" element={<WarehousesForm />} />
                     <Route path="/" element={<Navigate to="/warehouses" replace />} />
                     <Route path="/warehouses" element={<WarehousesPage warehouses={warehouses} />} />
-                    {/* <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} />} /> */}
-                    {/* <Route path="/inventory" element={<InventoriesPage inventory={inventory} />} />
-                    <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} /> */}
+                    <Route path="/warehouses/form" element={<WarehousesForm />} />
+                    <Route path="/inventory" element={<InventoryPage inventory={inventory} />} />
+                    {/* <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} /> */}
+                     {/* <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} />} /> 
+                   <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} />  */}
                 </Routes>
             </main>
 

@@ -1,5 +1,6 @@
 import "./WarehousesPage.scss";
 import Typography from "../../components/Typography/Typography.jsx";
+import TableWarehouses from "../../components/TablesWarehouses/TablesWarehouses.jsx";
 
 const WarehousesPage = () => {
     return (
