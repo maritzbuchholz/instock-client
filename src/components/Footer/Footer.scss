@@ -3,8 +3,11 @@
 @use "../../styles/mixins" as *;
 
 .footer {
-    display: flex;
-    justify-content: center;
+position: fixed;
+  left: 0;
+  bottom: 18px;
+  width: 100%;
+  text-align: center;
     &__copy {
         font-size: 12px;
         font-weight: 400;
