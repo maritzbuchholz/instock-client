@@ -9,6 +9,7 @@
         margin-bottom: pxToRem(4);
     }
     &__error{
+        // code for the icon
         &::before{
             content: "";
             width: 13px;
@@ -19,6 +20,8 @@
             padding-top: 4px;
             padding-right: 8px;
         }
+        visibility: hidden; 
+        // ^ controls if the error message is shown
         display: flex;
         align-content: center;
         color: $color-supporting-red;

@@ -3,6 +3,11 @@
 @use "../../styles/mixins" as *;
 
 .warehouses-form{
+    &__contain-all{
+        background-color: $color-primary-white;
+        margin-left: 128px;
+        margin-right: 128px;
+    }
     &__warehouse-details{
         box-sizing: border-box;
         width: 50%;
@@ -29,5 +34,14 @@
     &__contact-details{
         padding-left: pxToRem(32);
         padding-right: pxToRem(32);
+    }
+    &__button-wrapper{
+        display: flex;
+        justify-content: flex-end;
+        padding-right: pxToRem(32);
+        background-color: $color-background-light-grey;
+    }
+    &__add{
+        margin-left: pxToRem(16);
     }
 }

@@ -7,15 +7,15 @@ import Typography from "../Typography/Typography.jsx";
 
 const FormFields = ({
     inputName="Placeholder",
-    variant="standard",
+    variant="text",
 }) => {
     return(
         <label className="form-fields__label">
             <Typography variant="h3" className="form-fields__label-text">{inputName}</Typography>
             <div className="form-fields__input-container">
                 <input
-                    className="form-fields__input"
                     variant={variant}
+                    className="form-fields__input"
                     placeholder={inputName}
                 />
                 <Typography variant="p3" className="form-fields__error">This field is required</Typography>

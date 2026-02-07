@@ -1,15 +1,17 @@
 import "./WarehousesForm.scss";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
+import Button from "../../components/Button/Button.jsx";
 
 const WarehousesForm = () => {
     return (
-        <section className="warehouses-form">
+        <section className="warehouses-form__contain-all">
+
             <div className="warehouses-form__header">
                 <Typography variant="h1">Add New Warehouse</Typography>
             </div>
 
-            <form className="warehouses-form__wrapper">
+            <form onSubmit={console.log("submit")} className="warehouses-form__wrapper">
                 <div className="warehouses-form__warehouse-details">
                     <Typography variant="h2">Warehouse Details</Typography>
                     <FormFields inputName="Warehouse Name"/>
@@ -26,6 +28,19 @@ const WarehousesForm = () => {
                     <FormFields inputName="Email"/>
                 </div>
             </form>
+
+            <div className="warehouses-form__button-wrapper">
+                <Button
+                    className="warehouses-form__cancel"
+                    variant="secondary">
+                    Cancel
+                </Button>
+                <Button
+                    className="warehouses-form__add"
+                    variant="primary">
+                    + Add Warehouse
+                </Button>
+            </div>
             
         </section>
     );
