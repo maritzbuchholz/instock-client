@@ -1,0 +1,10 @@
+@use "../../styles/variables" as *;
+@use "../../styles/functions" as *;
+@use "../../styles/mixins" as *;
+
+.warehouses-form{
+    
+    &__header{
+        border-bottom: $color-secondary-cloud solid 1px;
+    }
+}

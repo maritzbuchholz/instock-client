@@ -4,14 +4,24 @@ import FormFields from "../../components/FormFields/FormFields.jsx";
 
 const WarehousesForm = () => {
     return (
-        <section className="warehouses">
-            <div className="warehouses__header">
-                <Typography variant="h1">Warehouses</Typography>
+        <section className="warehouses-form">
+            <div className="warehouses-form__header">
+                <Typography variant="h1">Add New Warehouse</Typography>
             </div>
 
-            <div className="warehouses__content">
-                <Typography variant="p1">Warehouse form will be displayed here.</Typography>
-                <FormFields variant="standard"/>
+            <div className="warehouses-form__warehouse-details">
+                <Typography variant="h1">Warehouse Details</Typography>
+                <FormFields inputName="Warehouse Name"/>
+                <FormFields inputName="Street Address"/>
+                <FormFields inputName="City"/>
+                <FormFields inputName="Country"/>
+            </div>
+            <div className="warehouses-contact-details">
+                <Typography variant="h1">Contact Details</Typography>
+                <FormFields inputName="Contact Name"/>
+                <FormFields inputName="Position"/>
+                <FormFields inputName="Phone Number"/>
+                <FormFields inputName="Email"/>
             </div>
         </section>
     );
