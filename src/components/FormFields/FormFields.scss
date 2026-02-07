@@ -1,0 +1,43 @@
+@use "../../styles/variables" as *;
+@use "../../styles/functions" as *;
+@use "../../styles/mixins" as *;
+
+
+.form-fields{
+    &__label-text{
+        margin: auto;
+        margin-bottom: pxToRem(4);
+    }
+    &__input{
+        font-family: $font-family-primary;
+        border-radius: pxToRem(20);
+        padding-left: pxToRem(16);
+        padding-right: pxToRem(16);
+        height: pxToRem(36);
+        
+
+        // p2 typography
+        color: $color-primary-black;
+        font-size: pxToRem(13);
+        line-height: pxToRem(20);
+
+        &::-webkit-input-placeholder{
+            color: $color-secondary-slate
+        }
+
+        // border logic
+        border: $color-secondary-cloud solid 1px;
+        &:focus{
+            outline: none;
+            border: $color-primary-indigo solid 1px;
+        }
+       
+        @include tablet {
+            height: pxToRem(38);
+            
+            // p2 typography
+            font-size: pxToRem(14);
+            line-height: pxToRem(22);
+        }
+    }
+}
