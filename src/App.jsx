@@ -6,6 +6,7 @@ import WarehousesPage from "./pages/WarehousesPage/WarehousesPage.jsx";
 import WarehouseDetailsPage from "./pages/WarehousesPage/WarehouseDetailsPage.jsx";
 import InventoriesPage from "./pages/WarehousesPage/InventoriesPage.jsx";
 import InventoryDetailsPage from "./pages/WarehousesPage/InventoryDetailsPage.jsx";
+
 import Footer from "./components/Footer/Footer.jsx";
 
 const App = () => {
