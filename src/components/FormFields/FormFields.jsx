@@ -16,6 +16,7 @@ const FormFields = ({
                 <input
                     className="form-fields__input"
                     variant={variant}
+                    placeholder={label}
                 />
             </div>
         </label>
