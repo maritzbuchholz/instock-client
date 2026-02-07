@@ -7,7 +7,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 1rem;
+    padding: 2rem 1rem 5rem 1rem;
+    gap: 1.5rem;
 
     &__logo {
         display: flex;
@@ -18,7 +19,7 @@
     &__tabs {
         width: 100%;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
     }
     &__tab {
@@ -27,6 +28,8 @@
 
         &--active {
             background-color: $color-primary-black;
+            border-radius: 20px;
+            padding: 0.5rem 2rem;
         }
 
     }
