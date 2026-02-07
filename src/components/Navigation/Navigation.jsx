@@ -8,7 +8,7 @@ const Navigation = () => {
        <header className = "nav">
         <div className = "nav__logo">
             <img src={InStockLogo} alt="InStock Logo" />
-        </div>
+        </div> 
 
         <nav className = "nav__tabs">
             <NavLink
