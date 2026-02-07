@@ -14,7 +14,7 @@ const TableWarehouses = ({ warehouses }) => {
         <div className="warehouse-table">
             {warehouses.map((warehouse) => (
                 <Card key={warehouse.id} className="warehouse-table__card">
-                    <CardField label="Warehouse" className="warehouse-table__field">
+                    <CardField label="WAREHOUSE" className="warehouse-table__field">
                         <Link to={`/warehouses/${warehouse.id}`} className="warehouse-link">
                             {warehouse.warehouse_name}
                             <img
@@ -25,15 +25,15 @@ const TableWarehouses = ({ warehouses }) => {
                         </Link>
                     </CardField>
 
-                    <CardField label="Address" className="warehouse-table__field">
-                        {warehouse.address}, {warehouse.city}, {warehouse.country}
-                    </CardField>
-
-                    <CardField label="Contact Name" className="warehouse-table__field">
+                    <CardField label="CONTACT NAME" className="warehouse-table__field">
                         {warehouse.contact_name} ({warehouse.contact_position})
                     </CardField>
 
-                    <CardField label="Contact Info" className="warehouse-table__field">
+                    <CardField label="ADDRESS" className="warehouse-table__field">
+                        {warehouse.address}, {warehouse.city}, {warehouse.country}
+                    </CardField>
+
+                    <CardField label="CONTACT INFORMATION" className="warehouse-table__field">
                         {warehouse.contact_phone} {warehouse.contact_email}
                     </CardField>
 
