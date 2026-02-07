@@ -8,6 +8,26 @@
         margin: auto;
         margin-bottom: pxToRem(4);
     }
+    &__error{
+        // code for the icon
+        &::before{
+            content: "";
+            width: 13px;
+            height: 13px;
+            background-color: $color-supporting-red;
+            mask: url("../../assets/Icons/error-24px.svg") no-repeat left;
+            mask-size: contain;
+            padding-top: 4px;
+            padding-right: 8px;
+        }
+        visibility: hidden; 
+        // ^ controls if the error message is shown
+        display: flex;
+        align-content: center;
+        color: $color-supporting-red;
+        margin: auto;
+        margin-top: 4px;
+    }
     &__input{
         box-sizing: border-box;
         font-family: $font-family-primary;
