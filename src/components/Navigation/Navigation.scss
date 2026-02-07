@@ -1,0 +1,34 @@
+@use "../../styles/variables" as *;
+@use "../../styles/functions" as *;
+@use "../../styles/mixins" as *;
+
+.nav {
+    background-color: $color-background-graphite;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem 1rem;
+
+    &__logo {
+        display: flex;
+        height: 1.75rem;
+        width: auto;
+    }
+
+    &__tabs {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__tab {
+        text-decoration: none;
+        color: $color-primary-white;
+
+        &--active {
+            background-color: $color-primary-black;
+        }
+
+    }
+
+}

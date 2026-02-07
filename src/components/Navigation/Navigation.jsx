@@ -14,8 +14,8 @@ const Navigation = () => {
             <NavLink
                 to="/warehouses"
                 className={({  isActive  }) =>
-                    isActive ? "nav_tab nav__tab--active"
-                : "nav_tab"
+                    isActive ? "nav__tab nav__tab--active"
+                : "nav__tab"
                 }
             >
             Warehouses
@@ -24,8 +24,8 @@ const Navigation = () => {
             <NavLink
                 to="/inventory"
                 className={({  isActive  }) =>
-                    isActive ? "nav_tab nav__tab--active"
-                : "nav_tab"
+                    isActive ? "nav__tab nav__tab--active"
+                : "nav__tab"
                 }
             >
             Inventory
@@ -34,7 +34,7 @@ const Navigation = () => {
         </nav>
 
        </header>
-    )
+    );
 
 };
 
