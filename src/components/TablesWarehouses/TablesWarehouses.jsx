@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import Card from "../Card/Card.jsx";
-import CardField from "../Card/CardField.jsx";
-import CardActions from "../Card/CardActions.jsx";
+import TableCard from "../TableCard/TableCard.jsx";
+import TableCardField from "../TableCard/TableCardField.jsx";
+import TableCardActions from "../TableCard/TableCardActions.jsx";
 import chevronRight from "../../assets/Icons/chevronright24px.svg";
 
 const TableWarehouses = ({ warehouses }) => {
@@ -13,8 +13,8 @@ const TableWarehouses = ({ warehouses }) => {
     return (
         <div className="warehouse-table">
             {warehouses.map((warehouse) => (
-                <Card key={warehouse.id} className="warehouse-table__card">
-                    <CardField label="WAREHOUSE" className="warehouse-table__field">
+                <TableCard key={warehouse.id} className="warehouse-table__TableCard">
+                    <TableCardField label="WAREHOUSE" className="warehouse-table__field">
                         <Link to={`/warehouses/${warehouse.id}`} className="warehouse-link">
                             {warehouse.warehouse_name}
                             <img
@@ -23,26 +23,26 @@ const TableWarehouses = ({ warehouses }) => {
                                 className="warehouse-link__icon"
                             />
                         </Link>
-                    </CardField>
+                    </TableCardField>
 
-                    <CardField label="CONTACT NAME" className="warehouse-table__field">
+                    <TableCardField label="CONTACT NAME" className="warehouse-table__field">
                         {warehouse.contact_name} ({warehouse.contact_position})
-                    </CardField>
+                    </TableCardField>
 
-                    <CardField label="ADDRESS" className="warehouse-table__field">
+                    <TableCardField label="ADDRESS" className="warehouse-table__field">
                         {warehouse.address}, {warehouse.city}, {warehouse.country}
-                    </CardField>
+                    </TableCardField>
 
-                    <CardField label="CONTACT INFORMATION" className="warehouse-table__field">
+                    <TableCardField label="CONTACT INFORMATION" className="warehouse-table__field">
                         {warehouse.contact_phone} {warehouse.contact_email}
-                    </CardField>
+                    </TableCardField>
 
-                    <CardActions
+                    <TableCardActions
                         editTo={`/warehouses/${warehouse.id}/edit`}
                         onDelete={() => console.log("Delete warehouse", warehouse.id)}
                         className="warehouse-table__actions"
                     />
-                </Card>
+                </TableCard>
             ))}
         </div>
     );
