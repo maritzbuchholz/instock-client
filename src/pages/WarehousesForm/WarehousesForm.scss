@@ -1,0 +1,33 @@
+@use "../../styles/variables" as *;
+@use "../../styles/functions" as *;
+@use "../../styles/mixins" as *;
+
+.warehouses-form{
+    &__warehouse-details{
+        box-sizing: border-box;
+        width: 50%;
+    }
+    &__contact-details{
+        box-sizing: border-box;
+        width: 50%;
+    }
+    &__header{
+        border-bottom: $color-secondary-cloud solid 1px;
+        padding-left: pxToRem(32);
+        padding-right: pxToRem(32);
+    }
+    &__wrapper{
+        display: flex;
+        justify-content: flex-start;
+        margin-top: pxToRem(32);
+    }
+    &__warehouse-details{
+        border-right: $color-secondary-cloud solid 1px;
+        padding-left: pxToRem(32);
+        padding-right: pxToRem(32);
+    }
+    &__contact-details{
+        padding-left: pxToRem(32);
+        padding-right: pxToRem(32);
+    }
+}

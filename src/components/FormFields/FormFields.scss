@@ -9,12 +9,13 @@
         margin-bottom: pxToRem(4);
     }
     &__input{
+        box-sizing: border-box;
         font-family: $font-family-primary;
         border-radius: pxToRem(20);
         padding-left: pxToRem(16);
         padding-right: pxToRem(16);
         height: pxToRem(36);
-        
+        width: 100%;
 
         // p2 typography
         color: $color-primary-black;
