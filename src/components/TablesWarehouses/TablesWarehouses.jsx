@@ -13,7 +13,7 @@ const TableWarehouses = ({ warehouses }) => {
     return (
         <div className="warehouse-table">
             {warehouses.map((warehouse) => (
-                <TableCard key={warehouse.id} className="warehouse-table__TableCard">
+                <TableCard key={warehouse.id} className="warehouse-table__Card">
                     <TableCardField label="WAREHOUSE" className="warehouse-table__field">
                         <Link to={`/warehouses/${warehouse.id}`} className="warehouse-link">
                             {warehouse.warehouse_name}
