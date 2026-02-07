@@ -18,6 +18,7 @@ const FormFields = ({
                     variant={variant}
                     placeholder={inputName}
                 />
+                <Typography variant="p3" className="form-fields__error">This field is required</Typography>
             </div>
         </label>
     );
