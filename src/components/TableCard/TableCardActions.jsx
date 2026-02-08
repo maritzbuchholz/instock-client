@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
 import Iconography from "../Iconography/Iconography";
+import "./TableCard.scss"
 
 const TableCardActions = ({ editTo, onDelete, className = "" }) => {
     return (
         <div className={`card__actions ${className}`}>
             <button
                 type="button"
-                className="card__icon-action"
+                className="card__icon-action card__delete-button"
                 aria-label="Delete"
                 onClick={onDelete}
             >

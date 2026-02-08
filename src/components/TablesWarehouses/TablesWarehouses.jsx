@@ -5,6 +5,7 @@ import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
 import chevronRight from "../../assets/Icons/chevronright24px.svg";
 import Typography from "../Typography/Typography.jsx";
+import "./TablesWarehouses.scss"
 
 const TableWarehouses = ({ warehouses }) => {
     if (!warehouses || warehouses.length === 0) {

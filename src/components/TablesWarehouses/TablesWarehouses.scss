@@ -1,0 +1,10 @@
+.warehouse-table {
+    &__card {
+        gap: 16px;
+    }
+
+    &__link {
+        display: flex;
+        flex-direction: row;
+    }
+}
