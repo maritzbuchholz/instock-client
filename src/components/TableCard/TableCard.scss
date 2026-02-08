@@ -1,5 +1,6 @@
 @use "../../styles/functions" as *;
 @use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .card {
     display: flex;

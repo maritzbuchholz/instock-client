@@ -1,5 +1,6 @@
 @use "../../styles/functions" as *;
 @use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
 
 .warehouses {
     margin: pxToRem(0) pxToRem(16);
