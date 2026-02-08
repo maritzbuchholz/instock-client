@@ -1,16 +1,20 @@
 @use "../../styles/functions" as *;
+@use "../../styles/variables" as *;
 
 .card {
     display: flex;
     flex-wrap: wrap;
-
+    background-color: $color-primary-white;
+    padding: pxToRem(16) pxToRem(16) pxToRem(16) pxToRem(16);
+    border-top: 1px solid $color-secondary-cloud;
+    box-shadow: 0px 2px 5px 0px rgba($color-primary-black, 0.1);
 
     &__field {
         display: flex;
         flex-direction: column;
-        width: calc(50% - 8px);
+        width: calc(50% - 8px - 22.5px);
         box-sizing: border-box;
-        gap: 4px;
+        gap: pxToRem(4);
     }
 
     &__label {

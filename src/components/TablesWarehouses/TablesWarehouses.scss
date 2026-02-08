@@ -1,6 +1,9 @@
+@use "../../styles/functions" as *;
+
 .warehouse-table {
     &__card {
-        gap: 16px;
+        gap: pxToRem(16);
+        column-gap: pxToRem(45);
     }
 
     &__link {
