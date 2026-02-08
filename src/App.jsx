@@ -20,7 +20,7 @@ const App = () => {
             try {
                 const [warehouseResponse, inventoryResponse] = await Promise.all([
                     axios.get(`${baseUrl}/warehouses`),
-                    axios.get(`${baseUrl}/inventory`)
+                    axios.get(`${baseUrl}/inventories`)
                 ]);
 
                 setWarehouses(warehouseResponse.data);
@@ -42,8 +42,8 @@ const App = () => {
                     <Route path="/warehouses/form" element={<WarehousesForm />} />
                     <Route path="/inventory" element={<InventoryPage inventory={inventory} />} />
                     {/* <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} /> */}
-                     {/* <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} />} /> 
-                   <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} />  */}
+                    {/* <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} />} />  */}
+                    {/* <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} />  */}
                 </Routes>
             </main>
 
