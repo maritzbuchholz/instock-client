@@ -14,4 +14,26 @@
         text-decoration: none;
         color: $color-primary-indigo;
     }
+
+    @include tablet {
+        &__warehouse {
+            flex: 1.25;
+        }
+
+        &__name {
+            flex: 1;
+        }
+
+        &__address {
+            flex: 1;
+        }
+
+        &__contact {
+            flex: 1.5;
+        }
+
+        &__actions {
+            flex: 0.75;
+        }
+    }
 }

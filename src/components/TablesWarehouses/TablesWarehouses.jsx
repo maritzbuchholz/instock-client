@@ -20,7 +20,7 @@ const TableWarehouses = ({ warehouses }) => {
             <div className="warehouse-table">
                 {warehouses.map((warehouse) => (
                     <TableCard key={warehouse.id} className="warehouse-table__card">
-                        <TableCardField label="WAREHOUSE" className="card__field--alt">
+                        <TableCardField label="WAREHOUSE" className="card__field--alt warehouse-table__warehouse">
                             <Link to={`/warehouses/${warehouse.id}`} className="warehouse-table__link">
                                 <Typography variant="p2" className="card__value-text">{warehouse.warehouse_name}</Typography>
                                 <img
@@ -31,19 +31,19 @@ const TableWarehouses = ({ warehouses }) => {
                             </Link>
                         </TableCardField>
 
-                        <TableCardField label="CONTACT NAME" >
+                        <TableCardField label="CONTACT NAME" className="warehouse-table__name">
                             <Typography variant="p2" className="card__value-text">
                                 {warehouse.contact_name}
                             </Typography>
                         </TableCardField>
 
-                        <TableCardField label="ADDRESS">
+                        <TableCardField label="ADDRESS" className="warehouse-table__address">
                             <Typography variant="p2" className="card__value-text">
                                 {warehouse.address}, {warehouse.city}, {warehouse.country}
                             </Typography>
                         </TableCardField>
 
-                        <TableCardField label="CONTACT INFORMATION">
+                        <TableCardField label="CONTACT INFORMATION" className="warehouse-table__contact">
                             <Typography variant="p2" className="card__value-text">{warehouse.contact_phone}</Typography>
                             <Typography variant="p2" className="card__value-text">{warehouse.contact_email}</Typography>
                         </TableCardField>

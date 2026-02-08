@@ -12,6 +12,14 @@
     padding: pxToRem(32) pxToRem(24) pxToRem(24) pxToRem(24);
     background-color: $color-primary-white;
 
+    @include tablet {
+        padding: pxToRem(32) pxToRem(32) pxToRem(22) pxToRem(32);
+    }
+
+    @include desktop {
+        padding: pxToRem(32) pxToRem(40) pxToRem(22) pxToRem(40);
+    }
+
     &__title {
         .typography--h1 {
             margin-top: 0;
