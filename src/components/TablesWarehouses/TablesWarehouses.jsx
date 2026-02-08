@@ -5,7 +5,7 @@ import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
 import chevronRight from "../../assets/Icons/chevronright24px.svg";
 import Typography from "../Typography/Typography.jsx";
-import TableHeader from "../../components/TablesHeader/TablesHeader.jsx";
+import TablesHeader from "../../components/TablesHeader/TablesHeader.jsx";
 import "./TablesWarehouses.scss"
 
 const TableWarehouses = ({ warehouses }) => {
@@ -15,7 +15,7 @@ const TableWarehouses = ({ warehouses }) => {
 
     return (
         <>
-            <TableHeader headerText="Warehouses" buttonText="+ Add New Warehouse" />
+            <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" />
 
             <div className="warehouse-table">
                 {warehouses.map((warehouse) => (

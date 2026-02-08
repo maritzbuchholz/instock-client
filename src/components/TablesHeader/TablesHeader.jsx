@@ -3,7 +3,7 @@ import Iconography from "../../components/Iconography/Iconography.jsx";
 import Button from "../../components/Button/Button.jsx"
 import "./TablesHeader.scss";
 
-const TableHeader = ({ headerText, buttonText, onButtonClick }) => {
+const TablesHeader = ({ headerText, buttonText, onButtonClick }) => {
     return (
         <div className="table-header">
             <div className="table-header__title">
@@ -31,4 +31,4 @@ const TableHeader = ({ headerText, buttonText, onButtonClick }) => {
     );
 };
 
-export default TableHeader;
+export default TablesHeader;
