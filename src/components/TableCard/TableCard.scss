@@ -1,0 +1,49 @@
+@use "../../styles/functions" as *;
+
+.card {
+    display: flex;
+    flex-wrap: wrap;
+
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+        width: calc(50% - 8px);
+        box-sizing: border-box;
+        gap: 4px;
+    }
+
+    &__label {
+        margin: 0;
+    }
+
+    &__value {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        margin: 0;
+        padding: 0;
+        gap: 0;
+    }
+
+    &__actions {}
+
+    &__icon-action {}
+
+    &__value-text {
+        margin: 0;
+    }
+
+}
+
+.warehouse-table {
+    &__card {
+        gap: 16px;
+    }
+
+    &__link {
+        display: flex;
+        flex-direction: row;
+    }
+}

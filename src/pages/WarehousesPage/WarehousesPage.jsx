@@ -2,7 +2,7 @@ import "./WarehousesPage.scss";
 import Typography from "../../components/Typography/Typography.jsx";
 import TableWarehouses from "../../components/TablesWarehouses/TablesWarehouses.jsx";
 
-const WarehousesPage = () => {
+const WarehousesPage = ({ warehouses }) => {
     return (
         <section className="warehouses">
             <div className="warehouses__header">
@@ -10,7 +10,7 @@ const WarehousesPage = () => {
             </div>
 
             <div className="warehouses__content">
-                <Typography variant="p1">Warehouse list will be displayed here.</Typography>
+                <TableWarehouses warehouses={warehouses} />
             </div>
         </section>
     );

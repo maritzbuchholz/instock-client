@@ -4,6 +4,7 @@ import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
 import chevronRight from "../../assets/Icons/chevronright24px.svg";
+import Typography from "../Typography/Typography.jsx";
 
 const TableWarehouses = ({ warehouses }) => {
     if (!warehouses || warehouses.length === 0) {
@@ -13,10 +14,10 @@ const TableWarehouses = ({ warehouses }) => {
     return (
         <div className="warehouse-table">
             {warehouses.map((warehouse) => (
-                <TableCard key={warehouse.id} className="warehouse-table__Card">
-                    <TableCardField label="WAREHOUSE" className="warehouse-table__field">
-                        <Link to={`/warehouses/${warehouse.id}`} className="warehouse-link">
-                            {warehouse.warehouse_name}
+                <TableCard key={warehouse.id} className="warehouse-table__card">
+                    <TableCardField label="WAREHOUSE" className="card__field--alt">
+                        <Link to={`/warehouses/${warehouse.id}`} className="warehouse-table__link">
+                            <Typography variant="p2" className="card__value-text">{warehouse.warehouse_name}</Typography>
                             <img
                                 src={chevronRight}
                                 alt="Chevron Right"
@@ -25,16 +26,21 @@ const TableWarehouses = ({ warehouses }) => {
                         </Link>
                     </TableCardField>
 
-                    <TableCardField label="CONTACT NAME" className="warehouse-table__field">
-                        {warehouse.contact_name} ({warehouse.contact_position})
+                    <TableCardField label="CONTACT NAME" >
+                        <Typography variant="p2" className="card__value-text">
+                            {warehouse.contact_name}
+                        </Typography>
                     </TableCardField>
 
-                    <TableCardField label="ADDRESS" className="warehouse-table__field">
-                        {warehouse.address}, {warehouse.city}, {warehouse.country}
+                    <TableCardField label="ADDRESS">
+                        <Typography variant="p2" className="card__value-text">
+                            {warehouse.address}, {warehouse.city}, {warehouse.country}
+                        </Typography>
                     </TableCardField>
 
-                    <TableCardField label="CONTACT INFORMATION" className="warehouse-table__field">
-                        {warehouse.contact_phone} {warehouse.contact_email}
+                    <TableCardField label="CONTACT INFORMATION">
+                        <Typography variant="p2" className="card__value-text">{warehouse.contact_phone}</Typography>
+                        <Typography variant="p2" className="card__value-text">{warehouse.contact_email}</Typography>
                     </TableCardField>
 
                     <TableCardActions

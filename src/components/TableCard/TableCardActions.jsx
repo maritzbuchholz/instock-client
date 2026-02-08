@@ -2,6 +2,7 @@ import { Link } from "react-router-dom";
 import Icon from "../Iconography/Iconography";
 import editIcon from "../../assets/Icons/edit24px.svg";
 import deleteIcon from "../../assets/Icons/deleteoutline24px.svg";
+import "./TableCard.scss"
 
 const TableCardActions = ({ editTo, onDelete, className = "" }) => {
     return (
