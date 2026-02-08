@@ -4,10 +4,6 @@ import Iconography from "../Iconography/Iconography";
 const TableCardActions = ({ editTo, onDelete, className = "" }) => {
     return (
         <div className={`card__actions ${className}`}>
-            <Link to={editTo} className="card__icon-action" aria-label="Edit">
-                <Iconography name="edit" />
-            </Link>
-
             <button
                 type="button"
                 className="card__icon-action"
@@ -16,6 +12,10 @@ const TableCardActions = ({ editTo, onDelete, className = "" }) => {
             >
                 <Iconography name="delete" />
             </button>
+
+            <Link to={editTo} className="card__icon-action" aria-label="Edit">
+                <Iconography name="edit" />
+            </Link>
         </div>
     );
 };

@@ -67,8 +67,8 @@ const TablesInventory = ({ inventory }) => {
                         </TableCardField>
 
                         <TableCardActions
-                            editTo={`/inventory/${item.id}/edit`}
                             onDelete={() => console.log("Delete item", item.id)}
+                            editTo={`/inventory/${item.id}/edit`}
                             className="inventory-table__field--actions"
                         />
                     </TableCard>
