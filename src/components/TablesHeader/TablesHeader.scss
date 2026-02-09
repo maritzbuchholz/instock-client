@@ -14,6 +14,8 @@
 
     @include tablet {
         padding: pxToRem(32) pxToRem(32) pxToRem(22) pxToRem(32);
+        flex-direction: row;
+        align-items: center;
     }
 
     @include desktop {
@@ -25,11 +27,23 @@
             margin-top: 0;
             margin-bottom: 0;
         }
+
+        @include tablet {
+            flex: 0 0 40%;
+        }
+
+        @include desktop {
+            flex: 0 0 60%;
+        }
     }
 
     &__search {
         width: calc(100% - pxToRem(8) - pxToRem(12));
         position: relative;
+
+        @include tablet {
+            margin-right: pxToRem(16);
+        }
     }
 
     &__search-input {
@@ -62,5 +76,9 @@
 
     &__button {
         width: 100%;
+
+        @include tablet {
+            width: auto;
+        }
     }
 }
