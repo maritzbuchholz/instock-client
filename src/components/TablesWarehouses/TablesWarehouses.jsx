@@ -6,6 +6,7 @@ import TableCardActions from "../TableCard/TableCardActions.jsx";
 import chevronRight from "../../assets/Icons/chevronright24px.svg";
 import Typography from "../Typography/Typography.jsx";
 import TablesHeader from "../../components/TablesHeader/TablesHeader.jsx";
+import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
 import "./TablesWarehouses.scss"
 
 const TableWarehouses = ({ warehouses }) => {
@@ -13,10 +14,17 @@ const TableWarehouses = ({ warehouses }) => {
         return <p>No warehouses available.</p>;
     }
 
+    const headers = [
+        { label: "WAREHOUSE", flex: 1.25 },
+        { label: "ADDRESS", flex: 1 },
+        { label: "CONTACT NAME", flex: 1 },
+        { label: "CONTACT INFORMATION", flex: 1.5 }
+    ];
+
     return (
         <>
             <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" />
-
+            <TableRowHeader headers={headers} />
             <div className="warehouse-table">
                 {warehouses.map((warehouse) => (
                     <TableCard key={warehouse.id} className="warehouse-table__card">

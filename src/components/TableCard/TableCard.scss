@@ -10,6 +10,10 @@
     border-top: 1px solid $color-secondary-cloud;
     box-shadow: 0px 2px 5px 0px rgba($color-primary-black, 0.1);
 
+    &:first-child {
+        border-top: none;
+    }
+
     @include tablet {
         flex-wrap: nowrap;
         padding: pxToRem(16) pxToRem(32);

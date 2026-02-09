@@ -16,6 +16,7 @@
     }
 
     @include tablet {
+
         &__warehouse {
             flex: 1.25;
             order: 1;
