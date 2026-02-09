@@ -18,22 +18,27 @@
     @include tablet {
         &__warehouse {
             flex: 1.25;
+            order: 1;
         }
 
         &__name {
             flex: 1;
+            order: 3;
         }
 
         &__address {
             flex: 1;
+            order: 2;
         }
 
         &__contact {
             flex: 1.5;
+            order: 4;
         }
 
         &__actions {
             flex: 0.75;
+            order: 5;
         }
     }
 }
