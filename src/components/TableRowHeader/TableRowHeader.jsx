@@ -26,11 +26,17 @@ const TableRowHeader = ({ headers = [], onSort }) => {
                     style={{ flex: flex }}
                 >
                     <span className="table-row-header__label">{label}</span>
-                    <Iconography
-                        name="sort"
-                        className="table-row-header__sort-icon"
-                        onClick={() => onSort(headers.label)}
-                    />
+                    <button
+                        type="button"
+                        className="table-row-header__sort-button"
+                        aria-label={`Sort by ${label}`}
+                        onClick={() => onSort(label)}
+                    >
+                        <Iconography
+                            name="sort"
+                            className="table-row-header__sort-icon"
+                        />
+                    </button>
                 </div>
             ))}
 
