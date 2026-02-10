@@ -3,7 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import WarehousesPage from "./pages/WarehousesPage/WarehousesPage.jsx";
 import WarehousesForm from "./pages/WarehousesForm/WarehousesForm.jsx";
-// import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage.jsx";
+import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage.jsx";
 import InventoryPage from "./pages/InventoryPage/InventoryPage.jsx";
 import Navigation from "./components/Navigation/Navigation.jsx";
 import Footer from "./components/Footer/Footer.jsx";
@@ -42,8 +42,7 @@ const App = () => {
                     <Route path="/warehouses/form" element={<WarehousesForm />} />
                     <Route path="/inventory" element={<InventoryPage inventory={inventory} />} />
                     {/* <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} /> */}
-                    {/* <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} />} />  */}
-                    {/* <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} />} />  */}
+                    <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
                 </Routes>
             </main>
 
