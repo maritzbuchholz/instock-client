@@ -2,7 +2,16 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
+.warehouse-table-wrapper {
+    transform: translateY(-64px);
+
+    @include tablet {
+        transform: translateY(-94px);
+    }
+}
+
 .warehouse-table {
+
     &__card {
         gap: pxToRem(16);
         column-gap: pxToRem(45);

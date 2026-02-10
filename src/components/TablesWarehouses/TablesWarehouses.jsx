@@ -22,7 +22,7 @@ const TableWarehouses = ({ warehouses }) => {
     ];
 
     return (
-        <>
+        <div className="warehouse-table-wrapper">
             <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" />
             <TableRowHeader headers={headers} />
             <div className="warehouse-table">
@@ -64,7 +64,7 @@ const TableWarehouses = ({ warehouses }) => {
                     </TableCard>
                 ))}
             </div>
-        </>
+        </div>
     );
 };
 
