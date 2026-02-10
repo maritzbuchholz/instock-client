@@ -17,18 +17,18 @@ const PageHeader = ({ headerText, onBack, onEdit, variant = "noedit" }) => {   /
                 <Typography variant="h1">{headerText}</Typography>
             </div>
 
-            <Button
+            {variant === "edit" && <Button
                 type="button"
                 className="page-header__button"
                 variant="primary"
                 onClick={onEdit}
             >
                 <Iconography
-                    name="backArrow"
-                    className="page-header__back-icon"
+                    name="edit"
+                    className="page-header__edit-icon"
                 />
-                <Typography variant="h1">{headerText}</Typography>
-            </Button>
+                <Typography variant="h1" className="page-header__edit-text">Edit</Typography>
+            </Button>}
 
         </div>
     );
