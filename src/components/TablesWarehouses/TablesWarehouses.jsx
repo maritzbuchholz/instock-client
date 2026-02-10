@@ -9,22 +9,22 @@ import TablesHeader from "../../components/TablesHeader/TablesHeader.jsx";
 import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
 import "./TablesWarehouses.scss"
 
-const TableWarehouses = ({ warehouses }) => {
+const TableWarehouses = ({ warehouses, setWarehouses }) => {
     if (!warehouses || warehouses.length === 0) {
         return <p>No warehouses available.</p>;
     }
 
     const headers = [
-        { label: "WAREHOUSE", flex: 1.25 },
-        { label: "ADDRESS", flex: 1 },
-        { label: "CONTACT NAME", flex: 1 },
-        { label: "CONTACT INFORMATION", flex: 1.5 }
+        { label: "WAREHOUSE", key: "warehouse_name", flex: 1.25 },
+        { label: "ADDRESS", key: "address", flex: 1 },
+        { label: "CONTACT NAME", key: "contact_name", flex: 1 },
+        { label: "CONTACT INFORMATION", key: "contact_email", flex: 1.5 } //key is for sorting
     ];
 
     return (
         <div className="warehouse-table-wrapper">
             <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" />
-            <TableRowHeader headers={headers} />
+            <TableRowHeader headers={headers} warehouses={warehouses} setWarehouses={setWarehouses} />
             <div className="warehouse-table">
                 {warehouses.map((warehouse) => (
                     <TableCard key={warehouse.id} className="warehouse-table__card">

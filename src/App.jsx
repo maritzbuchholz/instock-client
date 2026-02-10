@@ -38,7 +38,7 @@ const App = () => {
             <main>
                 <Routes>
                     <Route path="/" element={<Navigate to="/warehouses" replace />} />
-                    <Route path="/warehouses" element={<WarehousesPage warehouses={warehouses} />} />
+                    <Route path="/warehouses" element={<WarehousesPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
                     <Route path="/warehouses/form" element={<WarehousesForm />} />
                     <Route path="/inventory" element={<InventoryPage inventory={inventory} />} />
                     {/* <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} /> */}
