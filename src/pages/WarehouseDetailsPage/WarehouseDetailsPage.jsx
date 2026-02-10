@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Typography from "../../components/Typography/Typography.jsx";
 import PageHeader from "../../components/PageHeader/PageHeader.jsx";
+import TablesWarehouse from "../../components/TablesWarehouse/TablesWarehouse.jsx";
 import "./WarehouseDetailsPage.scss";
 
 const WarehouseDetailsPage = ({ warehouses, setWarehouses }) => {
@@ -17,17 +18,17 @@ const WarehouseDetailsPage = ({ warehouses, setWarehouses }) => {
     }, [warehouses, id]);
 
     if (!warehouses || warehouses.length === 0) {
-        return <p>Loading warehouses...</p>;
+        return <Typography variant="p1" className="message">Loading warehouses...</Typography>;
     }
 
     if (!warehouse) {
-        return <p>Warehouse not found.</p>;
+        return <Typography variant="p1" className="message">Warehouse not found.</Typography>;
     }
 
     return (
         <section className="warehouse-details">
-            <div className="warehouses__content">
-                <PageHeader headerText={warehouse.warehouse_name} variant="edit" />
+            <div className="warehouse-details__content">
+                <TablesWarehouse warehouses={warehouses} setWarehouses={setWarehouses} warehouse={warehouse} />
             </div>
         </section>
     );

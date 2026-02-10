@@ -1,0 +1,52 @@
+@use "../../styles/functions" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.warehouse-details {
+
+    .typography--h4,
+    .typography--p2 {
+        margin-top: 0;
+        margin-bottom: pxToRem(4);
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        padding: pxToRem(16) pxToRem(24);
+        gap: pxToRem(36);
+        border-bottom: 1px solid $color-secondary-cloud;
+
+        @include tablet {
+            padding: pxToRem(24) pxToRem(32);
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+
+        @include desktop {
+            padding: pxToRem(24) pxToRem(40);
+        }
+    }
+
+    &__field {
+        gap: pxToRem(4);
+    }
+
+    &__address {}
+
+    &__contact-wrapper {
+        display: flex;
+        column-gap: pxToRem(45);
+    }
+
+    &__name {}
+
+    &__info {}
+
+    &__title {}
+
+    &__value {
+        display: flex;
+        flex-direction: column;
+    }
+}
