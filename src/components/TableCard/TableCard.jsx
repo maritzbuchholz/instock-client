@@ -1,3 +1,5 @@
+import "./TableCard.scss"
+
 const TableCard = ({ children, className = "" }) => {
     return (
         <article className={`card ${className}`.trim()}>
