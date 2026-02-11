@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import Iconography from "../Iconography/Iconography";
-import TableCard from "../TableCard/TableCard"; 
+import TableCard from "../TableCard/TableCard";
 import TableCardField from "../TableCard/TableCardField";
 import TableCardActions from "../TableCard/TableCardActions";
 import TablesHeader from "../TablesHeader/TablesHeader";
@@ -25,7 +25,7 @@ const TablesInventory = ({ inventory, setInventory }) => {
     return (
         <div className="inventory-table-wrapper">
             <TablesHeader headerText="Inventory" buttonText="+ Add New Item" />
-            <TableRowHeader headers={headers} inventory={inventory} setInventory={setInventory} />
+            <TableRowHeader headers={headers} data={inventory} setData={setInventory} />
             <div className="inventory-table">
                 {inventory.map((item) => (
                     <TableCard key={item.id} className="inventory-table__card">

@@ -29,7 +29,7 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
         <div className="warehouse-inventory-table__wrapper">
             <PageHeader headerText={warehouse.warehouse_name} variant="edit" />
             <WarehouseDetails warehouse={warehouse} />
-            <TableRowHeader headers={headers} warehouses={inventory} setWarehouses={setInventory} />
+            <TableRowHeader headers={headers} data={inventory} setData={setInventory} />
             <div className="warehouse-inventory-table">
                 {warehouseInventory.map((inventory) => (
                     <TableCard key={inventory.id} className="warehouse-inventory-table__card">

@@ -41,7 +41,7 @@ const App = () => {
                     <Route path="/" element={<Navigate to="/warehouses" replace />} />
                     <Route path="/warehouses" element={<WarehousesPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
                     <Route path="/warehouses/form" element={<WarehousesForm />} />
-                    <Route path="/inventory" element={<InventoryPage inventory={inventory} />} />
+                    <Route path="/inventory" element={<InventoryPage inventory={inventory} setInventory={setInventory} />} />
                     <Route path="/inventory/add" element={<AddInventory inventory={inventory} />} />
                     {/* <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} /> */}
                     <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} setWarehouses={setWarehouses} inventory={inventory} setInventory={setInventory} />} />

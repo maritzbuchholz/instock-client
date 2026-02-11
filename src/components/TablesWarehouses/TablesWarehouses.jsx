@@ -24,7 +24,7 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
     return (
         <div className="warehouse-table-wrapper">
             <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" />
-            <TableRowHeader headers={headers} warehouses={warehouses} setWarehouses={setWarehouses} />
+            <TableRowHeader headers={headers} data={warehouses} setData={setWarehouses} />
             <div className="warehouse-table">
                 {warehouses.map((warehouse) => (
                     <TableCard key={warehouse.id} className="warehouse-table__card">
