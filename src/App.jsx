@@ -7,6 +7,7 @@ import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsP
 import InventoryPage from "./pages/InventoryPage/InventoryPage.jsx";
 import Navigation from "./components/Navigation/Navigation.jsx";
 import Footer from "./components/Footer/Footer.jsx";
+import AddInventory from "./pages/AddInventory/AddInventory.jsx";
 
 const App = () => {
 
@@ -41,6 +42,7 @@ const App = () => {
                     <Route path="/warehouses" element={<WarehousesPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
                     <Route path="/warehouses/form" element={<WarehousesForm />} />
                     <Route path="/inventory" element={<InventoryPage inventory={inventory} />} />
+                    <Route path="/inventory/add" element={<AddInventory inventory={inventory} />} />
                     {/* <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} /> */}
                     <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
                 </Routes>
