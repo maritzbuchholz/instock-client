@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import Iconography from "../Iconography/Iconography";
 import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
-import chevronRight from "../../assets/Icons/chevronright24px.svg";
 import Typography from "../Typography/Typography.jsx";
 import TablesHeader from "../../components/TablesHeader/TablesHeader.jsx";
 import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
@@ -31,11 +31,7 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
                         <TableCardField label="WAREHOUSE" className="card__field--alt warehouse-table__warehouse">
                             <Link to={`/warehouses/${warehouse.id}`} className="warehouse-table__link">
                                 <Typography variant="p2" className="card__value-text">{warehouse.warehouse_name}</Typography>
-                                <img
-                                    src={chevronRight}
-                                    alt="Chevron Right"
-                                    className="warehouse-link__icon"
-                                />
+                                <Iconography name="chevronRight" className="warehouse-link__icon" />
                             </Link>
                         </TableCardField>
 
