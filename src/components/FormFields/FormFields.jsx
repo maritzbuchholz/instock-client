@@ -7,7 +7,9 @@ import Typography from "../Typography/Typography.jsx";
 
 const FormFields = ({
     inputName="Placeholder",
-    variant="text",
+    variant="text", // text, text-large, dropdown, radio
+    options =[],
+    
 }) => {
     return(
         <label className="form-fields__label">
