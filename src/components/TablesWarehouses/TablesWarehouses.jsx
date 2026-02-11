@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useRedirect from "../../hooks/useRedirect.js";
 import Iconography from "../Iconography/Iconography";
 import TableCard from "../TableCard/TableCard.jsx";
@@ -22,9 +23,9 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
         { label: "CONTACT INFORMATION", key: "contact_email", flex: 1.5 } //key is for sorting
     ];
 
-    const redirect = useRedirect();
+    const navigate = useNavigate();
 
-    const goToAddWarehouse = () => redirect("/warehouses/form/add");
+    const goToAddWarehouse = () => navigate("/warehouses/form/add");
 
     return (
         <div className="warehouse-table-wrapper">

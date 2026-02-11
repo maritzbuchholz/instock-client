@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Typography from "../../components/Typography/Typography.jsx";
 import WarehouseDetails from "../../components/WarehouseDetails/WarehouseDetails.jsx";
 import PageHeader from "../../components/PageHeader/PageHeader.jsx";
@@ -8,7 +9,6 @@ import TableCardActions from "../TableCard/TableCardActions.jsx";
 import chevronRight from "../../assets/Icons/chevronright24px.svg";
 import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
 import Tags from "../Tags/Tags.jsx";
-import useRedirect from "../../hooks/useRedirect.js";
 import "./TablesWarehouse.scss";
 
 const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setInventory }) => {
@@ -26,9 +26,9 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
 
     const warehouseInventory = inventory.filter(item => item.warehouse_name === warehouse.warehouse_name)
 
-    const redirect = useRedirect();
-    const goToWarehouses = () => redirect("/warehouses");
-    const goToWarehouseEdit = () => redirect(`/warehouses/form/${warehouse.id}/edit`);
+    const navigate = useNavigate();
+    const goToWarehouses = () => navigate("/warehouses");
+    const goToWarehouseEdit = () => navigate(`/warehouses/form/${warehouse.id}/edit`);
 
     return (
         <div className="warehouse-inventory-table__wrapper">
