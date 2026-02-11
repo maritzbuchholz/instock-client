@@ -45,9 +45,7 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
                         </TableCardField>
 
                         <TableCardField label="STATUS" className="warehouse-inventory-table__status">
-                            <Typography variant="p2" className="card__value-text">
-                                {inventory.status}
-                            </Typography>
+                            <Tags status={inventory.status} />
                         </TableCardField>
 
                         <TableCardField label="CATEGORY" className="warehouse-inventory-table__category">
