@@ -28,6 +28,11 @@
 
     &__back-button {
         all: unset;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 80%;
+        }
     }
 
     &__title {

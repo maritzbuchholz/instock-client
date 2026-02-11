@@ -22,7 +22,9 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
         { label: "CONTACT INFORMATION", key: "contact_email", flex: 1.5 } //key is for sorting
     ];
 
-    const goToAddWarehouse = useRedirect("/warehouses/form/add");
+    const redirect = useRedirect();
+
+    const goToAddWarehouse = () => redirect("/warehouses/form/add");
 
     return (
         <div className="warehouse-table-wrapper">
@@ -56,7 +58,7 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
                         </TableCardField>
 
                         <TableCardActions
-                            editTo={`/warehouses/${warehouse.id}/edit`}
+                            editTo={`/warehouses/form/${warehouse.id}/edit`}
                             onDelete={() => console.log("Delete warehouse", warehouse.id)}
                             className="warehouse-table__actions"
                         />

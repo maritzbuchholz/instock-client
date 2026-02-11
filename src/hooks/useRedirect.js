@@ -1,8 +1,8 @@
 import { useNavigate } from "react-router-dom";
 
-const useRedirect = (path) => {
+const useRedirect = () => {
     const navigate = useNavigate();
-    return () => navigate(path);
+    return (path) => navigate(path);
 }
 
 export default useRedirect;

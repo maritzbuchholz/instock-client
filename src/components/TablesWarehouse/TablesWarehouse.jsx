@@ -8,6 +8,7 @@ import TableCardActions from "../TableCard/TableCardActions.jsx";
 import chevronRight from "../../assets/Icons/chevronright24px.svg";
 import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
 import Tags from "../Tags/Tags.jsx";
+import useRedirect from "../../hooks/useRedirect.js";
 import "./TablesWarehouse.scss";
 
 const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setInventory }) => {
@@ -25,9 +26,13 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
 
     const warehouseInventory = inventory.filter(item => item.warehouse_name === warehouse.warehouse_name)
 
+    const redirect = useRedirect();
+    const goToWarehouses = () => redirect("/warehouses");
+    const goToWarehouseEdit = () => redirect(`/warehouses/form/${warehouse.id}/edit`);
+
     return (
         <div className="warehouse-inventory-table__wrapper">
-            <PageHeader headerText={warehouse.warehouse_name} variant="edit" />
+            <PageHeader headerText={warehouse.warehouse_name} variant="edit" onBack={goToWarehouses} onEdit={goToWarehouseEdit} />
             <WarehouseDetails warehouse={warehouse} />
             <TableRowHeader headers={headers} data={inventory} setData={setInventory} />
             <div className="warehouse-inventory-table">
