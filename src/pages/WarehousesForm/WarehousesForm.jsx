@@ -19,18 +19,18 @@ const WarehousesForm = () => {
 
                 <div className="warehouses-form__warehouse-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Warehouse Details</Typography>
-                    <FormFields inputName="Warehouse Name"/>
-                    <FormFields inputName="Street Address"/>
-                    <FormFields inputName="City"/>
-                    <FormFields inputName="Country"/>
+                    <FormFields htmlFor="warhouse-name" inputName="Warehouse Name"/>
+                    <FormFields htmlFor="address" inputName="Street Address"/>
+                    <FormFields htmlFor="city" inputName="City"/>
+                    <FormFields htmlFor="country" inputName="Country"/>
                 </div>
 
                 <div className="warehouses-form__contact-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Contact Details</Typography>
-                    <FormFields inputName="Contact Name"/>
-                    <FormFields inputName="Position"/>
-                    <FormFields inputName="Phone Number"/>
-                    <FormFields inputName="Email"/>
+                    <FormFields htmlFor="contact-name" inputName="Contact Name"/>
+                    <FormFields htmlFor="position" inputName="Position"/>
+                    <FormFields htmlFor="number" inputName="Phone Number"/>
+                    <FormFields htmlFor="email" inputName="Email"/>
                 </div>
 
             </section>

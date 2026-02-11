@@ -6,14 +6,17 @@ import Typography from "../Typography/Typography.jsx";
 // Email
 
 const FormFields = ({
+    htmlFor="",
     inputName="Placeholder",
     variant="text",
 }) => {
     return(
-        <label className="form-fields__label">
+        <label className="form-fields__label" htmlFor={htmlFor}>
             <Typography variant="h3" className="form-fields__label-text">{inputName}</Typography>
             <div className="form-fields__input-container">
                 <input
+                    id={htmlFor}
+                    name={htmlFor}
                     variant={variant}
                     className="form-fields__input"
                     placeholder={inputName}
