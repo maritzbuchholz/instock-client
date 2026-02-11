@@ -23,7 +23,7 @@ const FormFields = ({
                     className="form-fields__input"
                     placeholder={inputName}
                 />
-                <Typography variant="p3" className="form-fields__error">This field is required</Typography>
+                <Typography variant="p3" className="form-fields__no-error">This field is required</Typography>
             </div>
         </label>
     );

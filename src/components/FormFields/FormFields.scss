@@ -8,7 +8,7 @@
         margin: auto;
         margin-bottom: pxToRem(4);
     }
-    &__error{
+    &__no-error{
         // code for the icon
         &::before{
             content: "";
@@ -27,6 +27,9 @@
         color: $color-supporting-red;
         margin: auto;
         margin-top: 4px;
+    }
+    &__error{
+        visibility: visible; 
     }
     &__input{
         box-sizing: border-box;

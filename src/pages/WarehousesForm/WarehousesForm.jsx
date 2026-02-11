@@ -2,12 +2,22 @@ import "./WarehousesForm.scss";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
+import { fieldFilled } from "../../utils/formValidation.js";
+import { useState } from "react";
+
 
 const WarehousesForm = () => {
+    const [errors, setError] = useState({
+        "warhouse-name": "no-error",
+        "address": "no-error",
+        "city": "no-error",
+        "country": "no-error",
+    });
+
     const handleSubmit = async(e)=> {
         e.preventDefault();
         console.log(e);
-        
+        fieldFilled(e.target, 8); // second input is the number of fields to test
     };
 
     return (
