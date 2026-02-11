@@ -4,7 +4,6 @@
 
 .inventory-table-wrapper {
     transform: translateY(-64px);
-
     @include tablet {
         transform: translateY(-94px);
     }
