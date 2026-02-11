@@ -15,6 +15,11 @@
     &__card {
         gap: pxToRem(16);
         column-gap: pxToRem(45);
+        @include desktop {
+            &:hover {
+                background-color: #2E66E512;
+            }
+        }
     }
 
     &__link {
