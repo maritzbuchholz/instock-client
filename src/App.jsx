@@ -44,7 +44,7 @@ const App = () => {
                     <Route path="/inventory" element={<InventoryPage inventory={inventory} />} />
                     <Route path="/inventory/add" element={<AddInventory inventory={inventory} />} />
                     {/* <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} /> */}
-                    <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
+                    <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} setWarehouses={setWarehouses} inventory={inventory} setInventory={setInventory} />} />
                 </Routes>
             </main>
 

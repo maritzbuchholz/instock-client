@@ -8,6 +8,8 @@
     justify-content: space-between;
     padding: pxToRem(32) pxToRem(24) pxToRem(24) pxToRem(24);
     border-bottom: 1px solid $color-secondary-cloud;
+    background-color: $color-primary-white;
+    box-shadow: 0px 2px 5px 0px rgba($color-primary-black, 0.1);
 
     @include tablet {
         padding: pxToRem(32) pxToRem(32) pxToRem(22) pxToRem(32);

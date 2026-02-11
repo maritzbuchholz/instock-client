@@ -5,7 +5,7 @@ import PageHeader from "../../components/PageHeader/PageHeader.jsx";
 import TablesWarehouse from "../../components/TablesWarehouse/TablesWarehouse.jsx";
 import "./WarehouseDetailsPage.scss";
 
-const WarehouseDetailsPage = ({ warehouses, setWarehouses }) => {
+const WarehouseDetailsPage = ({ warehouses, setWarehouses, inventory, setInventory }) => {
 
     const { id } = useParams();
     const [warehouse, setWarehouse] = useState(null);
@@ -28,7 +28,7 @@ const WarehouseDetailsPage = ({ warehouses, setWarehouses }) => {
     return (
         <section className="warehouse-details">
             <div className="warehouse-details__content">
-                <TablesWarehouse warehouses={warehouses} setWarehouses={setWarehouses} warehouse={warehouse} />
+                <TablesWarehouse warehouses={warehouses} setWarehouses={setWarehouses} warehouse={warehouse} inventory={inventory} setInventory={setInventory} />
             </div>
         </section>
     );
