@@ -15,14 +15,17 @@ const InventoryForm = () => {
                 <div className="inventory-form-details">
                     <Typography variant="h2">Item Details</Typography>
                     <FormFields inputName="Item Name"/>
-                    <FormFields inputName="Description"/>
-                    <FormFields inputName="Category"/>
+                    <FormFields htmlFor="Description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..."/>
+                    <FormFields inputName="Category" type="dropdown"/>
                 </div>
 
                 <div className="inventory-form-availability">
                     <Typography variant="h2">Item Availability</Typography>
-                    <FormFields inputName="Status"/>
-                    <FormFields inputName="Warehouse"/>
+                    <FormFields inputName="Status" type="radio" options={[
+                        { label: "In stock", value: "inStock" },
+                        { label: "Out of stock", value: "outOfStock" },
+                        ]}/>
+                    <FormFields inputName="Warehouse" type="dropdown"/>
                 </div>
                 <div className="inventory-form__buttons">
                 <Button variant = "secondary">Cancel</Button>
