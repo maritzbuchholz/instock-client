@@ -7,6 +7,7 @@ import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
 import chevronRight from "../../assets/Icons/chevronright24px.svg";
 import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
+import Tags from "../Tags/Tags.jsx";
 import "./TablesWarehouse.scss";
 
 const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setInventory }) => {
@@ -16,10 +17,10 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
     }
 
     const headers = [
-        { label: "INVENTORY ITEM", key: "warehouse_name", flex: 1.25 },
-        { label: "CATEGORY", key: "address", flex: 1 },
-        { label: "STATUS", key: "contact_name", flex: 1 },
-        { label: "QUANTITY", key: "contact_email", flex: 1.5 },
+        { label: "INVENTORY ITEM", key: "item_name", flex: 1.25 },
+        { label: "CATEGORY", key: "category", flex: 1 },
+        { label: "STATUS", key: "status", flex: 1 },
+        { label: "QUANTITY", key: "quantity", flex: 1.5 },
     ];
 
     const warehouseInventory = inventory.filter(item => item.warehouse_name === warehouse.warehouse_name)
@@ -28,7 +29,7 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
         <div className="warehouse-inventory-table__wrapper">
             <PageHeader headerText={warehouse.warehouse_name} variant="edit" />
             <WarehouseDetails warehouse={warehouse} />
-            <TableRowHeader headers={headers} warehouses={warehouses} setWarehouses={setWarehouses} />
+            <TableRowHeader headers={headers} warehouses={inventory} setWarehouses={setInventory} />
             <div className="warehouse-inventory-table">
                 {warehouseInventory.map((inventory) => (
                     <TableCard key={inventory.id} className="warehouse-inventory-table__card">
