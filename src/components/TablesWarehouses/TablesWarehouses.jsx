@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useRedirect from "../../hooks/useRedirect.js";
 import Iconography from "../Iconography/Iconography";
 import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
@@ -21,9 +22,11 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
         { label: "CONTACT INFORMATION", key: "contact_email", flex: 1.5 } //key is for sorting
     ];
 
+    const goToAddWarehouse = useRedirect("/warehouses/form/add");
+
     return (
         <div className="warehouse-table-wrapper">
-            <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" />
+            <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" onButtonClick={goToAddWarehouse} />
             <TableRowHeader headers={headers} data={warehouses} setData={setWarehouses} />
             <div className="warehouse-table">
                 {warehouses.map((warehouse) => (
