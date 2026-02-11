@@ -1,0 +1,70 @@
+@use "../../styles/variables" as *;
+@use "../../styles/functions" as *;
+@use "../../styles/mixins" as *;
+
+.inventory-form{
+
+    // &__contain-all{
+    //     background-color: $color-primary-white;
+    //     box-shadow: 0 pxToRem(2) pxToRem(5) 0 #13182C1A;
+    //     border-radius: pxToRem(3);
+    //     margin: 0 pxToRem(16);
+    //     @include tablet{
+    //         margin: 0 pxToRem(32);
+    //     }
+    //     @include desktop{
+    //         margin: 0 pxToRem(128);
+    //     }
+    // }
+    &__form__wrapper{
+        border-bottom: $color-secondary-cloud solid 1px;
+        padding: pxToRem(40) pxToRem(32) pxToRem(32) pxToRem(32)
+    }
+    &__typography-text{
+        margin: auto;
+        &--form{
+            margin: auto;
+            margin-bottom: pxToRem(32);
+        }
+    }
+    &__form-input-wrapper{
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        margin: pxToRem(24) 0;
+        @include tablet{
+            margin: pxToRem(32) 0;
+            flex-direction: row;
+        }
+    }
+    &-details{
+        box-sizing: border-box;
+        width: 100%;
+        padding: 0 pxToRem(32) pxToRem(8) pxToRem(32);
+        border-bottom: $color-secondary-cloud solid 1px;
+        @include tablet{
+            width: 50%;
+            border-bottom: none;
+            border-right: $color-secondary-cloud solid 1px;
+        }
+    }
+    &-availability{
+        box-sizing: border-box;
+        width: 100%;
+        padding: pxToRem(24) pxToRem(32) 0 pxToRem(32);
+        @include tablet{
+            padding: 0 pxToRem(32);
+            width: 50%;
+        }
+    }
+    &__buttons{
+        display: flex;
+        background-color: $color-background-light-grey;
+        justify-content: space-between;
+        @include tablet{
+            justify-content: flex-end;
+            padding: pxToRem(16) pxToRem(32) pxToRem(16) 0;
+        }
+    }
+   
+}
