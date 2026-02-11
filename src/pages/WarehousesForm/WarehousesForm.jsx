@@ -4,14 +4,18 @@ import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
 
 const WarehousesForm = () => {
+    const handleSubmit = async(e)=> {
+        e.preventDefault();
+        console.log(e);
+    };
+
     return (
-        <section className="warehouses-form__contain-all">
-
-            <div className="warehouses-form__form-header">
+        <form onSubmit={handleSubmit} className="warehouses-form__contain-all">
+            <section className="warehouses-form__form-header">
                 <Typography className="warehouses-form__typography-text" variant="h1">Add New Warehouse</Typography>
-            </div>
+            </section>
 
-            <form onSubmit={console.log("submit")} className="warehouses-form__form-input-wrapper">
+            <section className="warehouses-form__form-input-wrapper">
 
                 <div className="warehouses-form__warehouse-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Warehouse Details</Typography>
@@ -29,22 +33,23 @@ const WarehousesForm = () => {
                     <FormFields inputName="Email"/>
                 </div>
 
-            </form>
+            </section>
 
-            <div className="warehouses-form__button-wrapper">
+            <section className="warehouses-form__button-wrapper">
                 <Button
+                    type="button"
                     className="warehouses-form__cancel"
                     variant="secondary">
                     Cancel
                 </Button>
                 <Button
+                    type="submit"
                     className="warehouses-form__add"
                     variant="primary">
                     + Add Warehouse
                 </Button>
-            </div>
-            
-        </section>
+            </section>
+        </form>
     );
 };
 
