@@ -3,6 +3,11 @@
 @use "../../styles/mixins" as *;
 
 .warehouse-inventory-table__wrapper {
+    .table-row-header__sort-icon {
+        position: relative;
+        top: -2px;
+    }
+
     transform: translateY(-64px);
 
     @include tablet {
@@ -27,12 +32,12 @@
     @include tablet {
 
         &__item {
-            flex: 1.25;
+            flex: 1;
             order: 1;
         }
 
         &__status {
-            flex: 1;
+            flex: 1.5;
             order: 3;
         }
 
@@ -42,7 +47,7 @@
         }
 
         &__quantity {
-            flex: 1.5;
+            flex: 1;
             order: 4;
         }
 

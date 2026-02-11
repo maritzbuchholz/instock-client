@@ -17,10 +17,10 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
     }
 
     const headers = [
-        { label: "INVENTORY ITEM", key: "item_name", flex: 1.25 },
+        { label: "INVENTORY ITEM", key: "item_name", flex: 1 },
         { label: "CATEGORY", key: "category", flex: 1 },
-        { label: "STATUS", key: "status", flex: 1 },
-        { label: "QUANTITY", key: "quantity", flex: 1.5 },
+        { label: "STATUS", key: "status", flex: 1.5 },
+        { label: "QUANTITY", key: "quantity", flex: 1 },
     ];
 
     const warehouseInventory = inventory.filter(item => item.warehouse_name === warehouse.warehouse_name)
