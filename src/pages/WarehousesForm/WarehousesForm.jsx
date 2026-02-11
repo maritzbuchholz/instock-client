@@ -7,6 +7,7 @@ const WarehousesForm = () => {
     const handleSubmit = async(e)=> {
         e.preventDefault();
         console.log(e);
+        
     };
 
     return (

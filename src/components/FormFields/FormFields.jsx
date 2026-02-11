@@ -9,6 +9,7 @@ const FormFields = ({
     htmlFor="",
     inputName="Placeholder",
     variant="text",
+    type=""
 }) => {
     return(
         <label className="form-fields__label" htmlFor={htmlFor}>
@@ -18,6 +19,7 @@ const FormFields = ({
                     id={htmlFor}
                     name={htmlFor}
                     variant={variant}
+                    type={type}
                     className="form-fields__input"
                     placeholder={inputName}
                 />
