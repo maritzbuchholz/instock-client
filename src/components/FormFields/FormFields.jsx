@@ -9,20 +9,91 @@ const FormFields = ({
     htmlFor="",
     inputName="Placeholder",
     variant="text",
-    type=""
+    type="text", // text_area, dropdown, radio
+    options = [],
+    value,
+    onChange,
+    className,
+    placeholder,
 }) => {
+
+const fieldType = () => {
+    if (type === "text") {
+        return (
+            <input
+            id={htmlFor}
+            name={htmlFor}
+            type="text"
+            className="form-fields__input"
+            placeholder={inputName}
+            value={value}
+            onChange={onChange}
+            />
+    );
+}
+
+if (type === "text_area") {
+        return (
+            <textarea
+            id={htmlFor}
+            name={htmlFor}
+            type="text_area"
+            className="form-fields__text_area"
+            placeholder={placeholder}
+            value={value}
+            onChange={onChange}
+            />
+    );
+}
+
+if (type === "dropdown") {
+        return (
+            <select
+            id={htmlFor}
+            name={htmlFor}
+            type="dropdown"
+            className="form-fields__dropdown"
+            placeholder={inputName}
+            value={value}
+            onChange={onChange}
+            >
+            <option value="">Please select</option>
+            {options.map((option) => (
+                <option key={option.value} value={option.value}>
+                    {option.label}
+                    </option>
+            ))}
+            </select>
+    );
+}
+
+if (type === "radio") {
+      return (
+        <div className="form-fields__radio-group">
+          {options.map((option) => (
+            <label key={option.value} className="form-fields__radio">
+              <input
+                type="radio"
+                name={htmlFor}
+                value={option.value}
+                checked={value === option.value}
+                onChange={onChange}
+              />
+              <span>{option.label}</span>
+            </label>
+          ))}
+        </div>
+      );
+    }
+  //  return null;
+
+};
+
     return(
         <label className="form-fields__label" htmlFor={htmlFor}>
             <Typography variant="h3" className="form-fields__label-text">{inputName}</Typography>
             <div className="form-fields__input-container">
-                <input
-                    id={htmlFor}
-                    name={htmlFor}
-                    variant={variant}
-                    type={type}
-                    className="form-fields__input"
-                    placeholder={inputName}
-                />
+                {fieldType()}
                 <Typography variant="p3" className="form-fields__error">This field is required</Typography>
             </div>
         </label>

@@ -61,4 +61,38 @@
             line-height: pxToRem(22);
         }
     }
+    &__text_area{
+           box-sizing: border-box;
+        font-family: $font-family-primary;
+        border-radius: pxToRem(20);
+        padding-left: pxToRem(16);
+        padding-right: pxToRem(16);
+        height: pxToRem(120);
+        width: 100%;
+
+        // p2 typography
+        color: $color-primary-black;
+        font-size: pxToRem(13);
+        line-height: pxToRem(20);
+
+        &::-webkit-input-placeholder{
+            color: $color-secondary-slate
+        }
+
+        // border logic
+        border: $color-secondary-cloud solid 1px;
+        &:focus{
+            outline: none;
+            border: $color-primary-indigo solid 1px;
+        }
+       
+        @include tablet {
+            height: pxToRem(120);
+            
+            // p2 typography
+            font-size: pxToRem(14);
+            line-height: pxToRem(22);
+        }
+
+    }
 }
