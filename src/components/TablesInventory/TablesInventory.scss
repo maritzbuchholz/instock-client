@@ -1,0 +1,71 @@
+@use "../../styles/variables" as *;
+@use "../../styles/functions" as *;
+@use "../../styles/mixins" as *;
+
+.inventory-table {
+    &__header {
+        display: none; 
+        @include tablet {
+            display: flex;
+            align-items: center;
+            padding: pxToRem(16) pxToRem(32);
+            justify-content: space-between;
+            border-bottom: 1px solid $color-secondary-cloud;
+        }    
+    }
+
+    &__column-label {
+        display: flex;
+        align-items: center;
+        gap: pxToRem(4);
+    }
+
+    &__body {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__row {
+        @include tablet {
+            display: flex;
+            align-items: center;
+            padding: pxToRem(16) pxToRem(32);
+            justify-content: space-between;
+            border-bottom: 1px solid $color-secondary-cloud
+        }
+        @include desktop {
+            &:hover {
+                background-color: #2E66E512;
+            }
+        }
+    }
+
+    &__column-label, &__field {
+        &--item {
+            flex: 1.5; 
+        }
+        &--category {
+            flex: 1.25; 
+        }
+        &--status {
+            flex: 1;
+        }
+        &--qty {
+            flex: 1;
+        }
+        &--warehouse {
+            flex: 1.5;
+        }
+        &--actions {
+            flex: 1; 
+            display: flex;
+            text-align: right;
+        }
+    }
+}
+
+.inventory-link {
+    text-decoration: none;
+    color: $color-primary-indigo;
+}
