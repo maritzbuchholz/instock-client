@@ -5,35 +5,35 @@ import Typography from "../Typography/Typography";
 
 const Navigation = () => {
     return (
-       <header className = "nav">
-        <div className = "nav__logo">
-            <img src={InStockLogo} alt="InStock Logo" />
-        </div> 
+        <header className = "nav">
+            <div className = "nav__logo">
+                <img src={InStockLogo} alt="InStock Logo" />
+            </div> 
 
-        <nav className = "nav__tabs">
-            <NavLink
-                to="/warehouses"
-                className={({  isActive  }) =>
-                    isActive ? "nav__tab nav__tab--active"
-                : "nav__tab"
-                }
-            >
-            Warehouses
-            </NavLink>
+            <nav className = "nav__tabs">
+                <NavLink
+                    to="/warehouses"
+                    className={({  isActive  }) =>
+                        isActive ? "nav__tab nav__tab--active"
+                    : "nav__tab"
+                    }
+                >
+                Warehouses
+                </NavLink>
 
-            <NavLink
-                to="/inventory"
-                className={({  isActive  }) =>
-                    isActive ? "nav__tab nav__tab--active"
-                : "nav__tab"
-                }
-            >
-            Inventory
-            </NavLink>
+                <NavLink
+                    to="/inventories"
+                    className={({  isActive  }) =>
+                        isActive ? "nav__tab nav__tab--active"
+                    : "nav__tab"
+                    }
+                >
+                Inventory
+                </NavLink>
 
-        </nav>
+            </nav>
 
-       </header>
+        </header>
     );
 
 };
