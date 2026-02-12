@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useDeleteModal } from "../../hooks/useDeleteModal.js"
+import { fetchUpdate } from "../../utils/utils.js";
 import Iconography from "../Iconography/Iconography";
 import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
@@ -8,6 +10,7 @@ import TableCardActions from "../TableCard/TableCardActions.jsx";
 import Typography from "../Typography/Typography.jsx";
 import TablesHeader from "../../components/TablesHeader/TablesHeader.jsx";
 import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
+import DeleteModal from "../../components/DeleteModal/DeleteModal.jsx";
 import "./TablesWarehouses.scss"
 
 const TableWarehouses = ({ warehouses, setWarehouses }) => {
@@ -25,6 +28,9 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
     const navigate = useNavigate();
 
     const goToAddWarehouse = () => navigate("/warehouses/form/add");
+
+    const { modalOpen, deleteItem, openDeleteModal, closeDeleteModal, confirmDelete } =
+        useDeleteModal(() => fetchUpdate("warehouses", setWarehouses), "warehouses");
 
     return (
         <div className="warehouse-table-wrapper">
@@ -59,12 +65,21 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
 
                         <TableCardActions
                             editTo={`/warehouses/form/${warehouse.id}/edit`}
-                            onDelete={() => console.log("Delete warehouse", warehouse.id)}
+                            onDelete={() => openDeleteModal(warehouse)}
                             className="warehouse-table__actions"
                         />
                     </TableCard>
                 ))}
             </div>
+            {modalOpen && deleteItem && (
+                <DeleteModal
+                    deleteItem={deleteItem.warehouse_name}
+                    variant="warehouse"
+                    onCancel={closeDeleteModal}
+                    onConfirm={confirmDelete}
+                />
+            )}
+
         </div>
     );
 };

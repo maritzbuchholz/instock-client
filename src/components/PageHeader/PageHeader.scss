@@ -49,11 +49,34 @@
         }
 
         gap: 2px;
+
+        width: pxToRem(40);
+        height: pxToRem(40);
+        padding: 0;
+        border-radius: 50%;
+        flex-shrink: 0;
+
+        @include tablet {
+            width: auto;
+            height: auto;
+            padding: 8px 16px;
+            border-radius: 20px;
+        }
     }
 
     &__edit-icon {
         display: block;
         transform: scale(calc(20 / 24));
         transform-origin: center;
+    }
+
+    &__edit-text {
+        display: none;
+
+        @include tablet {
+            display: inline-block;
+            position: relative;
+            bottom: -2px;
+        }
     }
 }
