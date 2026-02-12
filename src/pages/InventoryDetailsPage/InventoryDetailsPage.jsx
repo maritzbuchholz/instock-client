@@ -1,10 +1,12 @@
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Typography from "../../components/Typography/Typography.jsx";
 import InventoryDetails from "../../components/InventoryDetails/InventoryDetails.jsx";
+import PageHeader from "../../components/PageHeader/PageHeader.jsx";
 import "./InventoryDetailsPage.scss";
 
 const InventoryDetailsPage = ({ inventory }) => {
+    const navigate = useNavigate();
     const { id } = useParams();
     const [item, setItem] = useState(null);
 
@@ -23,9 +25,18 @@ const InventoryDetailsPage = ({ inventory }) => {
         return <Typography variant="p1" className="message">Inventory item not found.</Typography>;
     }
 
+    const handleBack = () => navigate(-1);
+    const handleEdit = () => navigate(`/inventories/form/${item.id}/edit`);
+
     return (
         <section className="inventory-details">
             <div className="inventory-details__content">
+                <PageHeader 
+                    headerText={item.item_name} 
+                    variant="edit" 
+                    onBack={handleBack} 
+                    onEdit={handleEdit} 
+                />
                 <InventoryDetails item={item} />
             </div>
         </section>

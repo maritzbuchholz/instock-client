@@ -1,6 +1,6 @@
 import Typography from "../Typography/Typography";
 import Tags from "../Tags/Tags";
-// import "./InventoryDetails.scss";
+import "./InventoryDetails.scss";
 
 const InventoryDetails = ({ item }) => {
     return (
