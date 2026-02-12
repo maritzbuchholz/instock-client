@@ -39,7 +39,7 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
                 {warehouseInventory.map((inventory) => (
                     <TableCard key={inventory.id} className="warehouse-inventory-table__card">
                         <TableCardField label="INVENTORY ITEM" className="card__field--alt warehouse-inventory-table__item">
-                            <Link to={`/inventory/${inventory.id}`} className="warehouse-inventory-table__link">
+                            <Link to={`/inventories/${inventory.id}`} className="warehouse-inventory-table__link">
                                 <Typography variant="p2" className="card__value-text">{inventory.item_name}</Typography>
                                 <img
                                     src={chevronRight}
@@ -64,7 +64,7 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
                         </TableCardField>
 
                         <TableCardActions
-                            editTo={`/inventory/${inventory.id}/edit`}
+                            editTo={`/inventories/${inventory.id}/edit`}
                             onDelete={() => console.log("Delete inventory", inventory.id)}
                             className="warehouse-inventory-table__actions"
                         />
