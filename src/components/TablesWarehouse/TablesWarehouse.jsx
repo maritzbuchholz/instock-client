@@ -1,5 +1,6 @@
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDeleteModal } from "../../hooks/useDeleteModal.js"
+import { fetchUpdate } from "../../utils/utils.js";
 import Typography from "../../components/Typography/Typography.jsx";
 import WarehouseDetails from "../../components/WarehouseDetails/WarehouseDetails.jsx";
 import PageHeader from "../../components/PageHeader/PageHeader.jsx";
@@ -8,6 +9,7 @@ import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
 import chevronRight from "../../assets/Icons/chevronright24px.svg";
 import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
+import DeleteModal from "../../components/DeleteModal/DeleteModal.jsx";
 import Tags from "../Tags/Tags.jsx";
 import "./TablesWarehouse.scss";
 
@@ -29,6 +31,10 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
     const navigate = useNavigate();
     const goToWarehouses = () => navigate("/warehouses");
     const goToWarehouseEdit = () => navigate(`/warehouses/form/${warehouse.id}/edit`);
+
+    const { modalOpen, deleteItem, openDeleteModal, closeDeleteModal, confirmDelete } =
+        useDeleteModal(() => fetchUpdate("inventories", setInventory), "inventories");
+
 
     return (
         <div className="warehouse-inventory-table__wrapper">
@@ -65,12 +71,20 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
 
                         <TableCardActions
                             editTo={`/inventories/${inventory.id}/edit`}
-                            onDelete={() => console.log("Delete inventory", inventory.id)}
+                            onDelete={() => openDeleteModal(inventory)}
                             className="warehouse-inventory-table__actions"
                         />
                     </TableCard>
                 ))}
             </div>
+            {modalOpen && deleteItem && (
+                <DeleteModal
+                    deleteItem={deleteItem.item_name}
+                    variant="inventory"
+                    onCancel={closeDeleteModal}
+                    onConfirm={confirmDelete}
+                />
+            )}
         </div>
 
     );
