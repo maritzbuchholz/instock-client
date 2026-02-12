@@ -3,7 +3,7 @@ import axios from "axios";
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
-export const useDeleteModal = (fetchData, deleteEndpoint) => {
+export const useDeleteModal = (fetchUpdate, deleteEndpoint) => {
     const [modalOpen, setModalOpen] = useState(false);
     const [deleteItem, setDeleteItem] = useState(null);
 
@@ -22,6 +22,7 @@ export const useDeleteModal = (fetchData, deleteEndpoint) => {
 
         try {
             await axios.delete(`${baseUrl}/${deleteEndpoint}/${deleteItem.id}`)
+            if (fetchUpdate) await fetchUpdate();
         } catch (error) {
             console.error("failed to delete item");
         }
