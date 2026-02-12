@@ -2,7 +2,7 @@ import Typography from "../../components/Typography/Typography.jsx";
 import Button from "../Button/Button.jsx";
 import "./DeleteModal.scss";
 
-const DeleteModal = ({ deleteItem, data = [], setData, variant = "warehouse", onCancel, onConfirm }) => { //variants = warehouse, inventory
+const DeleteModal = ({ deleteItem, variant = "warehouse", onCancel, onConfirm }) => { //variants = warehouse, inventory
 
 
     const safeVariant = variant == "warehouse" || variant == "inventory" ? variant : "warehouse";
