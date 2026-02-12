@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Iconography from "../Iconography/Iconography";
 import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
@@ -21,10 +22,14 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
         { label: "CONTACT INFORMATION", key: "contact_email", flex: 1.5 } //key is for sorting
     ];
 
+    const navigate = useNavigate();
+
+    const goToAddWarehouse = () => navigate("/warehouses/form/add");
+
     return (
         <div className="warehouse-table-wrapper">
-            <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" />
-            <TableRowHeader headers={headers} warehouses={warehouses} setWarehouses={setWarehouses} />
+            <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" onButtonClick={goToAddWarehouse} />
+            <TableRowHeader headers={headers} data={warehouses} setData={setWarehouses} />
             <div className="warehouse-table">
                 {warehouses.map((warehouse) => (
                     <TableCard key={warehouse.id} className="warehouse-table__card">
@@ -53,7 +58,7 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
                         </TableCardField>
 
                         <TableCardActions
-                            editTo={`/warehouses/${warehouse.id}/edit`}
+                            editTo={`/warehouses/form/${warehouse.id}/edit`}
                             onDelete={() => console.log("Delete warehouse", warehouse.id)}
                             className="warehouse-table__actions"
                         />

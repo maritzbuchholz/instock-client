@@ -1,0 +1,59 @@
+@use "../../styles/functions" as *;
+@use "../../styles/variables" as *;
+@use "../../styles/mixins" as *;
+
+.warehouse-inventory-table__wrapper {
+    .table-row-header__sort-icon {
+        position: relative;
+        top: -2px;
+    }
+
+    transform: translateY(-64px);
+
+    @include tablet {
+        transform: translateY(-96px);
+    }
+}
+
+.warehouse-inventory-table {
+
+    &__card {
+        gap: pxToRem(16);
+        column-gap: pxToRem(45);
+    }
+
+    &__link {
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+        color: $color-primary-indigo;
+    }
+
+    @include tablet {
+
+        &__item {
+            flex: 1;
+            order: 1;
+        }
+
+        &__status {
+            flex: 1.5;
+            order: 3;
+        }
+
+        &__category {
+            flex: 1;
+            order: 2;
+        }
+
+        &__quantity {
+            flex: 1;
+            order: 4;
+        }
+
+        &__actions {
+            flex: 0.75;
+            order: 5;
+        }
+    }
+}
