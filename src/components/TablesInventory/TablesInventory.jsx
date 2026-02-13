@@ -1,18 +1,15 @@
 import { Link } from "react-router-dom";
-import { useDeleteModal } from "../../hooks/useDeleteModal.js"
-import { fetchUpdate } from "../../utils/utils.js";
 import Iconography from "../Iconography/Iconography";
 import TableCard from "../TableCard/TableCard";
 import TableCardField from "../TableCard/TableCardField";
 import TableCardActions from "../TableCard/TableCardActions";
 import TablesHeader from "../TablesHeader/TablesHeader";
 import TableRowHeader from "../TableRowHeader/TableRowHeader";
-import DeleteModal from "../../components/DeleteModal/DeleteModal.jsx";
 import Tags from "../Tags/Tags";
 import Typography from "../Typography/Typography";
 import "./TablesInventory.scss";
 
-const TablesInventory = ({ inventory, setInventory }) => {
+const TablesInventory = ({ inventory, setInventory, openDeleteModal }) => {
     if (!inventory || inventory.length === 0) {
         return <p>No inventory available.</p>;
     }
@@ -24,9 +21,6 @@ const TablesInventory = ({ inventory, setInventory }) => {
         { label: "QTY", key: "quantity", flex: 0.5 },
         { label: "WAREHOUSE", key: "warehouse_name", flex: 1 }
     ];
-
-    const { modalOpen, deleteItem, openDeleteModal, closeDeleteModal, confirmDelete } =
-        useDeleteModal(() => fetchUpdate("inventories", setInventory), "inventories");
 
     return (
         <div className="inventory-table-wrapper">
@@ -60,20 +54,12 @@ const TablesInventory = ({ inventory, setInventory }) => {
 
                         <TableCardActions
                             editTo={`/inventories/${item.id}/edit`}
-                            onDelete={() => openDeleteModal(item.id)}
+                            onDelete={() => openDeleteModal(item)}
                             className="inventory-table__actions"
                         />
                     </TableCard>
                 ))}
             </div>
-            {modalOpen && deleteItem && (
-                <DeleteModal
-                    deleteItem={deleteItem.item_name}
-                    variant="inventory"
-                    onCancel={closeDeleteModal}
-                    onConfirm={confirmDelete}
-                />
-            )}
         </div>
     );
 };
