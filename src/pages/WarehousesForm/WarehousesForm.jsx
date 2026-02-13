@@ -2,30 +2,36 @@ import "./WarehousesForm.scss";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
-import { fieldFilled } from "../../utils/formValidation.js";
-import { useState } from "react";
+import { emptyFieldError } from "../../utils/formValidation.js";
+import { useState, useEffect } from "react";
 
 
 const WarehousesForm = () => {
     const [errors, setError] = useState({
-        "warhouse-name": true,
+        "warehouse-name": "",
         "address": "",
         "city": "",
         "country": "",
         "contact-name": "",
-        "position": "",
         "number": "",
         "email": "",
     });
 
     const handleSubmit = async(e)=> {
         e.preventDefault();
-        console.log(e);
-        fieldFilled(e.target, 8); // second input is the number of fields to test
+        emptyFieldError(e, errors, setError);
     };
 
+    // useEffect(() => {
+    //     console.log(errors);
+    // },[errors])
+
     return (
-        <form onSubmit={handleSubmit} className="warehouses-form__contain-all">
+        <form
+            onSubmit={handleSubmit}
+            className="warehouses-form__contain-all"
+
+        >
             <section className="warehouses-form__form-header">
                 <Typography className="warehouses-form__typography-text" variant="h1">Add New Warehouse</Typography>
             </section>
@@ -34,7 +40,7 @@ const WarehousesForm = () => {
 
                 <div className="warehouses-form__warehouse-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Warehouse Details</Typography>
-                    <FormFields errorState={errors["warhouse-name"]} htmlFor="warhouse-name" inputName="Warehouse Name"/>
+                    <FormFields errorState={errors["warehouse-name"]} htmlFor="warehouse-name" inputName="Warehouse Name" />
                     <FormFields errorState={errors["address"]} htmlFor="address" inputName="Street Address"/>
                     <FormFields errorState={errors["city"]} htmlFor="city" inputName="City"/>
                     <FormFields errorState={errors["country"]} htmlFor="country" inputName="Country"/>
@@ -43,7 +49,7 @@ const WarehousesForm = () => {
                 <div className="warehouses-form__contact-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Contact Details</Typography>
                     <FormFields errorState={errors["contact-name"]} htmlFor="contact-name" inputName="Contact Name"/>
-                    <FormFields errorState={errors["position"]} htmlFor="position" inputName="Position"/>
+                    <FormFields htmlFor="position" inputName="Position"/>
                     <FormFields errorState={errors["number"]} htmlFor="number" inputName="Phone Number"/>
                     <FormFields errorState={errors["email"]} htmlFor="email" inputName="Email"/>
                 </div>
