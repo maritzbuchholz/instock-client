@@ -22,13 +22,13 @@ const FormFields = ({
                     name={htmlFor}
                     variant={variant}
                     type={type}
-                    className="form-fields__input"
+                    className={`form-fields__input ${errorState ? "form-fields__input--error": ""}`}
                     placeholder={inputName}
                 />
                 <Typography
                     variant="p3"
-                    className={`form-fields__none ${errorState ? "form-fields__error": ""}`
-                    }>
+                    className={`form-fields__message ${errorState ? "form-fields__message--error": ""}`}
+                >
                     {errorType(errorState)}
                 </Typography>
             </div>

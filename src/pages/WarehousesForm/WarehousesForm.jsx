@@ -8,7 +8,7 @@ import { useState } from "react";
 
 const WarehousesForm = () => {
     const [errors, setError] = useState({
-        "warhouse-name": "",
+        "warhouse-name": true,
         "address": "",
         "city": "",
         "country": "",
