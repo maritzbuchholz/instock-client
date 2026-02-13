@@ -5,7 +5,7 @@ import PageHeader from "../../components/PageHeader/PageHeader.jsx";
 import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
-import chevronRight from "../../assets/Icons/chevronright24px.svg";
+import Iconography from "../Iconography/Iconography";
 import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
 import Tags from "../Tags/Tags.jsx";
 import "./TablesWarehouse.scss";
@@ -40,11 +40,7 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
                         <TableCardField label="INVENTORY ITEM" className="card__field--alt warehouse-inventory-table__item">
                             <Link to={`/inventories/${inventory.id}`} className="warehouse-inventory-table__link">
                                 <Typography variant="p2" className="card__value-text">{inventory.item_name}</Typography>
-                                <img
-                                    src={chevronRight}
-                                    alt="Chevron Right"
-                                    className="inventory-link__icon"
-                                />
+                                <Iconography name="chevronRight" className="inventory-link__icon" />
                             </Link>
                         </TableCardField>
 
