@@ -9,7 +9,7 @@ import Tags from "../Tags/Tags";
 import Typography from "../Typography/Typography";
 import "./TablesInventory.scss";
 
-const TablesInventory = ({ inventory, setInventory }) => {
+const TablesInventory = ({ inventory, setInventory, openDeleteModal }) => {
     if (!inventory || inventory.length === 0) {
         return <p>No inventory available.</p>;
     }
@@ -54,7 +54,7 @@ const TablesInventory = ({ inventory, setInventory }) => {
 
                         <TableCardActions
                             editTo={`/inventories/${item.id}/edit`}
-                            onDelete={() => handleDelete(item.id)}
+                            onDelete={() => openDeleteModal(item)}
                             className="inventory-table__actions"
                         />
                     </TableCard>
