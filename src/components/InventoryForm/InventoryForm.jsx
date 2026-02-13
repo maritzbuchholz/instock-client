@@ -27,11 +27,12 @@ const InventoryForm = () => {
                         ]}/>
                     <FormFields inputName="Warehouse" type="dropdown"/>
                 </div>
-                <div className="inventory-form__buttons">
+                
+            </form>
+            <div className="inventory-form__buttons">
                 <Button variant = "secondary">Cancel</Button>
                 <Button variant = "primary">+ Add Item</Button>
                 </div>
-            </form>
             
         </section>
      

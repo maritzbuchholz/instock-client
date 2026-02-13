@@ -1,5 +1,6 @@
 import "./FormFields.scss";
 import Typography from "../Typography/Typography.jsx";
+import { arrowDropDown24px } from "../../assets/Icons/arrowDropDown24px.svg"
 
 // *** Variants ***
 // Phone Number
