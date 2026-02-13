@@ -1,5 +1,6 @@
 import "./FormFields.scss";
 import Typography from "../Typography/Typography.jsx";
+import { errorType } from "../../utils/formValidation.js";
 
 // *** Variants ***
 // Phone Number
@@ -10,11 +11,8 @@ const FormFields = ({
     inputName="Placeholder",
     variant="text",
     type="",
-    errorState=false
+    errorState="",
 }) => {
-    function errorType (errorState) {
-
-    };
     return(
         <label className="form-fields__label" htmlFor={htmlFor}>
             <Typography variant="h3" className="form-fields__label-text">{inputName}</Typography>
@@ -27,10 +25,12 @@ const FormFields = ({
                     className="form-fields__input"
                     placeholder={inputName}
                 />
-                <Typography variant="p3" className={
-                `form-fields__none
-               ${errorState ? "form-fields__error": ""}`
-                }>This field is required</Typography>
+                <Typography
+                    variant="p3"
+                    className={`form-fields__none ${errorState ? "form-fields__error": ""}`
+                    }>
+                    {errorType(errorState)}
+                </Typography>
             </div>
         </label>
     );

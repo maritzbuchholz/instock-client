@@ -5,3 +5,12 @@ export const fieldFilled = (array, arraySize) => {
         };
     };
 };
+
+export const errorType = (errorState) => {
+    if(!errorState){
+        return
+    }
+    if(errorState){
+        return "This field is required";
+    }
+};
