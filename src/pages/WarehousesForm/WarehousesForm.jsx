@@ -2,7 +2,7 @@ import "./WarehousesForm.scss";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
-import { emptyFieldError } from "../../utils/formValidation.js";
+import { emptyFieldError, removeEmptyError} from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 
 
@@ -20,6 +20,10 @@ const WarehousesForm = () => {
     const handleSubmit = async(e)=> {
         e.preventDefault();
         emptyFieldError(e, errors, setError);
+    };
+
+    const handleChange = (e) => {
+        removeEmptyError(e, errors, setError);
     };
 
     // useEffect(() => {
@@ -40,18 +44,18 @@ const WarehousesForm = () => {
 
                 <div className="warehouses-form__warehouse-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Warehouse Details</Typography>
-                    <FormFields errorState={errors["warehouse-name"]} htmlFor="warehouse-name" inputName="Warehouse Name" />
-                    <FormFields errorState={errors["address"]} htmlFor="address" inputName="Street Address"/>
-                    <FormFields errorState={errors["city"]} htmlFor="city" inputName="City"/>
-                    <FormFields errorState={errors["country"]} htmlFor="country" inputName="Country"/>
+                    <FormFields onChange={handleChange} errorState={errors["warehouse-name"]} htmlFor="warehouse-name" inputName="Warehouse Name" />
+                    <FormFields onChange={handleChange} errorState={errors["address"]} htmlFor="address" inputName="Street Address"/>
+                    <FormFields onChange={handleChange} errorState={errors["city"]} htmlFor="city" inputName="City"/>
+                    <FormFields onChange={handleChange} errorState={errors["country"]} htmlFor="country" inputName="Country"/>
                 </div>
 
                 <div className="warehouses-form__contact-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Contact Details</Typography>
-                    <FormFields errorState={errors["contact-name"]} htmlFor="contact-name" inputName="Contact Name"/>
+                    <FormFields onChange={handleChange} errorState={errors["contact-name"]} htmlFor="contact-name" inputName="Contact Name"/>
                     <FormFields htmlFor="position" inputName="Position"/>
-                    <FormFields errorState={errors["number"]} htmlFor="number" inputName="Phone Number"/>
-                    <FormFields errorState={errors["email"]} htmlFor="email" inputName="Email"/>
+                    <FormFields onChange={handleChange} errorState={errors["number"]} htmlFor="number" inputName="Phone Number"/>
+                    <FormFields onChange={handleChange} errorState={errors["email"]} htmlFor="email" inputName="Email"/>
                 </div>
 
             </section>

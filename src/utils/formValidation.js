@@ -7,20 +7,28 @@ export const emptyFieldError = (e, errors, setError) => {
         const inputField = eventElements[i];
         if (!inputField.value && errors[inputField.name] !== undefined) {
                 newErrors = {...newErrors, [inputField.name]: "empty"}
-        } else if (inputField.value && errors[inputField.name] !== undefined)
-                newErrors = {...newErrors, [inputField.name]: ""}
+        };
+    };
+
+    setError(newErrors);
+};
+
+export const removeEmptyError = (e, errors, setError) => {
+    const inputField = e.currentTarget
+    let newErrors = {...errors};
+    if (inputField.value && errors[inputField.name] !== undefined) {
+            newErrors = {...newErrors, [inputField.name]: ""}
         };
 
     setError(newErrors);
 };
-    
 
 
 export const errorType = (errorState) => {
     if(!errorState){
         return
     }
-    if(errorState){
+    if(errorState === "empty"){
         return "This field is required";
     }
 };

@@ -12,6 +12,7 @@ const FormFields = ({
     variant="text",
     type="",
     errorState="",
+    onChange,
 }) => {
     return(
         <label className="form-fields__label" htmlFor={htmlFor}>
@@ -24,6 +25,7 @@ const FormFields = ({
                     type={type}
                     className={`form-fields__input ${errorState ? "form-fields__input--error": ""}`}
                     placeholder={inputName}
+                    onChange={onChange}
                 />
                 <Typography
                     variant="p3"
