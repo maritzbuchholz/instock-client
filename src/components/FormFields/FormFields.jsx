@@ -1,6 +1,6 @@
 import "./FormFields.scss";
 import Typography from "../Typography/Typography.jsx";
-import { arrowDropDown24px } from "../../assets/Icons/arrowDropDown24px.svg"
+import Icon from "../Iconography/Iconography.jsx"
 
 // *** Variants ***
 // Phone Number
@@ -47,8 +47,25 @@ if (type === "text_area") {
     );
 }
 
-if (type === "dropdown") {
+if (type === "numerical") {
         return (
+            <input
+            id={htmlFor}
+            name={htmlFor}
+            type="number"
+            className="form-fields__input"
+            placeholder={placeholder || inputName}
+            value={value}
+            onChange={onChange}
+            min="0"
+            />
+    );
+}
+
+
+if (type === "dropdown") {
+     return (
+    <div className = "form-fields__dropdown-wrapper">
             <select
             id={htmlFor}
             name={htmlFor}
@@ -65,6 +82,11 @@ if (type === "dropdown") {
                     </option>
             ))}
             </select>
+
+            <Icon 
+            name="dropdown"
+            className="form-fields__dropdown-icon"/>
+</div>
     );
 }
 
@@ -74,6 +96,7 @@ if (type === "radio") {
           {options.map((option) => (
             <label key={option.value} className="form-fields__radio">
               <input
+              className="form-fields__radio-input"
                 type="radio"
                 name={htmlFor}
                 value={option.value}

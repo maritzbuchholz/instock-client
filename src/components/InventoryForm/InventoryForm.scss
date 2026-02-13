@@ -31,10 +31,10 @@
    //     border-bottom: $color-secondary-cloud solid 1px;
         border-radius: pxToRem(3);
         padding: pxToRem(16) 0;
-         display: flex;
 
         @include tablet {
         padding: pxToRem(40) pxToRem(32) pxToRem(32) pxToRem(32);
+        display: flex;
         }
         
     }
