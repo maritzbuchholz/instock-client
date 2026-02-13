@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import Typography from "../../components/Typography/Typography.jsx";
-import WarehouseDetails from "../../components/WarehouseDetails/WarehouseDetails.jsx";
-import PageHeader from "../../components/PageHeader/PageHeader.jsx";
+import Typography from "../Typography/Typography.jsx";
+import WarehouseDetails from "../WarehouseDetails/WarehouseDetails.jsx";
+import PageHeader from "../PageHeader/PageHeader.jsx";
 import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
 import Iconography from "../Iconography/Iconography";
-import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
+import TableRowHeader from "../TableRowHeader/TableRowHeader.jsx";
 import Tags from "../Tags/Tags.jsx";
 import "./TablesWarehouse.scss";
 

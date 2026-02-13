@@ -5,8 +5,8 @@ import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
 import Typography from "../Typography/Typography.jsx";
-import TablesHeader from "../../components/TablesHeader/TablesHeader.jsx";
-import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
+import TablesHeader from "../TablesHeader/TablesHeader.jsx";
+import TableRowHeader from "../TableRowHeader/TableRowHeader.jsx";
 import "./TablesWarehouses.scss"
 
 const TableWarehouses = ({ warehouses, setWarehouses, openDeleteModal }) => {
