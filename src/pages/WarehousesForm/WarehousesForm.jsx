@@ -8,10 +8,14 @@ import { useState } from "react";
 
 const WarehousesForm = () => {
     const [errors, setError] = useState({
-        "warhouse-name": "no-error",
-        "address": "no-error",
-        "city": "no-error",
-        "country": "no-error",
+        "warhouse-name": "",
+        "address": "",
+        "city": "",
+        "country": "",
+        "contact-name": "",
+        "position": "",
+        "number": "",
+        "email": "",
     });
 
     const handleSubmit = async(e)=> {
@@ -30,18 +34,18 @@ const WarehousesForm = () => {
 
                 <div className="warehouses-form__warehouse-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Warehouse Details</Typography>
-                    <FormFields htmlFor="warhouse-name" inputName="Warehouse Name"/>
-                    <FormFields htmlFor="address" inputName="Street Address"/>
-                    <FormFields htmlFor="city" inputName="City"/>
-                    <FormFields htmlFor="country" inputName="Country"/>
+                    <FormFields errorState={errors["warhouse-name"]} htmlFor="warhouse-name" inputName="Warehouse Name"/>
+                    <FormFields errorState={errors["address"]} htmlFor="address" inputName="Street Address"/>
+                    <FormFields errorState={errors["city"]} htmlFor="city" inputName="City"/>
+                    <FormFields errorState={errors["country"]} htmlFor="country" inputName="Country"/>
                 </div>
 
                 <div className="warehouses-form__contact-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Contact Details</Typography>
-                    <FormFields htmlFor="contact-name" inputName="Contact Name"/>
-                    <FormFields htmlFor="position" inputName="Position"/>
-                    <FormFields htmlFor="number" inputName="Phone Number"/>
-                    <FormFields htmlFor="email" inputName="Email"/>
+                    <FormFields errorState={errors["contact-name"]} htmlFor="contact-name" inputName="Contact Name"/>
+                    <FormFields errorState={errors["position"]} htmlFor="position" inputName="Position"/>
+                    <FormFields errorState={errors["number"]} htmlFor="number" inputName="Phone Number"/>
+                    <FormFields errorState={errors["email"]} htmlFor="email" inputName="Email"/>
                 </div>
 
             </section>

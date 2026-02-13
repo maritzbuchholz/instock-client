@@ -9,8 +9,12 @@ const FormFields = ({
     htmlFor="",
     inputName="Placeholder",
     variant="text",
-    type=""
+    type="",
+    errorState=false
 }) => {
+    function errorType (errorState) {
+
+    };
     return(
         <label className="form-fields__label" htmlFor={htmlFor}>
             <Typography variant="h3" className="form-fields__label-text">{inputName}</Typography>
@@ -23,7 +27,10 @@ const FormFields = ({
                     className="form-fields__input"
                     placeholder={inputName}
                 />
-                <Typography variant="p3" className="form-fields__no-error">This field is required</Typography>
+                <Typography variant="p3" className={
+                `form-fields__none
+               ${errorState ? "form-fields__error": ""}`
+                }>This field is required</Typography>
             </div>
         </label>
     );
