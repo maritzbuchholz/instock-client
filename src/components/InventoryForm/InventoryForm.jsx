@@ -1,10 +1,14 @@
 import "./InventoryForm.scss";
+import { Link, useNavigate } from "react-router-dom";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../Button/Button.jsx";
 import { useState } from "react";
 
 const InventoryForm = () => {
+
+const navigate = useNavigate();
+const goToInventories = () => navigate("/inventories");
 
 const [formData, setFormData] = useState({
   status: "",
@@ -46,13 +50,14 @@ const handleChange = (e) => {
                         { label: "In stock", value: "inStock" },
                         { label: "Out of stock", value: "outOfStock" },
                         ]}/>
-                    <FormFields htmlFor="Quantity" inputName="Quantity" value={formData.quantity} onChange={handleChange} />
+                        {formData.status === "In Stock" && (
+                    <FormFields htmlFor="Quantity" inputName="Quantity" value={formData.quantity} onChange={handleChange} /> )}
                     <FormFields inputName="Warehouse" type="dropdown"/>
                 </div>
                 
             </form>
             <div className="inventory-form__buttons">
-                <Button variant = "secondary">Cancel</Button>
+                <Button variant = "secondary" to={"/inventories"}>Cancel</Button>
                 <Button variant = "primary">+ Add Item</Button>
                 </div>
             
