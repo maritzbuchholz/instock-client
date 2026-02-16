@@ -29,7 +29,16 @@ const WarehousesForm = () => {
         newErrors = emptyFieldError(e, errors, newErrors); // include event, error statevalue, local error collector (object)
         newErrors = validateEmail(e, errors, newErrors);
         newErrors = validatePhone(e, errors, newErrors);
-        setError(newErrors);
+
+        // Checks if errors exist. If not, form is submitted
+        const errorStateArray = Object.values(newErrors); // Converts the error object into an array of error states
+        const errorExists = errorStateArray.some(inputErrorState => inputErrorState); // checks if error state exists in array (empty strings are falsey) 
+        if (errorExists) {
+            setError(newErrors);
+            return; 
+        } else if (!errorExists) {
+            console.log("submit form");
+        };
     };
 
     const handleChange = (e) => { 
