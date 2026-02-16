@@ -2,7 +2,7 @@ import "./WarehousesForm.scss";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
-import { removeErrors, submitChecker} from "../../utils/formValidation.js";
+import { removeErrors, submitChecker, formatPhoneInput} from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 
 
@@ -13,7 +13,7 @@ const WarehousesForm = () => {
         "city": "",
         "country": "",
         "contact-name": "",
-        "number": "",
+        "phone": "",
         "email": "",
     });
 
@@ -24,6 +24,9 @@ const WarehousesForm = () => {
 
     const handleChange = (e) => {
         removeErrors(e, errors, setError);
+        if (e.currentTarget.name === "phone") {
+            e.currentTarget.value = formatPhoneInput(e.currentTarget.value);
+        };
     };
 
     // useEffect(() => {
@@ -54,7 +57,7 @@ const WarehousesForm = () => {
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Contact Details</Typography>
                     <FormFields onChange={handleChange} errorState={errors["contact-name"]} htmlFor="contact-name" inputName="Contact Name"/>
                     <FormFields htmlFor="position" inputName="Position"/>
-                    <FormFields onChange={handleChange} errorState={errors["number"]} htmlFor="number" inputName="Phone Number"/>
+                    <FormFields onChange={handleChange} errorState={errors["phone"]} htmlFor="phone" inputName="Phone Number"/>
                     <FormFields onChange={handleChange} errorState={errors["email"]} htmlFor="email" inputName="Email"/>
                 </div>
 

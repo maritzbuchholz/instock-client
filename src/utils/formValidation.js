@@ -40,7 +40,17 @@ export const removeErrors = (e, errors, setError) => {
     setError(newErrors);
 };
 
-
+export function formatPhoneInput(value) {
+    const digits = value.replace(/\D/g, "");
+    const match = digits.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+    let formatted = "";
+    if (match) {
+        if (match[1]) formatted += `(${match[1]})`;
+        if (match[2]) formatted += (match[2] ? " " : "") + match[2];
+        if (match[3]) formatted += (match[3] ? "-" : "") + match[3];
+  }
+  return formatted;
+}
 
 export const errorType = (errorState) => {
     if(!errorState){
