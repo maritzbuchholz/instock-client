@@ -2,7 +2,7 @@ import "./WarehousesForm.scss";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
-import { emptyFieldError, removeEmptyError, validateEmail} from "../../utils/formValidation.js";
+import { removeEmptyError, submitChecker} from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 
 
@@ -19,13 +19,11 @@ const WarehousesForm = () => {
 
     const handleSubmit = async(e)=> {
         e.preventDefault();
-        emptyFieldError(e, errors, setError);
-        validateEmail(e, errors, setError);
+        submitChecker(e, errors, setError);
     };
 
     const handleChange = (e) => {
         removeEmptyError(e, errors, setError);
-        validateEmail(e, errors, setError);
     };
 
     useEffect(() => {
