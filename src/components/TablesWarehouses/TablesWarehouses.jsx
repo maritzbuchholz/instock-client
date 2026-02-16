@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useSearch } from "../../hooks/useSearch.js";
+import { useEffect } from "react";
 import Iconography from "../Iconography/Iconography";
 import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
@@ -9,7 +10,6 @@ import Typography from "../Typography/Typography.jsx";
 import TablesHeader from "../TablesHeader/TablesHeader.jsx";
 import TableRowHeader from "../TableRowHeader/TableRowHeader.jsx";
 import "./TablesWarehouses.scss"
-import { useEffect } from "react";
 
 const TableWarehouses = ({ warehouses, setWarehouses, openDeleteModal }) => {
 

@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useSearch } from "../../hooks/useSearch.js";
+import { useEffect } from "react";
 import Iconography from "../Iconography/Iconography";
 import TableCard from "../TableCard/TableCard";
 import TableCardField from "../TableCard/TableCardField";
@@ -10,6 +13,17 @@ import Typography from "../Typography/Typography";
 import "./TablesInventory.scss";
 
 const TablesInventory = ({ inventory, setInventory, openDeleteModal }) => {
+
+    const navigate = useNavigate();
+    const goToAddInventory = () => navigate("/inventories/form/add");
+
+    const searchKeys = ["item_name", "category", "status", "quantity", "warehouse_name"];
+    const { searchString, setSearchString, filteredArray } = useSearch(inventory, searchKeys);
+
+    useEffect(() => {
+        setSearchString("");
+    }, []);
+
     if (!inventory || inventory.length === 0) {
         return <p>No inventory available.</p>;
     }
@@ -24,10 +38,11 @@ const TablesInventory = ({ inventory, setInventory, openDeleteModal }) => {
 
     return (
         <div className="inventory-table-wrapper">
-            <TablesHeader headerText="Inventory" buttonText="+ Add New Item" />
+            <TablesHeader headerText="Inventory" buttonText="+ Add New Item" onButtonClick={goToAddInventory}
+                searchString={searchString} setSearchString={setSearchString} />
             <TableRowHeader headers={headers} data={inventory} setData={setInventory} />
             <div className="inventory-table">
-                {inventory.map((item) => (
+                {filteredArray.map((item) => (
                     <TableCard key={item.id} className="inventory-table__card">
                         <TableCardField label="INVENTORY ITEM" className="card__field--alt inventory-table__inventory">
                             <Link to={`/inventories/${item.id}`} className="inventory-table__link">
