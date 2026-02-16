@@ -1,16 +1,16 @@
-const emptyFieldError = (e, errors, newErrors) => {
-    const eventElements = e.currentTarget.querySelectorAll("input");
+export const emptyFieldError = (e, errors, newErrors) => {
+    const eventElements = e.currentTarget.querySelectorAll("input"); // Excludes any buttons in the form 
 
     for (let i = 0; i < eventElements.length; i++) {
         const inputField = eventElements[i];
-        if (!inputField.value && errors[inputField.name] !== undefined) {
+        if (!inputField.value && errors[inputField.name] !== undefined) { // "errors[inputField.name] !== undefined" ensures dev included field in error useState for validation
                 newErrors = {...newErrors, [inputField.name]: "empty"};
         };
     };
     return newErrors;
 };
 
-const validateEmail = (e, errors, newErrors) => {
+export const validateEmail = (e, errors, newErrors) => {
     const emailAddress = e.currentTarget.querySelector("#email").value;
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
@@ -19,26 +19,21 @@ const validateEmail = (e, errors, newErrors) => {
     } else if (emailPattern.test(emailAddress) && errors["email"] === "email") {
         newErrors = {...newErrors, "email": ""};
     };
+
     return newErrors;
 };
 
-const validatePhone = (e, errors, newErrors) => {
+export const validatePhone = (e, errors, newErrors) => {
     const phoneNumber = e.currentTarget.querySelector("#phone").value;
     const phonePattern = /^\+1 \(\d{3}\) \d{3}-\d{4}$/;
+
     if (!phonePattern.test(phoneNumber) && errors["phone"] !== undefined) {
         newErrors = {...newErrors, "phone": "phone"};
     } else if (phonePattern.test(phoneNumber) && errors["phone"] === "phone") {
         newErrors = {...newErrors, "phone": ""};
     };
-    return newErrors;
-};
 
-export const submitChecker = (e, errors, setError) => {
-    let newErrors = {...errors};
-    newErrors = emptyFieldError(e, errors, newErrors);
-    newErrors = validateEmail(e, errors, newErrors);
-    newErrors = validatePhone(e, errors, newErrors);
-    setError(newErrors);
+    return newErrors;
 };
 
 export const removeErrors = (e, errors, setError) => {
@@ -52,7 +47,7 @@ export const removeErrors = (e, errors, setError) => {
     setError(newErrors);
 };
 
-export function formatPhoneInput(value) {
+export function formatPhoneInput (value) {
     let digits = value.replace(/^\+1 {1}/, "");
     digits = digits.replace(/\D/g, "");
     const match = digits.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
@@ -65,7 +60,7 @@ export function formatPhoneInput(value) {
   return formatted;
 }
 
-export const errorType = (errorState) => {
+export const errorType = (errorState) => { // updates error message to user depending on error type
     if(!errorState){
         return
     }

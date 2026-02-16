@@ -2,12 +2,16 @@ import "./WarehousesForm.scss";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
-import { removeErrors, submitChecker, formatPhoneInput} from "../../utils/formValidation.js";
+import { emptyFieldError, validateEmail, validatePhone, removeErrors, formatPhoneInput } from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 
 
+// This useEffect manages all potential types
+// Include field name below if you want the field to be required or validated,
+// Set intial error state to empty string
+// FormFields set name = id
 const WarehousesForm = () => {
-    const [errors, setError] = useState({
+    const [errors, setError] = useState({ 
         "warehouse-name": "",
         "address": "",
         "city": "",
@@ -19,13 +23,19 @@ const WarehousesForm = () => {
 
     const handleSubmit = async(e)=> {
         e.preventDefault();
-        submitChecker(e, errors, setError);
+        let newErrors = {...errors};
+        // Checks individual errors first, accumulates changes into local object, then updates error states
+        // Required to prevents any asyncronous code from running out of order and allows setError to capture all error states
+        newErrors = emptyFieldError(e, errors, newErrors); // include event, error statevalue, local error collector (object)
+        newErrors = validateEmail(e, errors, newErrors);
+        newErrors = validatePhone(e, errors, newErrors);
+        setError(newErrors);
     };
 
-    const handleChange = (e) => {
-        removeErrors(e, errors, setError);
+    const handleChange = (e) => { 
+        removeErrors(e, errors, setError); // Any errors flag are removed once user interacts
         if (e.currentTarget.name === "phone") {
-            e.currentTarget.value = formatPhoneInput(e.currentTarget.value);
+            e.currentTarget.value = formatPhoneInput(e.currentTarget.value); // Restricts phone number format live
         };
     };
 
