@@ -2,7 +2,19 @@
 @use "../../styles/variables" as *;
 @use "../../styles/mixins" as *;
 
-.inventory {
+.message {
+    padding: pxToRem(32) pxToRem(24) pxToRem(24) pxToRem(24);
+
+    @include tablet {
+        padding: pxToRem(32) pxToRem(32) pxToRem(22) pxToRem(32);
+    }
+
+    @include desktop {
+        padding: pxToRem(32) pxToRem(40) pxToRem(22) pxToRem(40);
+    }
+}
+
+.inventory-details {
     margin: pxToRem(0) pxToRem(16);
     background-color: $color-background-light-grey;
 

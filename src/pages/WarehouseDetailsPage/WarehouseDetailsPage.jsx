@@ -1,11 +1,13 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useDeleteModal } from "../../hooks/useDeleteModal.js"
+import { fetchUpdate } from "../../utils/utils.js";
 import Typography from "../../components/Typography/Typography.jsx";
-import PageHeader from "../../components/PageHeader/PageHeader.jsx";
 import TablesWarehouse from "../../components/TablesWarehouse/TablesWarehouse.jsx";
+import DeleteModal from "../../components/DeleteModal/DeleteModal.jsx";
 import "./WarehouseDetailsPage.scss";
 
-const WarehouseDetailsPage = ({ warehouses, setWarehouses }) => {
+const WarehouseDetailsPage = ({ warehouses, setWarehouses, inventory, setInventory }) => {
 
     const { id } = useParams();
     const [warehouse, setWarehouse] = useState(null);
@@ -17,6 +19,9 @@ const WarehouseDetailsPage = ({ warehouses, setWarehouses }) => {
         }
     }, [warehouses, id]);
 
+    const { modalOpen, deleteItem, openDeleteModal, closeDeleteModal, confirmDelete } =
+        useDeleteModal(() => fetchUpdate("inventories", setInventory), "inventories");
+
     if (!warehouses || warehouses.length === 0) {
         return <Typography variant="p1" className="message">Loading warehouses...</Typography>;
     }
@@ -27,9 +32,21 @@ const WarehouseDetailsPage = ({ warehouses, setWarehouses }) => {
 
     return (
         <section className="warehouse-details">
-            <div className="warehouse-details__content">
-                <TablesWarehouse warehouses={warehouses} setWarehouses={setWarehouses} warehouse={warehouse} />
-            </div>
+            <TablesWarehouse
+                warehouses={warehouses}
+                setWarehouses={setWarehouses}
+                warehouse={warehouse}
+                inventory={inventory}
+                setInventory={setInventory}
+                openDeleteModal={openDeleteModal} />
+            {modalOpen && deleteItem && (
+                <DeleteModal
+                    deleteItem={deleteItem.item_name}
+                    variant="inventory"
+                    onCancel={closeDeleteModal}
+                    onConfirm={confirmDelete}
+                />
+            )}
         </section>
     );
 };

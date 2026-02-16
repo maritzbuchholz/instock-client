@@ -1,80 +1,66 @@
 import { Link } from "react-router-dom";
 import Iconography from "../Iconography/Iconography";
-import TableCard from "../TableCard/TableCard"; 
+import TableCard from "../TableCard/TableCard";
 import TableCardField from "../TableCard/TableCardField";
 import TableCardActions from "../TableCard/TableCardActions";
+import TablesHeader from "../TablesHeader/TablesHeader";
+import TableRowHeader from "../TableRowHeader/TableRowHeader";
 import Tags from "../Tags/Tags";
 import Typography from "../Typography/Typography";
 import "./TablesInventory.scss";
 
-const TablesInventory = ({ inventory }) => {
+const TablesInventory = ({ inventory, setInventory, openDeleteModal }) => {
     if (!inventory || inventory.length === 0) {
         return <p>No inventory available.</p>;
     }
 
-    return (
-        <section className="inventory-table">
-            <header className="inventory-table__header">
-                <div className="inventory-table__column-label inventory-table__column-label--item">
-                    <Typography variant="h4">INVENTORY ITEM</Typography>
-                    <Iconography name="sort" className="inventory-table__sort-icon" />
-                </div>
-                <div className="inventory-table__column-label inventory-table__column-label--category">
-                    <Typography variant="h4">CATEGORY</Typography>
-                    <Iconography name="sort" className="inventory-table__sort-icon" />
-                </div>
-                <div className="inventory-table__column-label inventory-table__column-label--status">
-                    <Typography variant="h4">STATUS</Typography>
-                    <Iconography name="sort" className="inventory-table__sort-icon" />
-                </div>
-                <div className="inventory-table__column-label inventory-table__column-label--qty">
-                    <Typography variant="h4">QTY</Typography>
-                    <Iconography name="sort" className="inventory-table__sort-icon" />
-                </div>
-                <div className="inventory-table__column-label inventory-table__column-label--warehouse">
-                    <Typography variant="h4">WAREHOUSE</Typography>
-                    <Iconography name="sort" className="inventory-table__sort-icon" />
-                </div>
-                <div className="inventory-table__column-label inventory-table__column-label--actions">
-                    <Typography variant="h4">ACTIONS</Typography>
-                </div>
-            </header>
+    const headers = [
+        { label: "INVENTORY ITEM", key: "item_name", flex: 1.25 },
+        { label: "CATEGORY", key: "category", flex: 1 },
+        { label: "STATUS", key: "status", flex: 1 },
+        { label: "QTY", key: "quantity", flex: 0.5 },
+        { label: "WAREHOUSE", key: "warehouse_name", flex: 1 }
+    ];
 
-            <main className="inventory-table__body">
+    return (
+        <div className="inventory-table-wrapper">
+            <TablesHeader headerText="Inventory" buttonText="+ Add New Item" />
+            <TableRowHeader headers={headers} data={inventory} setData={setInventory} />
+            <div className="inventory-table">
                 {inventory.map((item) => (
-                    <TableCard key={item.id} className="inventory-table__row">
-                        <TableCardField className="inventory-table__field--item">
-                            <Link to={`/inventory/${item.id}`} className="inventory-link">
-                                {item.item_name}
+                    <TableCard key={item.id} className="inventory-table__card">
+                        <TableCardField label="INVENTORY ITEM" className="card__field--alt inventory-table__inventory">
+                            <Link to={`/inventories/${item.id}`} className="inventory-table__link">
+                                <Typography variant="p2" className="card__value-text">{item.item_name}</Typography>
                                 <Iconography name="chevronRight" className="inventory-link__icon" />
                             </Link>
                         </TableCardField>
 
-                        <TableCardField className="inventory-table__field--category">
-                            {item.category}
+                        <TableCardField label="CATEGORY" className="inventory-table__category">
+                            <Typography variant="p2">{item.category}</Typography>
                         </TableCardField>
 
-                        <TableCardField className="inventory-table__field--status">
+                        <TableCardField label="STATUS" className="inventory-table__status">
                             <Tags status={item.status} />
                         </TableCardField>
 
-                        <TableCardField className="inventory-table__field--qty">
-                            {item.quantity}
+                        <TableCardField label="QTY" className="inventory-table__qty">
+                            <Typography variant="p2">{item.quantity}</Typography>
                         </TableCardField>
 
-                        <TableCardField className="inventory-table__field--warehouse">
-                            {item.warehouse_name}
+                        <TableCardField label="WAREHOUSE" className="inventory-table__warehouse">
+                            <Typography variant="p2">{item.warehouse_name}</Typography>
                         </TableCardField>
 
                         <TableCardActions
-                            onDelete={() => console.log("Delete item", item.id)}
-                            editTo={`/inventory/${item.id}/edit`}
-                            className="inventory-table__field--actions"
+                            editTo={`/inventories/${item.id}/edit`}
+                            onDelete={() => openDeleteModal(item)}
+                            className="inventory-table__actions"
                         />
                     </TableCard>
                 ))}
-            </main>
-        </section>
+            </div>
+        </div>
     );
 };
 

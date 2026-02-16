@@ -3,6 +3,16 @@
 @use "../../styles/mixins" as *;
 
 .inventory-form{
+    background-color: $color-primary-white;
+    margin: pxToRem(0) pxToRem(16);
+    box-shadow: 0 pxToRem(2) pxToRem(5) 0 #13182C1A;
+ @include tablet{
+            margin: 0 pxToRem(32);
+        }
+        @include desktop{
+            margin: 0 pxToRem(128);
+        }
+
 
     // &__contain-all{
     //     background-color: $color-primary-white;
@@ -16,17 +26,25 @@
     //         margin: 0 pxToRem(128);
     //     }
     // }
-    &__form__wrapper{
-        border-bottom: $color-secondary-cloud solid 1px;
-        padding: pxToRem(40) pxToRem(32) pxToRem(32) pxToRem(32)
-    }
-    &__typography-text{
-        margin: auto;
-        &--form{
-            margin: auto;
-            margin-bottom: pxToRem(32);
+    &__wrapper{
+        background-color: $color-primary-white;
+   //     border-bottom: $color-secondary-cloud solid 1px;
+        border-radius: pxToRem(3);
+        padding: pxToRem(16) 0;
+
+        @include tablet {
+        padding: pxToRem(40) pxToRem(32) pxToRem(32) pxToRem(32);
+        display: flex;
         }
+        
     }
+    // &__typography-text{
+    //     margin: auto;
+    //     &--form{
+    //         margin: auto;
+    //         margin-bottom: pxToRem(32);
+    //     }
+    // }
     &__form-input-wrapper{
         display: flex;
         justify-content: flex-start;
@@ -59,12 +77,13 @@
     }
     &__buttons{
         display: flex;
-        background-color: $color-background-light-grey;
-        justify-content: space-between;
+        justify-content: space-evenly;
+        gap: pxToRem(16);
+        padding: pxToRem(16);
         @include tablet{
+             background-color: $color-background-light-grey;
             justify-content: flex-end;
             padding: pxToRem(16) pxToRem(32) pxToRem(16) 0;
         }
     }
-   
 }
