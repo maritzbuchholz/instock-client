@@ -1,15 +1,28 @@
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { useSearch } from "../../hooks/useSearch.js";
+import { useEffect } from "react";
 import Iconography from "../Iconography/Iconography";
 import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
 import Typography from "../Typography/Typography.jsx";
-import TablesHeader from "../../components/TablesHeader/TablesHeader.jsx";
-import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
+import TablesHeader from "../TablesHeader/TablesHeader.jsx";
+import TableRowHeader from "../TableRowHeader/TableRowHeader.jsx";
 import "./TablesWarehouses.scss"
 
 const TableWarehouses = ({ warehouses, setWarehouses, openDeleteModal }) => {
+
+    const navigate = useNavigate();
+    const goToAddWarehouse = () => navigate("/warehouses/form/add");
+
+    const searchKeys = ["warehouse_name", "address", "contact_name", "contact_email", "contact_phone"];
+    const { searchString, setSearchString, filteredArray } = useSearch(warehouses, searchKeys);
+
+    useEffect(() => {
+        setSearchString("");
+    }, []);
+
     if (!warehouses || warehouses.length === 0) {
         return <p>No warehouses available.</p>;
     }
@@ -21,16 +34,13 @@ const TableWarehouses = ({ warehouses, setWarehouses, openDeleteModal }) => {
         { label: "CONTACT INFORMATION", key: "contact_email", flex: 1.5 } //key is for sorting
     ];
 
-    const navigate = useNavigate();
-
-    const goToAddWarehouse = () => navigate("/warehouses/form/add");
-
     return (
         <div className="warehouse-table-wrapper">
-            <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" onButtonClick={goToAddWarehouse} />
+            <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" onButtonClick={goToAddWarehouse}
+                searchString={searchString} setSearchString={setSearchString} />
             <TableRowHeader headers={headers} data={warehouses} setData={setWarehouses} />
             <div className="warehouse-table">
-                {warehouses.map((warehouse) => (
+                {filteredArray.map((warehouse) => (
                     <TableCard key={warehouse.id} className="warehouse-table__card">
                         <TableCardField label="WAREHOUSE" className="card__field--alt warehouse-table__warehouse">
                             <Link to={`/warehouses/${warehouse.id}`} className="warehouse-table__link">

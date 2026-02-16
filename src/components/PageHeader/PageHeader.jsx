@@ -1,6 +1,6 @@
-import Typography from "../../components/Typography/Typography.jsx";
-import Iconography from "../../components/Iconography/Iconography.jsx";
-import Button from "../../components/Button/Button.jsx";
+import Typography from "../Typography/Typography.jsx";
+import Iconography from "../Iconography/Iconography.jsx";
+import Button from "../Button/Button.jsx";
 import "./PageHeader.scss";
 
 const PageHeader = ({ headerText, onBack, onEdit, variant = "noedit" }) => {   //variants = noedit, edit
