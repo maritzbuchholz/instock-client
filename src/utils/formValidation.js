@@ -41,9 +41,10 @@ export const removeErrors = (e, errors, setError) => {
 };
 
 export function formatPhoneInput(value) {
-    const digits = value.replace(/\D/g, "");
+    let digits = value.replace(/^\+1 {1}/, "");
+    digits = digits.replace(/\D/g, "");
     const match = digits.match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-    let formatted = "";
+    let formatted = "+1 ";
     if (match) {
         if (match[1]) formatted += `(${match[1]})`;
         if (match[2]) formatted += (match[2] ? " " : "") + match[2];
