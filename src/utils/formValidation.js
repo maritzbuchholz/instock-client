@@ -22,10 +22,22 @@ const validateEmail = (e, errors, newErrors) => {
     return newErrors;
 };
 
+const validatePhone = (e, errors, newErrors) => {
+    const phoneNumber = e.currentTarget.querySelector("#phone").value;
+    const phonePattern = /^\+1 \(\d{3}\) \d{3}-\d{4}$/;
+    if (!phonePattern.test(phoneNumber) && errors["phone"] !== undefined) {
+        newErrors = {...newErrors, "phone": "phone"};
+    } else if (phonePattern.test(phoneNumber) && errors["phone"] === "phone") {
+        newErrors = {...newErrors, "phone": ""};
+    };
+    return newErrors;
+};
+
 export const submitChecker = (e, errors, setError) => {
     let newErrors = {...errors};
     newErrors = emptyFieldError(e, errors, newErrors);
     newErrors = validateEmail(e, errors, newErrors);
+    newErrors = validatePhone(e, errors, newErrors);
     setError(newErrors);
 };
 
@@ -62,5 +74,8 @@ export const errorType = (errorState) => {
     }
     if(errorState === "email"){
         return "Please provide a valid email";
+    }
+    if(errorState === "phone"){
+        return "Please provide a valid phone number";
     }
 };
