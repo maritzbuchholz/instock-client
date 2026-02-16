@@ -21,8 +21,8 @@ const App = () => {
     useEffect(() => {
         const fetchInitialData = async () => {
             try {
-                fetchUpdate("warehouses", setWarehouses)
-                fetchUpdate("inventories", setInventory)
+                await fetchUpdate("warehouses", setWarehouses)
+                await fetchUpdate("inventories", setInventory)
             } catch (error) {
                 console.log(error)
             }
