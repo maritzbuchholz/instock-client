@@ -1,7 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDeleteModal } from "../../hooks/useDeleteModal.js"
-import { fetchUpdate } from "../../utils/utils.js";
 import Typography from "../../components/Typography/Typography.jsx";
 import TablesWarehouse from "../../components/TablesWarehouse/TablesWarehouse.jsx";
 import DeleteModal from "../../components/DeleteModal/DeleteModal.jsx";
@@ -20,7 +19,7 @@ const WarehouseDetailsPage = ({ warehouses, setWarehouses, inventory, setInvento
     }, [warehouses, id]);
 
     const { modalOpen, deleteItem, openDeleteModal, closeDeleteModal, confirmDelete } =
-        useDeleteModal(() => fetchUpdate("inventories", setInventory), "inventories");
+        useDeleteModal(setInventory, "inventories");
 
     if (!warehouses || warehouses.length === 0) {
         return <Typography variant="p1" className="message">Loading warehouses...</Typography>;
