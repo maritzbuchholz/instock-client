@@ -2,7 +2,7 @@ import "./WarehousesForm.scss";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
-import { removeEmptyError, submitChecker} from "../../utils/formValidation.js";
+import { removeErrors, submitChecker} from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 
 
@@ -23,12 +23,12 @@ const WarehousesForm = () => {
     };
 
     const handleChange = (e) => {
-        removeEmptyError(e, errors, setError);
+        removeErrors(e, errors, setError);
     };
 
-    useEffect(() => {
-        console.log(errors);
-    },[errors])
+    // useEffect(() => {
+    //     console.log(errors);
+    // },[errors])
 
     return (
         <form

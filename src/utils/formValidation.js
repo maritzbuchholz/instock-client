@@ -29,9 +29,11 @@ export const submitChecker = (e, errors, setError) => {
     setError(newErrors);
 };
 
-export const removeEmptyError = (e, errors, setError) => {
+export const removeErrors = (e, errors, setError) => {
+    const inputField = e.currentTarget;
     let newErrors = {...errors};
-    if (inputField.value === "empty" && errors[inputField.name] !== undefined) {
+
+    if (inputField.value && errors[inputField.name] !== undefined) {
             newErrors = {...newErrors, [inputField.name]: ""};
         };
         
