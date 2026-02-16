@@ -21,8 +21,10 @@ const App = () => {
     useEffect(() => {
         const fetchInitialData = async () => {
             try {
-                await fetchUpdate("warehouses", setWarehouses)
-                await fetchUpdate("inventories", setInventory)
+                await Promise.all([
+                    fetchUpdate("warehouses", setWarehouses),
+                    fetchUpdate("inventories", setInventory)
+                ]);
             } catch (error) {
                 console.log(error)
             }
