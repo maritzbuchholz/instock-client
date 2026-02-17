@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { fetchUpdate } from "./utils/apiRequests.js";
 import WarehousesPage from "./pages/WarehousesPage/WarehousesPage.jsx";
 import WarehousesForm from "./pages/WarehousesForm/WarehousesForm.jsx";
 import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage.jsx";
@@ -21,13 +21,10 @@ const App = () => {
     useEffect(() => {
         const fetchInitialData = async () => {
             try {
-                const [warehouseResponse, inventoryResponse] = await Promise.all([
-                    axios.get(`${baseUrl}/warehouses`),
-                    axios.get(`${baseUrl}/inventories`)
+                await Promise.all([
+                    fetchUpdate("warehouses", setWarehouses),
+                    fetchUpdate("inventories", setInventory)
                 ]);
-
-                setWarehouses(warehouseResponse.data);
-                setInventory(inventoryResponse.data);
             } catch (error) {
                 console.log(error)
             }
