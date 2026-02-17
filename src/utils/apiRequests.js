@@ -33,7 +33,7 @@ export const patchUpdate = async (endpoint, payload, setData, refreshEndpoint) =
     }
 }
 
-export const deleteupdate = async (endpoint, setData, refreshEndpoint) => {
+export const deleteUpdate = async (endpoint, setData, refreshEndpoint) => {
     try {
         await axios.delete(`${baseUrl}/${endpoint}`)
         if (refreshEndpoint && setData) {
