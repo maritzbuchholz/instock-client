@@ -2,7 +2,6 @@ import "./FormFields.scss";
 import Typography from "../Typography/Typography.jsx";
 import { errorType } from "../../utils/formValidation.js";
 import Icon from "../Iconography/Iconography.jsx"
-import { errorType } from "../../utils/formValidation.js";
 
 // *** Variants ***
 // Phone Number
@@ -13,7 +12,6 @@ const FormFields = ({
     inputName="Placeholder",
     variant="text",
     type="text", // text_area, dropdown, radio
-    errorState="",
     options = [],
     value,
     onChange,

@@ -58,7 +58,7 @@ const InventoryForm = ( {btn_primary, btn_secondary} ) => {
                     ]} />
                     {formData.status === "inStock" && (
                         <FormFields 
-                        htmlFor="Quantity" 
+                        htmlFor="quantity" 
                         inputName="Quantity"
                         type="numerical" 
                         value={formData.quantity} 
@@ -68,10 +68,9 @@ const InventoryForm = ( {btn_primary, btn_secondary} ) => {
 
             </form>
             <div className="inventory-form__buttons">
-                <Button variant="secondary" to={"/inventories"}>{btn_secondary}</Button>
+                <Button variant="secondary" isLink = {true} to={"/inventories"}>{btn_secondary}</Button>
                 <Button variant="primary"> {btn_primary}</Button>
             </div>
-
         </section>
 
     )
