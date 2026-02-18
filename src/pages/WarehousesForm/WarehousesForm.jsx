@@ -7,6 +7,7 @@ import PageHeader from "../../components/PageHeader/PageHeader.jsx";
 import { emptyFieldError, validateEmail, validatePhone, removeErrors, formatPhoneInput } from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 // This useEffect manages all potential types
 // Include field name below if you want the field to be required or validated,
