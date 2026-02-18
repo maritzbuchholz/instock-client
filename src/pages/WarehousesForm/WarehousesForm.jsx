@@ -1,4 +1,5 @@
 import "./WarehousesForm.scss";
+import axios from "axios";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
@@ -6,20 +7,22 @@ import PageHeader from "../../components/PageHeader/PageHeader.jsx";
 import { emptyFieldError, validateEmail, validatePhone, removeErrors, formatPhoneInput } from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 // This useEffect manages all potential types
 // Include field name below if you want the field to be required or validated,
 // Set intial error state to empty string
 // FormFields set name = id
 const WarehousesForm = () => {
-    const [errors, setError] = useState({
-        "warehouse-name": "",
+    const [errors, setError] = useState({ 
+        "warehouse_name": "",
         "address": "",
         "city": "",
         "country": "",
-        "contact-name": "",
-        "phone": "",
-        "email": "",
+        "contact_name": "",
+        "contact_position": "",
+        "contact_phone": "",
+        "contact_email": "",
     });
 
     const handleSubmit = async (e) => {
@@ -38,13 +41,16 @@ const WarehousesForm = () => {
             setError(newErrors);
             return;
         } else if (!errorExists) {
-            console.log("submit form");
+            const formData = new FormData(e.currentTarget);
+            const serverData = Object.fromEntries(formData.entries());
+            console.log(serverData);
+            axios.post(`${baseUrl}/warehouses`, serverData);
         };
     };
 
     const handleChange = (e) => {
         removeErrors(e, errors, setError); // Any errors flag are removed once user interacts
-        if (e.currentTarget.name === "phone") {
+        if (e.currentTarget.name === "contact_phone") {
             e.currentTarget.value = formatPhoneInput(e.currentTarget.value); // Restricts phone number format live
         };
     };
@@ -70,18 +76,18 @@ const WarehousesForm = () => {
 
                 <div className="warehouses-form__warehouse-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Warehouse Details</Typography>
-                    <FormFields onChange={handleChange} errorState={errors["warehouse-name"]} htmlFor="warehouse-name" inputName="Warehouse Name" />
-                    <FormFields onChange={handleChange} errorState={errors["address"]} htmlFor="address" inputName="Street Address" />
-                    <FormFields onChange={handleChange} errorState={errors["city"]} htmlFor="city" inputName="City" />
-                    <FormFields onChange={handleChange} errorState={errors["country"]} htmlFor="country" inputName="Country" />
+                    <FormFields onChange={handleChange} errorState={errors["warehouse_name"]} htmlFor="warehouse_name" inputName="Warehouse Name" />
+                    <FormFields onChange={handleChange} errorState={errors["address"]} htmlFor="address" inputName="Street Address"/>
+                    <FormFields onChange={handleChange} errorState={errors["city"]} htmlFor="city" inputName="City"/>
+                    <FormFields onChange={handleChange} errorState={errors["country"]} htmlFor="country" inputName="Country"/>
                 </div>
 
                 <div className="warehouses-form__contact-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Contact Details</Typography>
-                    <FormFields onChange={handleChange} errorState={errors["contact-name"]} htmlFor="contact-name" inputName="Contact Name"/>
-                    <FormFields onChange={handleChange} errorState={errors["position"]} htmlFor="position" inputName="Position"/>
-                    <FormFields onChange={handleChange} errorState={errors["phone"]} htmlFor="phone" inputName="Phone Number"/>
-                    <FormFields onChange={handleChange} errorState={errors["email"]} htmlFor="email" inputName="Email"/>
+                    <FormFields onChange={handleChange} errorState={errors["contact_name"]} htmlFor="contact_name" inputName="Contact Name"/>
+                    <FormFields onChange={handleChange} errorState={errors["contact_position"]} htmlFor="contact_position" inputName="Position"/>
+                    <FormFields onChange={handleChange} errorState={errors["contact_phone"]} htmlFor="contact_phone" inputName="Phone Number"/>
+                    <FormFields onChange={handleChange} errorState={errors["contact_email"]} htmlFor="contact_email" inputName="Email"/>
                 </div>
 
             </section>
