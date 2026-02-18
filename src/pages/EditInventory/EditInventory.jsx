@@ -14,7 +14,7 @@ const EditInventory = ( {inventory} ) => {
         <div className="edit-inventory__wrapper">
       
     <PageHeader headerText = "Edit Inventory Item" onBack={goToInventories}/>
-       <InventoryForm />
+       <InventoryForm btn_primary="Save" btn_secondary="Cancel"/>
       
        </div>
     )

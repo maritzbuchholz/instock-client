@@ -1,5 +1,6 @@
 import "./FormFields.scss";
 import Typography from "../Typography/Typography.jsx";
+import { errorType } from "../../utils/formValidation.js";
 import Icon from "../Iconography/Iconography.jsx"
 
 // *** Variants ***
@@ -11,6 +12,7 @@ const FormFields = ({
     inputName="Placeholder",
     variant="text",
     type="text", // text_area, dropdown, radio
+    errorState="",
     options = [],
     value,
     onChange,
@@ -117,6 +119,7 @@ if (type === "radio") {
         <label className="form-fields__label" htmlFor={htmlFor}>
             <Typography variant="h3" className="form-fields__label-text">{inputName}</Typography>
             <div className="form-fields__input-container">
+                
                 {fieldType()}
                 <Typography variant="p3" className="form-fields__error">This field is required</Typography>
             </div>

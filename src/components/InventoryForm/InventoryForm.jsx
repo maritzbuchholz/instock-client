@@ -5,7 +5,7 @@ import FormFields from "../FormFields/FormFields.jsx";
 import Button from "../Button/Button.jsx";
 import { useState } from "react";
 
-const InventoryForm = () => {
+const InventoryForm = ( {btn_primary, btn_secondary} ) => {
 
     const navigate = useNavigate();
     const goToInventories = () => navigate("/inventories");
@@ -46,19 +46,30 @@ const InventoryForm = () => {
 
                 <div className="inventory-form-availability">
                     <Typography variant="h2">Item Availability</Typography>
-                    <FormFields inputName="Status" type="radio" value={formData.status} options={[
+                    <FormFields
+                    htmlFor="status" 
+                    inputName="Status" 
+                    type="radio" 
+                    value={formData.status}
+                    onChange={handleChange} 
+                    options={[
                         { label: "In stock", value: "inStock" },
                         { label: "Out of stock", value: "outOfStock" },
                     ]} />
-                    {formData.status === "In Stock" && (
-                        <FormFields htmlFor="Quantity" inputName="Quantity" value={formData.quantity} onChange={handleChange} />)}
+                    {formData.status === "inStock" && (
+                        <FormFields 
+                        htmlFor="Quantity" 
+                        inputName="Quantity"
+                        type="numerical" 
+                        value={formData.quantity} 
+                        onChange={handleChange} />)}
                     <FormFields inputName="Warehouse" type="dropdown" />
                 </div>
 
             </form>
             <div className="inventory-form__buttons">
-                <Button variant="secondary" to={"/inventories"}>Cancel</Button>
-                <Button variant="primary">+ Add Item</Button>
+                <Button variant="secondary" to={"/inventories"}>{btn_secondary}</Button>
+                <Button variant="primary"> {btn_primary}</Button>
             </div>
 
         </section>

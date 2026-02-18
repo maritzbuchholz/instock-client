@@ -15,7 +15,7 @@ const goToInventories = () => navigate("/inventories");
         <div className="add-inventory__wrapper">
       
         <PageHeader headerText = "Add New Inventory Item" onBack={goToInventories}/>
-       <InventoryForm />
+       <InventoryForm btn_primary="+ Add Item" btn_secondary="Cancel" />
       
        </div>
     )
