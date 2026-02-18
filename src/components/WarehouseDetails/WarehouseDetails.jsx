@@ -7,7 +7,8 @@ const WarehouseDetails = ({ warehouse }) => {
             <div className="warehouse-details__field warehouse-details__address">
                 <Typography variant="h4" className="warehouse-details__title">WAREHOUSE ADDRESS:</Typography>
                 <Typography variant="p2" className="warehouse-details__value">
-                    {warehouse.address}, {warehouse.city}, {warehouse.country}
+                    <span>{warehouse.address}, </span>
+                    <span>{warehouse.city}, {warehouse.country}</span>
                 </Typography>
             </div>
             <div className="warehouse-details__contact-wrapper">

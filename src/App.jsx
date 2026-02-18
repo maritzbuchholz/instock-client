@@ -5,9 +5,11 @@ import WarehousesPage from "./pages/WarehousesPage/WarehousesPage.jsx";
 import WarehousesForm from "./pages/WarehousesForm/WarehousesForm.jsx";
 import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage.jsx";
 import InventoryPage from "./pages/InventoryPage/InventoryPage.jsx";
+import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage.jsx";
 import Navigation from "./components/Navigation/Navigation.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import AddInventory from "./pages/AddInventory/AddInventory.jsx";
+import EditInventory from "./pages/EditInventory/EditInventory.jsx";
 
 const App = () => {
 
@@ -40,11 +42,13 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Navigate to="/warehouses" replace />} />
                     <Route path="/warehouses" element={<WarehousesPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
-                    <Route path="/warehouses/form" element={<WarehousesForm />} />
-                    <Route path="/inventory" element={<InventoryPage inventory={inventory} />} />
-                    <Route path="/inventory/add" element={<AddInventory inventory={inventory} />} />
-                    {/* <Route path="/inventory/:id" element={<InventoryDetailsPage inventory={inventory} />} /> */}
-                    <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
+                    <Route path="/warehouses/form/add" element={<WarehousesForm />} />
+                    {/* <Route path="/warehouses/form/:id/edit" element={<WarehousesForm />} /> */}
+                    <Route path="/inventories" element={<InventoryPage inventory={inventory} setInventory={setInventory} />} />
+                    <Route path="/inventories/form/add" element={<AddInventory inventory={inventory} />} />
+                    <Route path="/inventories/form/:id/edit" element={<EditInventory inventory={inventory} />} />
+                    <Route path="/inventories/:id" element={<InventoryDetailsPage inventory={inventory} />} />
+                    <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} setWarehouses={setWarehouses} inventory={inventory} setInventory={setInventory} />} />
                 </Routes>
             </main>
 

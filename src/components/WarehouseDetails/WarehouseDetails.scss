@@ -15,12 +15,19 @@
         flex-direction: column;
         padding: pxToRem(16) pxToRem(24);
         gap: pxToRem(36);
+        background-color: $color-primary-white;
+        box-shadow:
+            2px 0px 5px -2px rgba($color-primary-black, 0.1),
+            -2px 0px 5px -2px rgba($color-primary-black, 0.1);
         border-bottom: 1px solid $color-secondary-cloud;
+
+        position: relative;
 
         @include tablet {
             padding: pxToRem(24) pxToRem(32);
             flex-direction: row;
             justify-content: flex-start;
+            gap: pxToRem(40);
         }
 
         @include desktop {
@@ -28,22 +35,58 @@
         }
     }
 
+    &__header::after {
+
+        @include tablet {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -6px;
+            height: 8px;
+            background: $color-background-light-grey;
+        }
+    }
+
     &__field {
         gap: pxToRem(4);
     }
 
-    &__address {}
+    &__address {
+        @include tablet {
+            padding-right: pxToRem(32);
+            flex: 1;
+            border-right: 1px solid $color-secondary-cloud;
+        }
+
+        @include desktop {
+            padding-right: pxToRem(156);
+        }
+    }
 
     &__contact-wrapper {
         display: flex;
-        column-gap: pxToRem(45);
+        column-gap: pxToRem(16);
+        flex: 2;
+
+        @include tablet {
+            column-gap: pxToRem(24);
+        }
+
+        @include desktop {
+            column-gap: pxToRem(28);
+        }
     }
 
-    &__name {}
+    &__name {
 
-    &__info {}
+        flex: 1;
+    }
 
-    &__title {}
+    &__info {
+
+        flex: 1;
+    }
 
     &__value {
         display: flex;

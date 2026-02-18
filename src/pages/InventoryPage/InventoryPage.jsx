@@ -1,14 +1,29 @@
-import "./InventoryPage.scss";
-import Typography from "../../components/Typography/Typography.jsx";
+import { useDeleteModal } from "../../hooks/useDeleteModal.js"
+import { fetchUpdate } from "../../utils/utils.js";
 import TablesInventory from "../../components/TablesInventory/TablesInventory.jsx";
+import DeleteModal from "../../components/DeleteModal/DeleteModal.jsx";
+import "./InventoryPage.scss";
 
-const InventoryPage = ({ inventory }) => {
-    return (
+const InventoryPage = ({ inventory, setInventory }) => {
+    const { modalOpen, deleteItem, openDeleteModal, closeDeleteModal, confirmDelete } =
+        useDeleteModal(() => fetchUpdate("inventories", setInventory), "inventories");
+
+        return (
         <section className="inventory">
-            <div className="inventory__header">
-                <Typography variant="h1">Inventory</Typography>
-            </div>
-            <TablesInventory inventory={inventory} />
+            <TablesInventory 
+                inventory={inventory} 
+                setInventory={setInventory} 
+                openDeleteModal={openDeleteModal} 
+            />
+
+            {modalOpen && deleteItem && (
+                <DeleteModal
+                    deleteItem={deleteItem.item_name}
+                    variant="inventory"
+                    onCancel={closeDeleteModal}
+                    onConfirm={confirmDelete}
+                />
+            )}
         </section>
     );
 };

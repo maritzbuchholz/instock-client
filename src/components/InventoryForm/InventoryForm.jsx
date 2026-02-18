@@ -1,9 +1,34 @@
 import "./InventoryForm.scss";
+import { Link, useNavigate } from "react-router-dom";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../Button/Button.jsx";
+import { useState } from "react";
 
 const InventoryForm = () => {
+
+const navigate = useNavigate();
+const goToInventories = () => navigate("/inventories");
+
+const [formData, setFormData] = useState({
+  status: "",
+  quantity: ""
+});
+
+const handleChange = (e) => {
+  const { name, value } = e.target;
+
+  setFormData(prev => {
+    const updated = { ...prev, [name]: value };
+
+    if (name === "status" && value === "Out of Stock") {
+      updated.quantity = "";
+    }
+
+    return updated;
+  });
+};
+
     return (
        
   <section className="inventory-form">
@@ -15,20 +40,26 @@ const InventoryForm = () => {
                 <div className="inventory-form-details">
                     <Typography variant="h2">Item Details</Typography>
                     <FormFields inputName="Item Name"/>
-                    <FormFields inputName="Description"/>
-                    <FormFields inputName="Category"/>
+                    <FormFields htmlFor="Description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..."/>
+                    <FormFields inputName="Category" type="dropdown"/>
                 </div>
 
                 <div className="inventory-form-availability">
                     <Typography variant="h2">Item Availability</Typography>
-                    <FormFields inputName="Status"/>
-                    <FormFields inputName="Warehouse"/>
+                    <FormFields inputName="Status" type="radio" value={formData.status} options={[
+                        { label: "In stock", value: "inStock" },
+                        { label: "Out of stock", value: "outOfStock" },
+                        ]}/>
+                        {formData.status === "In Stock" && (
+                    <FormFields htmlFor="Quantity" inputName="Quantity" value={formData.quantity} onChange={handleChange} /> )}
+                    <FormFields inputName="Warehouse" type="dropdown"/>
                 </div>
-                <div className="inventory-form__buttons">
-                <Button variant = "secondary">Cancel</Button>
+                
+            </form>
+            <div className="inventory-form__buttons">
+                <Button variant = "secondary" to={"/inventories"}>Cancel</Button>
                 <Button variant = "primary">+ Add Item</Button>
                 </div>
-            </form>
             
         </section>
      

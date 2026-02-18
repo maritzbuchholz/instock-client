@@ -1,13 +1,25 @@
 import "./WarehousesPage.scss";
-import Typography from "../../components/Typography/Typography.jsx";
+import { useDeleteModal } from "../../hooks/useDeleteModal.js"
+import { fetchUpdate } from "../../utils/utils.js";
 import TableWarehouses from "../../components/TablesWarehouses/TablesWarehouses.jsx";
+import DeleteModal from "../../components/DeleteModal/DeleteModal.jsx";
 
 const WarehousesPage = ({ warehouses, setWarehouses }) => {
+
+    const { modalOpen, deleteItem, openDeleteModal, closeDeleteModal, confirmDelete } =
+        useDeleteModal(() => fetchUpdate("warehouses", setWarehouses), "warehouses");
+
     return (
         <section className="warehouses">
-            <div className="warehouses__content">
-                <TableWarehouses warehouses={warehouses} setWarehouses={setWarehouses} />
-            </div>
+            <TableWarehouses warehouses={warehouses} setWarehouses={setWarehouses} openDeleteModal={openDeleteModal} />
+            {modalOpen && deleteItem && (
+                <DeleteModal
+                    deleteItem={deleteItem.warehouse_name}
+                    variant="warehouse"
+                    onCancel={closeDeleteModal}
+                    onConfirm={confirmDelete}
+                />
+            )}
         </section>
     );
 };

@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Iconography from "../Iconography/Iconography";
 import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
-import chevronRight from "../../assets/Icons/chevronright24px.svg";
 import Typography from "../Typography/Typography.jsx";
 import TablesHeader from "../../components/TablesHeader/TablesHeader.jsx";
 import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
 import "./TablesWarehouses.scss"
 
-const TableWarehouses = ({ warehouses, setWarehouses }) => {
+const TableWarehouses = ({ warehouses, setWarehouses, openDeleteModal }) => {
     if (!warehouses || warehouses.length === 0) {
         return <p>No warehouses available.</p>;
     }
@@ -21,21 +21,21 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
         { label: "CONTACT INFORMATION", key: "contact_email", flex: 1.5 } //key is for sorting
     ];
 
+    const navigate = useNavigate();
+
+    const goToAddWarehouse = () => navigate("/warehouses/form/add");
+
     return (
         <div className="warehouse-table-wrapper">
-            <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" />
-            <TableRowHeader headers={headers} warehouses={warehouses} setWarehouses={setWarehouses} />
+            <TablesHeader headerText="Warehouses" buttonText="+ Add New Warehouse" onButtonClick={goToAddWarehouse} />
+            <TableRowHeader headers={headers} data={warehouses} setData={setWarehouses} />
             <div className="warehouse-table">
                 {warehouses.map((warehouse) => (
                     <TableCard key={warehouse.id} className="warehouse-table__card">
                         <TableCardField label="WAREHOUSE" className="card__field--alt warehouse-table__warehouse">
                             <Link to={`/warehouses/${warehouse.id}`} className="warehouse-table__link">
                                 <Typography variant="p2" className="card__value-text">{warehouse.warehouse_name}</Typography>
-                                <img
-                                    src={chevronRight}
-                                    alt="Chevron Right"
-                                    className="warehouse-link__icon"
-                                />
+                                <Iconography name="chevronRight" className="warehouse-link__icon" />
                             </Link>
                         </TableCardField>
 
@@ -57,8 +57,8 @@ const TableWarehouses = ({ warehouses, setWarehouses }) => {
                         </TableCardField>
 
                         <TableCardActions
-                            editTo={`/warehouses/${warehouse.id}/edit`}
-                            onDelete={() => console.log("Delete warehouse", warehouse.id)}
+                            editTo={`/warehouses/form/${warehouse.id}/edit`}
+                            onDelete={() => openDeleteModal(warehouse)}
                             className="warehouse-table__actions"
                         />
                     </TableCard>

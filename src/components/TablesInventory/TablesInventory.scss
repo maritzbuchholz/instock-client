@@ -2,38 +2,17 @@
 @use "../../styles/functions" as *;
 @use "../../styles/mixins" as *;
 
+.inventory-table-wrapper {
+    transform: translateY(-64px);
+    @include tablet {
+        transform: translateY(-94px);
+    }
+}
+
 .inventory-table {
-    &__header {
-        display: none; 
-        @include tablet {
-            display: flex;
-            align-items: center;
-            padding: pxToRem(16) pxToRem(32);
-            justify-content: space-between;
-            border-bottom: 1px solid $color-secondary-cloud;
-        }    
-    }
-
-    &__column-label {
-        display: flex;
-        align-items: center;
-        gap: pxToRem(4);
-    }
-
-    &__body {
-        list-style: none;
-        margin: 0;
-        padding: 0;
-    }
-
-    &__row {
-        @include tablet {
-            display: flex;
-            align-items: center;
-            padding: pxToRem(16) pxToRem(32);
-            justify-content: space-between;
-            border-bottom: 1px solid $color-secondary-cloud
-        }
+    &__card {
+        gap: pxToRem(16);
+        column-gap: pxToRem(45);
         @include desktop {
             &:hover {
                 background-color: #2E66E512;
@@ -41,31 +20,43 @@
         }
     }
 
-    &__column-label, &__field {
-        &--item {
-            flex: 1.5; 
+    &__link {
+        display: flex;
+        flex-direction: row;
+        text-decoration: none;
+        color: $color-primary-indigo;
+    }
+
+    @include tablet {
+        &__inventory {
+            flex: 1.25;
+            order: 1;
         }
-        &--category {
-            flex: 1.25; 
-        }
-        &--status {
+
+        &__category {
             flex: 1;
+            order: 2;
         }
-        &--qty {
+
+        &__status {
             flex: 1;
+            order: 3;
         }
-        &--warehouse {
-            flex: 1.5;
+
+        &__qty {
+            flex: 0.5;
+            order: 4;
         }
-        &--actions {
-            flex: 1; 
+
+        &__warehouse {
+            flex: 1;
+            order: 5;
+        }
+
+        &__actions {
+            flex: 0.75;
+            order: 6;
             display: flex;
-            text-align: right;
         }
     }
-}
-
-.inventory-link {
-    text-decoration: none;
-    color: $color-primary-indigo;
 }

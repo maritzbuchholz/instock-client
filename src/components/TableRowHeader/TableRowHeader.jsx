@@ -19,7 +19,7 @@ const headers = [
 ];
 */
 
-const TableRowHeader = ({ headers = [], warehouses, setWarehouses }) => {
+const TableRowHeader = ({ headers = [], data = [], setData }) => {
 
     const [sortState, setSortState] = useState({
         column: null,
@@ -28,8 +28,8 @@ const TableRowHeader = ({ headers = [], warehouses, setWarehouses }) => {
 
     const onSort = (key) => {
         const ascending = sortState.column === key ? !sortState.ascending : true;
-        const sortedArray = sortArrOfObj(warehouses, key, ascending);
-        setWarehouses(sortedArray);
+        const sortedArray = sortArrOfObj(data, key, ascending);
+        setData(sortedArray);
         setSortState({ column: key, ascending });
     };
 

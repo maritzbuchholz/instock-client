@@ -4,6 +4,9 @@ import Button from "../../components/Button/Button.jsx";
 import "./PageHeader.scss";
 
 const PageHeader = ({ headerText, onBack, onEdit, variant = "noedit" }) => {   //variants = noedit, edit
+
+    const safeVariant = variant == "edit" || variant == "noedit" ? variant : "edit";
+
     return (
         <div className="page-header">
             <div className="page-header__title-back-wrapper">
@@ -23,7 +26,7 @@ const PageHeader = ({ headerText, onBack, onEdit, variant = "noedit" }) => {   /
                     <Typography variant="h1">{headerText}</Typography>
                 </div>
             </div>
-            {variant === "edit" && <Button
+            {safeVariant === "edit" && <Button
                 type="button"
                 className="page-header__edit-button"
                 variant="primary"
