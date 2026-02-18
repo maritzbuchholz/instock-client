@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deleteupdate } from "../utils/apiRequests.js";
+import { deleteUpdate } from "../utils/apiRequests.js";
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
@@ -21,7 +21,7 @@ export const useDeleteModal = (setData, endpoint) => {
         if (!deleteItem) return;
 
         try {
-            await deleteupdate(`${deleteEndpoint}/${deleteItem.id}`, setData, endpoint)
+            await deleteUpdate(`${endpoint}/${deleteItem.id}`, setData, endpoint)
         } catch (error) {
             console.error("failed to delete item");
         }
