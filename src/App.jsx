@@ -33,9 +33,10 @@ const App = () => {
     }, []);
 
     return (
+        <div className="app-layout">
         <BrowserRouter>
             <Navigation />
-            <main>
+            <main className = "app-layout__content">
                 <Routes>
                     <Route path="/" element={<Navigate to="/warehouses" replace />} />
                     <Route path="/warehouses" element={<WarehousesPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
@@ -51,6 +52,7 @@ const App = () => {
 
             <Footer />
         </BrowserRouter>
+        </div>
     );
 }
 
