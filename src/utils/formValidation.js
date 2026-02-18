@@ -11,26 +11,26 @@ export const emptyFieldError = (e, errors, newErrors) => {
 };
 
 export const validateEmail = (e, errors, newErrors) => {
-    const emailAddress = e.currentTarget.querySelector("#email").value;
+    const emailAddress = e.currentTarget.querySelector("#contact_email").value;
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (!emailPattern.test(emailAddress) && errors["email"] !== undefined) {
-        newErrors = {...newErrors, "email": "email"};
-    } else if (emailPattern.test(emailAddress) && errors["email"] === "email") {
-        newErrors = {...newErrors, "email": ""};
+    if (!emailPattern.test(emailAddress) && errors["contact_email"] !== undefined) {
+        newErrors = {...newErrors, "contact_email": "email"};
+    } else if (emailPattern.test(emailAddress) && errors["contact_email"] === "email") {
+        newErrors = {...newErrors, "contact_email": ""};
     };
 
     return newErrors;
 };
 
 export const validatePhone = (e, errors, newErrors) => {
-    const phoneNumber = e.currentTarget.querySelector("#phone").value;
+    const phoneNumber = e.currentTarget.querySelector("#contact_phone").value;
     const phonePattern = /^\+1 \(\d{3}\) \d{3}-\d{4}$/;
 
-    if (!phonePattern.test(phoneNumber) && errors["phone"] !== undefined) {
-        newErrors = {...newErrors, "phone": "phone"};
-    } else if (phonePattern.test(phoneNumber) && errors["phone"] === "phone") {
-        newErrors = {...newErrors, "phone": ""};
+    if (!phonePattern.test(phoneNumber) && errors["contact_phone"] !== undefined) {
+        newErrors = {...newErrors, "contact_phone": "phone"};
+    } else if (phonePattern.test(phoneNumber) && errors["contact_phone"] === "phone") {
+        newErrors = {...newErrors, "contact_phone": ""};
     };
 
     return newErrors;
