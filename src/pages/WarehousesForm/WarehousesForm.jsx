@@ -7,13 +7,15 @@ import PageHeader from "../../components/PageHeader/PageHeader.jsx";
 import { emptyFieldError, validateEmail, validatePhone, removeErrors, formatPhoneInput } from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { postUpdate, fetchUpdate } from "../../utils/apiRequests.js";
+
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 // This useEffect manages all potential types
 // Include field name below if you want the field to be required or validated,
 // Set intial error state to empty string
 // FormFields set name = id
-const WarehousesForm = () => {
+const WarehousesForm = ({setWarehouses}) => {
     const [errors, setError] = useState({ 
         "warehouse_name": "",
         "address": "",
@@ -43,8 +45,7 @@ const WarehousesForm = () => {
         } else if (!errorExists) {
             const formData = new FormData(e.currentTarget);
             const serverData = Object.fromEntries(formData.entries());
-            console.log(serverData);
-            axios.post(`${baseUrl}/warehouses`, serverData);
+            postUpdate("warehouses", serverData, setWarehouses, "warehouses");
         };
     };
 
@@ -55,9 +56,6 @@ const WarehousesForm = () => {
         };
     };
 
-    // useEffect(() => {
-    //     console.log(errors);
-    // },[errors])
 
     const navigate = useNavigate();
     const goToInventories = () => navigate("/warehouses");
@@ -102,7 +100,8 @@ const WarehousesForm = () => {
                 <Button
                     type="submit"
                     className="warehouses-form__add"
-                    variant="primary">
+                    variant="primary"
+                    disabled={false}>
                     + Add Warehouse
                 </Button>
             </section>
