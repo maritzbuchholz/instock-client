@@ -75,7 +75,7 @@ const WarehousesForm = () => {
                 <div className="warehouses-form__contact-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Contact Details</Typography>
                     <FormFields onChange={handleChange} errorState={errors["contact-name"]} htmlFor="contact-name" inputName="Contact Name"/>
-                    <FormFields htmlFor="position" inputName="Position"/>
+                    <FormFields onChange={handleChange} errorState={errors["position"]} htmlFor="position" inputName="Position"/>
                     <FormFields onChange={handleChange} errorState={errors["phone"]} htmlFor="phone" inputName="Phone Number"/>
                     <FormFields onChange={handleChange} errorState={errors["email"]} htmlFor="email" inputName="Email"/>
                 </div>

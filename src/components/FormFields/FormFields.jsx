@@ -1,6 +1,7 @@
 import "./FormFields.scss";
 import Typography from "../Typography/Typography.jsx";
 import Icon from "../Iconography/Iconography.jsx"
+import { errorType } from "../../utils/formValidation.js";
 
 // *** Variants ***
 // Phone Number
@@ -16,6 +17,7 @@ const FormFields = ({
     onChange,
     className,
     placeholder,
+    errorState="",
 }) => {
 
 const fieldType = () => {
@@ -25,7 +27,7 @@ const fieldType = () => {
             id={htmlFor}
             name={htmlFor}
             type="text"
-            className="form-fields__input"
+            className={`form-fields__input ${errorState ? "form-fields__input--error": ""}`}
             placeholder={inputName}
             value={value}
             onChange={onChange}
@@ -39,7 +41,7 @@ if (type === "text_area") {
             id={htmlFor}
             name={htmlFor}
             type="text_area"
-            className="form-fields__text_area"
+            className={`form-fields__text_area ${errorState ? "form-fields__input--error": ""}`}
             placeholder={placeholder}
             value={value}
             onChange={onChange}
@@ -53,7 +55,7 @@ if (type === "numerical") {
             id={htmlFor}
             name={htmlFor}
             type="number"
-            className="form-fields__input"
+            className={`form-fields__input ${errorState ? "form-fields__input--error": ""}`}
             placeholder={placeholder || inputName}
             value={value}
             onChange={onChange}
@@ -70,7 +72,7 @@ if (type === "dropdown") {
             id={htmlFor}
             name={htmlFor}
             type="dropdown"
-            className="form-fields__dropdown"
+            className={`form-fields__dropdown ${errorState ? "form-fields__input--error": ""}`}
             placeholder={inputName}
             value={value}
             onChange={onChange}
@@ -96,7 +98,7 @@ if (type === "radio") {
           {options.map((option) => (
             <label key={option.value} className="form-fields__radio">
               <input
-              className="form-fields__radio-input"
+                className={`form-fields__radio-input ${errorState ? "form-fields__input--error": ""}`}
                 type="radio"
                 name={htmlFor}
                 value={option.value}
@@ -118,7 +120,10 @@ if (type === "radio") {
             <Typography variant="h3" className="form-fields__label-text">{inputName}</Typography>
             <div className="form-fields__input-container">
                 {fieldType()}
-                <Typography variant="p3" className="form-fields__error">This field is required</Typography>
+                <Typography
+                    variant="p3"
+                    className={`form-fields__message ${errorState ? "form-fields__message--error": ""}`}
+                >{errorType(errorState)}</Typography>
             </div>
         </label>
     );
