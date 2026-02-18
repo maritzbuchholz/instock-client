@@ -60,3 +60,12 @@
         }
     }
 }
+
+.inventory-link {
+    &__icon {
+        transition: transform 0.3s ease;
+        &:hover {
+            transform: translateX(4px);
+        }
+    }
+}
