@@ -1,12 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
-import Typography from "../../components/Typography/Typography.jsx";
-import WarehouseDetails from "../../components/WarehouseDetails/WarehouseDetails.jsx";
-import PageHeader from "../../components/PageHeader/PageHeader.jsx";
+import Typography from "../Typography/Typography.jsx";
+import WarehouseDetails from "../WarehouseDetails/WarehouseDetails.jsx";
+import PageHeader from "../PageHeader/PageHeader.jsx";
 import TableCard from "../TableCard/TableCard.jsx";
 import TableCardField from "../TableCard/TableCardField.jsx";
 import TableCardActions from "../TableCard/TableCardActions.jsx";
-import chevronRight from "../../assets/Icons/chevronright24px.svg";
-import TableRowHeader from "../../components/TableRowHeader/TableRowHeader.jsx";
+import Iconography from "../Iconography/Iconography";
+import TableRowHeader from "../TableRowHeader/TableRowHeader.jsx";
 import Tags from "../Tags/Tags.jsx";
 import "./TablesWarehouse.scss";
 
@@ -40,11 +40,7 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
                         <TableCardField label="INVENTORY ITEM" className="card__field--alt warehouse-inventory-table__item">
                             <Link to={`/inventories/${inventory.id}`} className="warehouse-inventory-table__link">
                                 <Typography variant="p2" className="card__value-text">{inventory.item_name}</Typography>
-                                <img
-                                    src={chevronRight}
-                                    alt="Chevron Right"
-                                    className="inventory-link__icon"
-                                />
+                                <Iconography name="chevronRight" className="inventory-link__icon" />
                             </Link>
                         </TableCardField>
 

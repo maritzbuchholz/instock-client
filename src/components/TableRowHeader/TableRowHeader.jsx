@@ -1,4 +1,4 @@
-import Iconography from "../../components/Iconography/Iconography.jsx";
+import Iconography from "../Iconography/Iconography.jsx";
 import Typography from "../Typography/Typography.jsx";
 import { sortArrOfObj } from "../../utils/utils.js";
 import { useState } from "react";

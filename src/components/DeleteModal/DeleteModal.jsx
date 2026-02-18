@@ -1,7 +1,7 @@
 import { useEffect } from "react";
-import Typography from "../../components/Typography/Typography.jsx";
+import Typography from "../Typography/Typography.jsx";
 import Button from "../Button/Button.jsx";
-import Iconography from "../../components/Iconography/Iconography.jsx";
+import Iconography from "../Iconography/Iconography.jsx";
 import "./DeleteModal.scss";
 
 const DeleteModal = ({ deleteItem, variant = "warehouse", onCancel, onConfirm }) => { //variants = warehouse, inventory
@@ -17,8 +17,8 @@ const DeleteModal = ({ deleteItem, variant = "warehouse", onCancel, onConfirm })
     return (
         <div className="delete-modal__wrapper">
             <div className="delete-modal__content">
-                <button 
-                    className="delete-modal__close" 
+                <button
+                    className="delete-modal__close"
                     onClick={onCancel}
                     aria-label="Close modal"
                 >

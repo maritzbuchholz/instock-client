@@ -3,9 +3,10 @@ import axios from "axios";
 import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
+import PageHeader from "../../components/PageHeader/PageHeader.jsx";
 import { emptyFieldError, validateEmail, validatePhone, removeErrors, formatPhoneInput } from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
-
+import { useNavigate } from "react-router-dom";
 
 // This useEffect manages all potential types
 // Include field name below if you want the field to be required or validated,
@@ -23,9 +24,9 @@ const WarehousesForm = () => {
         "contact_email": "",
     });
 
-    const handleSubmit = async(e)=> {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        let newErrors = {...errors};
+        let newErrors = { ...errors };
         // Checks individual errors first, accumulates changes into local object, then updates error states
         // Required to prevents any asyncronous code from running out of order and allows setError to capture all error states
         newErrors = emptyFieldError(e, errors, newErrors); // include event, error statevalue, local error collector (object)
@@ -37,7 +38,7 @@ const WarehousesForm = () => {
         const errorExists = errorStateArray.some(inputErrorState => inputErrorState); // checks if error state exists in array (empty strings are falsey) 
         if (errorExists) {
             setError(newErrors);
-            return; 
+            return;
         } else if (!errorExists) {
             const formData = new FormData(e.currentTarget);
             const serverData = Object.fromEntries(formData.entries());
@@ -46,7 +47,7 @@ const WarehousesForm = () => {
         };
     };
 
-    const handleChange = (e) => { 
+    const handleChange = (e) => {
         removeErrors(e, errors, setError); // Any errors flag are removed once user interacts
         if (e.currentTarget.name === "contact_phone") {
             e.currentTarget.value = formatPhoneInput(e.currentTarget.value); // Restricts phone number format live
@@ -57,6 +58,9 @@ const WarehousesForm = () => {
     //     console.log(errors);
     // },[errors])
 
+    const navigate = useNavigate();
+    const goToInventories = () => navigate("/warehouses");
+
     return (
         <form
             onSubmit={handleSubmit}
@@ -64,7 +68,7 @@ const WarehousesForm = () => {
 
         >
             <section className="warehouses-form__form-header">
-                <Typography className="warehouses-form__typography-text" variant="h1">Add New Warehouse</Typography>
+                <PageHeader headerText="Add New Warehouse" onBack={goToInventories} />
             </section>
 
             <section className="warehouses-form__form-input-wrapper">
