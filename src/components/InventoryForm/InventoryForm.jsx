@@ -39,9 +39,9 @@ const InventoryForm = ( {btn_primary, btn_secondary} ) => {
             <form className="inventory-form__wrapper">
                 <div className="inventory-form-details">
                     <Typography variant="h2">Item Details</Typography>
-                    <FormFields inputName="Item Name" />
-                    <FormFields htmlFor="Description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..." />
-                    <FormFields inputName="Category" type="dropdown" />
+                    <FormFields htmlFor="item_name" inputName="Item Name" />
+                    <FormFields htmlFor="description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..." />
+                    <FormFields htmlFor="category" inputName="Category" type="dropdown" />
                 </div>
 
                 <div className="inventory-form-availability">
@@ -63,7 +63,7 @@ const InventoryForm = ( {btn_primary, btn_secondary} ) => {
                         type="numerical" 
                         value={formData.quantity} 
                         onChange={handleChange} />)}
-                    <FormFields inputName="Warehouse" type="dropdown" />
+                    <FormFields htmlFor="warehouse" inputName="Warehouse" type="dropdown" />
                 </div>
 
             </form>
