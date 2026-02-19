@@ -5,12 +5,15 @@ import FormFields from "../FormFields/FormFields.jsx";
 import Button from "../Button/Button.jsx";
 import { useState } from "react";
 
-const InventoryForm = ( {btn_primary, btn_secondary} ) => {
+const InventoryForm = ( {btn_primary, btn_secondary, onSubmit} ) => {
 
     const navigate = useNavigate();
     const goToInventories = () => navigate("/inventories");
 
     const [formData, setFormData] = useState({
+        item_name: "",
+        description: "",
+        category: "",
         status: "",
         quantity: ""
     });
@@ -68,7 +71,7 @@ const InventoryForm = ( {btn_primary, btn_secondary} ) => {
 
             </form>
             <div className="inventory-form__buttons">
-                <Button variant="secondary" isLink = {true} to={"/inventories"}>{btn_secondary}</Button>
+                <Button variant="secondary" type = "submit" isLink = {true} to={"/inventories"}>{btn_secondary}</Button>
                 <Button variant="primary"> {btn_primary}</Button>
             </div>
         </section>
