@@ -54,8 +54,8 @@ const InventoryForm = ( {btn_primary, btn_secondary, onSubmit} ) => {
                 <div className="inventory-form-details">
                     <Typography variant="h2">Item Details</Typography>
                     <FormFields htmlFor="item_name" inputName="Item Name" value={formData.item_name} />
-                    <FormFields htmlFor="description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..." />
-                    <FormFields htmlFor="category" inputName="Category" type="dropdown" />
+                    <FormFields htmlFor="description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..." value = {formData.description}/>
+                    <FormFields htmlFor="category" inputName="Category" type="dropdown" value ={formData.category}/>
                 </div>
 
                 <div className="inventory-form-availability">
@@ -80,11 +80,12 @@ const InventoryForm = ( {btn_primary, btn_secondary, onSubmit} ) => {
                     <FormFields htmlFor="warehouse" inputName="Warehouse" type="dropdown" />
                 </div>
 
-            </form>
+            
             <div className="inventory-form__buttons">
                 <Button variant="secondary" type = "submit" isLink = {true} to={"/inventories"}>{btn_secondary}</Button>
                 <Button variant="primary"> {btn_primary}</Button>
             </div>
+            </form>
         </section>
 
     )
