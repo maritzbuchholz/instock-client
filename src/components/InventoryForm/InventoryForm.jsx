@@ -25,12 +25,23 @@ const InventoryForm = ( {btn_primary, btn_secondary, onSubmit} ) => {
             const updated = { ...prev, [name]: value };
 
             if (name === "status" && value === "Out of Stock") {
-                updated.quantity = "";
+                updated.quantity = 0;
             }
 
             return updated;
         });
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const formattedData = {
+            ...formData,
+            status: formData.status === "inStock" ? "In Stock" : "Out of Stock",
+            quantity: formData.status === "outOfStock" ? 0 : Number(formData.quantity), //'Number'
+        };
+        onSubmit(formattedData);
+    }
 
     return (
 
@@ -39,10 +50,10 @@ const InventoryForm = ( {btn_primary, btn_secondary, onSubmit} ) => {
                 <Typography variant="h1">Add New Warehouse</Typography>
             </div> */}
 
-            <form className="inventory-form__wrapper">
+            <form className="inventory-form__wrapper" onSubmit={handleSubmit}>
                 <div className="inventory-form-details">
                     <Typography variant="h2">Item Details</Typography>
-                    <FormFields htmlFor="item_name" inputName="Item Name" />
+                    <FormFields htmlFor="item_name" inputName="Item Name" value={formData.item_name} />
                     <FormFields htmlFor="description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..." />
                     <FormFields htmlFor="category" inputName="Category" type="dropdown" />
                 </div>
