@@ -16,6 +16,11 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
         fetchUpdate("warehouses", setWarehouses);
     }, []);
 
+    const [categories, setCategories] = useState([]);
+    useEffect(()=> {
+        fetchUpdate("categories", setCategories)
+    }, []);
+
     const [formData, setFormData] = useState({
         item_name: "",
         description: "",
@@ -57,6 +62,7 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
             </div> */}
 
             <form className="inventory-form__wrapper" onSubmit={handleSubmit}>
+                <div className="inventory-form__fields">
                 <div className="inventory-form-details">
                     <Typography variant="h2">Item Details</Typography>
                     <FormFields htmlFor="item_name" inputName="Item Name" value={formData.item_name} onChange={handleChange} />
@@ -97,6 +103,7 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
 
                 </div>
 
+                </div>
 
                 <div className="inventory-form__buttons">
                     <Button variant="secondary" isLink={true} to={"/inventories"}>{btn_secondary}</Button>
