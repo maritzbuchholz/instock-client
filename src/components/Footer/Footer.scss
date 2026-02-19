@@ -3,14 +3,13 @@
 @use "../../styles/mixins" as *;
 
 .footer {
-  // position: fixed;
-  left: 0;
-  bottom: 18px;
-  width: 100%;
+  //position: fixed;
+ 
   text-align: center;
+  padding: pxToRem(16) 0;
 
   &__copy {
-    font-size: 12px;
+    font-size: pxToRem(12);
     font-weight: 400;
     color: $color-secondary-slate;
   }

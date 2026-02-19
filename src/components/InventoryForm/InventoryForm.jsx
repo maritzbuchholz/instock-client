@@ -3,14 +3,23 @@ import { Link, useNavigate } from "react-router-dom";
 import Typography from "../Typography/Typography.jsx";
 import FormFields from "../FormFields/FormFields.jsx";
 import Button from "../Button/Button.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { fetchUpdate } from "../../utils/apiRequests.js";
 
-const InventoryForm = () => {
+const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
 
     const navigate = useNavigate();
     const goToInventories = () => navigate("/inventories");
 
+    const [warehouses, setWarehouses] = useState([]);
+    useEffect(() => {
+        fetchUpdate("warehouses", setWarehouses);
+    }, []);
+
     const [formData, setFormData] = useState({
+        item_name: "",
+        description: "",
+        category: "",
         status: "",
         quantity: ""
     });
@@ -22,12 +31,23 @@ const InventoryForm = () => {
             const updated = { ...prev, [name]: value };
 
             if (name === "status" && value === "Out of Stock") {
-                updated.quantity = "";
+                updated.quantity = 0;
             }
 
             return updated;
         });
     };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const formattedData = {
+            ...formData,
+            status: formData.status === "inStock" ? "In Stock" : "Out of Stock", // for api to recognize
+            quantity: formData.status === "outOfStock" ? 0 : Number(formData.quantity), // converts a string to a number, additional valiation
+        };
+        onSubmit(formattedData);
+    }
 
     return (
 
@@ -36,31 +56,53 @@ const InventoryForm = () => {
                 <Typography variant="h1">Add New Warehouse</Typography>
             </div> */}
 
-            <form className="inventory-form__wrapper">
+            <form className="inventory-form__wrapper" onSubmit={handleSubmit}>
                 <div className="inventory-form-details">
                     <Typography variant="h2">Item Details</Typography>
-                    <FormFields inputName="Item Name" />
-                    <FormFields htmlFor="Description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..." />
-                    <FormFields inputName="Category" type="dropdown" />
+                    <FormFields htmlFor="item_name" inputName="Item Name" value={formData.item_name} onChange={handleChange} />
+                    <FormFields htmlFor="description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..." value={formData.description} onChange={handleChange} />
+                    <FormFields htmlFor="category" inputName="Category" type="dropdown" value={formData.category} onChange={handleChange} />
                 </div>
 
                 <div className="inventory-form-availability">
                     <Typography variant="h2">Item Availability</Typography>
-                    <FormFields inputName="Status" type="radio" value={formData.status} options={[
-                        { label: "In stock", value: "inStock" },
-                        { label: "Out of stock", value: "outOfStock" },
-                    ]} />
-                    {formData.status === "In Stock" && (
-                        <FormFields htmlFor="Quantity" inputName="Quantity" value={formData.quantity} onChange={handleChange} />)}
-                    <FormFields inputName="Warehouse" type="dropdown" />
+                    <FormFields
+                        htmlFor="status"
+                        inputName="Status"
+                        type="radio"
+                        value={formData.status}
+                        onChange={handleChange}
+                        options={[
+                            { label: "In stock", value: "inStock" },
+                            { label: "Out of stock", value: "outOfStock" },
+                        ]} />
+                    {formData.status === "inStock" && (
+                        <FormFields
+                            htmlFor="quantity"
+                            inputName="Quantity"
+                            type="numerical"
+                            value={formData.quantity}
+                            onChange={handleChange} />)}
+                    <FormFields
+                        htmlFor="warehouse_id"
+                        inputName="Warehouse"
+                        type="dropdown"
+                        value={formData.warehouse_id}
+                        onChange={handleChange}
+                        options={warehouses.map((warehouse) => ({
+                            label: warehouse.warehouse_name,
+                            value: warehouse.id,
+                        }))}
+                    />
+
                 </div>
 
-            </form>
-            <div className="inventory-form__buttons">
-                <Button variant="secondary" to={"/inventories"}>Cancel</Button>
-                <Button variant="primary">+ Add Item</Button>
-            </div>
 
+                <div className="inventory-form__buttons">
+                    <Button variant="secondary" isLink={true} to={"/inventories"}>{btn_secondary}</Button>
+                    <Button variant="primary" type="submit"> {btn_primary}</Button>
+                </div>
+            </form>
         </section>
 
     )

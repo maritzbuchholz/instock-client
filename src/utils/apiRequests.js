@@ -12,10 +12,13 @@ export const fetchUpdate = async (endpoint, setData) => {
 
 export const postUpdate = async (endpoint, payload, setData, refreshEndpoint) => {
     try {
-        await axios.post(`${baseUrl}/${endpoint}`, payload);
+        const res =
+         await axios.post(`${baseUrl}/${endpoint}`, payload);
         if (refreshEndpoint && setData) {
             await fetchUpdate(refreshEndpoint, setData);
         }
+     return res.data;
+
     } catch (error) {
         console.error(`Failed to post to ${endpoint}`);
     }
