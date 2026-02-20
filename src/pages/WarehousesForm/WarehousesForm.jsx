@@ -4,7 +4,7 @@ import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
 import PageHeader from "../../components/PageHeader/PageHeader.jsx";
-import { emptyFieldError, validateEmail, validatePhone, removeErrors, formatPhoneInput, isFormValid } from "../../utils/formValidation.js";
+import { validateEmail, validatePhone, removeErrors, formatPhoneInput, isFormValid } from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { postUpdate, fetchUpdate } from "../../utils/apiRequests.js";
@@ -28,12 +28,6 @@ const WarehousesForm = ({setWarehouses}) => {
     });
 
     const [errors, setError] = useState({ 
-        "warehouse_name": "",
-        "address": "",
-        "city": "",
-        "country": "",
-        "contact_name": "",
-        "contact_position": "",
         "contact_phone": "",
         "contact_email": "",
     });
@@ -44,9 +38,16 @@ const WarehousesForm = ({setWarehouses}) => {
 
         if (name === "contact_phone") {
             finalValue = formatPhoneInput(value);
+            let newErrors = { ...errors }
+            newErrors = validatePhone(finalValue, errors, newErrors);
+            setError(newErrors);
+        }
+        if (name === "contact_email") {
+            let newErrors = { ...errors }
+            newErrors = validateEmail(finalValue, errors, newErrors);
+            setError(newErrors);
         }
         setFormData((prev) => ({ ...prev, [name]: finalValue }));
-        removeErrors(e, errors, setError);
     };
 
     const handleSubmit = async (e) => {

@@ -4,7 +4,7 @@ import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
 import PageHeader from "../../components/PageHeader/PageHeader.jsx";
-import { emptyFieldError, validateEmail, validatePhone, removeErrors, formatPhoneInput } from "../../utils/formValidation.js";
+import { validateEmail, validatePhone, removeErrors, formatPhoneInput, isFormValid } from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { patchUpdate, fetchUpdate } from "../../utils/apiRequests.js";
@@ -56,12 +56,12 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let newErrors = { ...errors };
-        // Checks individual errors first, accumulates changes into local object, then updates error states
-        // Required to prevents any asyncronous code from running out of order and allows setError to capture all error states
-        newErrors = emptyFieldError(e, errors, newErrors); // include event, error statevalue, local error collector (object)
-        newErrors = validateEmail(e, errors, newErrors);
-        newErrors = validatePhone(e, errors, newErrors);
+        // let newErrors = { ...errors };
+        // // Checks individual errors first, accumulates changes into local object, then updates error states
+        // // Required to prevents any asyncronous code from running out of order and allows setError to capture all error states
+        // newErrors = emptyFieldError(e, errors, newErrors); // include event, error statevalue, local error collector (object)
+        // newErrors = validateEmail(e, errors, newErrors);
+        // newErrors = validatePhone(e, errors, newErrors);
 
         // Checks if errors exist. If not, form is submitted
         const errorStateArray = Object.values(newErrors); // Converts the error object into an array of error states
@@ -132,7 +132,7 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
                     type="submit"
                     className="warehouses-form__add"
                     variant="primary"
-                    disabled={false}>
+                    disabled={!isFormValid(formData)}>
                     Save
                 </Button>
             </section>

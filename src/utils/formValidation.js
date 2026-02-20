@@ -1,35 +1,35 @@
-export const emptyFieldError = (e, errors, newErrors) => {
-    const eventElements = e.currentTarget.querySelectorAll("input"); // Excludes any buttons in the form 
+// export const emptyFieldError = (e, errors, newErrors) => {
+//     const eventElements = e.currentTarget.querySelectorAll("input"); // Excludes any buttons in the form 
 
-    for (let i = 0; i < eventElements.length; i++) {
-        const inputField = eventElements[i];
-        if (!inputField.value && errors[inputField.name] !== undefined) { // "errors[inputField.name] !== undefined" ensures dev included field in error useState for validation
-                newErrors = {...newErrors, [inputField.name]: "empty"};
-        };
-    };
-    return newErrors;
-};
+//     for (let i = 0; i < eventElements.length; i++) {
+//         const inputField = eventElements[i];
+//         if (!inputField.value && errors[inputField.name] !== undefined) { // "errors[inputField.name] !== undefined" ensures dev included field in error useState for validation
+//                 newErrors = {...newErrors, [inputField.name]: "empty"};
+//         };
+//     };
+//     return newErrors;
+// };
 
-export const validateEmail = (e, errors, newErrors) => {
-    const emailAddress = e.currentTarget.querySelector("#contact_email").value;
+export const validateEmail = (finalValue, errors, newErrors) => {
+    const emailAddress = finalValue;
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
 
-    if (!emailPattern.test(emailAddress) && errors["contact_email"] !== undefined) {
+    if (!emailPattern.test(emailAddress)) {
         newErrors = {...newErrors, "contact_email": "email"};
-    } else if (emailPattern.test(emailAddress) && errors["contact_email"] === "email") {
+    } else if (emailPattern.test(emailAddress)) {
         newErrors = {...newErrors, "contact_email": ""};
     };
 
     return newErrors;
 };
 
-export const validatePhone = (e, errors, newErrors) => {
-    const phoneNumber = e.currentTarget.querySelector("#contact_phone").value;
+export const validatePhone = (finalValue, errors, newErrors) => {
+    const phoneNumber = finalValue;
     const phonePattern = /^\+1 \(\d{3}\) \d{3}-\d{4}$/;
 
-    if (!phonePattern.test(phoneNumber) && errors["contact_phone"] !== undefined) {
+    if (!phonePattern.test(phoneNumber)) {
         newErrors = {...newErrors, "contact_phone": "phone"};
-    } else if (phonePattern.test(phoneNumber) && errors["contact_phone"] === "phone") {
+    } else if (phonePattern.test(phoneNumber)) {
         newErrors = {...newErrors, "contact_phone": ""};
     };
 
