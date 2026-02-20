@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { fetchUpdate } from "./utils/apiRequests.js";
 import WarehousesPage from "./pages/WarehousesPage/WarehousesPage.jsx";
 import WarehousesForm from "./pages/WarehousesForm/WarehousesForm.jsx";
+import WarehousesFormEdit from "./pages/WarehousesFormEdit/WarehousesFormEdit.jsx";
 import WarehouseDetailsPage from "./pages/WarehouseDetailsPage/WarehouseDetailsPage.jsx";
 import InventoryPage from "./pages/InventoryPage/InventoryPage.jsx";
 import InventoryDetailsPage from "./pages/InventoryDetailsPage/InventoryDetailsPage.jsx";
@@ -40,8 +41,9 @@ const App = () => {
                 <Routes>
                     <Route path="/" element={<Navigate to="/warehouses" replace />} />
                     <Route path="/warehouses" element={<WarehousesPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
-                    <Route path="/warehouses/form/add" element={<WarehousesForm />} />
-                    {/* <Route path="/warehouses/form/:id/edit" element={<WarehousesForm />} /> */}
+                    <Route path="/warehouses/form/add" element={<WarehousesForm setWarehouses={setWarehouses} />} />
+                    <Route path="/warehouses/form/:id/edit" element={<WarehousesFormEdit warehouses={warehouses} setWarehouses={setWarehouses} />} />
+                    <Route path="/warehouses/form/:id/edit" element={<WarehousesForm />} />
                     <Route path="/inventories" element={<InventoryPage inventory={inventory} setInventory={setInventory} />} />
                     <Route path="/inventories/form/add" element={<AddInventory inventory={inventory} />} />
                     <Route path="/inventories/form/:id/edit" element={<EditInventory inventory={inventory} />} />
