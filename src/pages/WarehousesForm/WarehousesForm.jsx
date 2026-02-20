@@ -55,9 +55,9 @@ const WarehousesForm = ({setWarehouses}) => {
         let newErrors = { ...errors };
         // Checks individual errors first, accumulates changes into local object, then updates error states
         // Required to prevents any asyncronous code from running out of order and allows setError to capture all error states
-        newErrors = emptyFieldError(e, errors, newErrors); // include event, error statevalue, local error collector (object)
-        newErrors = validateEmail(e, errors, newErrors);
-        newErrors = validatePhone(e, errors, newErrors);
+        // newErrors = emptyFieldError(e, errors, newErrors); // include event, error statevalue, local error collector (object)
+        // newErrors = validateEmail(e, errors, newErrors);
+        // newErrors = validatePhone(e, errors, newErrors);
 
         // Checks if errors exist. If not, form is submitted
         // const errorStateArray = Object.values(newErrors); // Converts the error object into an array of error states
