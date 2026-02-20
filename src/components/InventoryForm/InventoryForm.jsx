@@ -36,7 +36,7 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData}) => 
                 item_name: initialData.item_name || "",
                 description: initialData.description || "",
                 category: initialData.category || "",
-                status: initialData.status === "In Stock" ? "inStock" : "outOfStock",
+                status: initialData.status === "In Stock" ? "inStock" : "outOfStock", //for API
                 quantity: initialData.quantity || "",
                 warehouse_id: initialData.warehouse_id || ""
             });
@@ -62,7 +62,7 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData}) => 
 
         const formattedData = {
             ...formData,
-            status: formData.status === "inStock" ? "In Stock" : "Out of Stock", // for api to recognize
+            status: formData.status === "inStock" ? "In Stock" : "Out of Stock", // for api 
             quantity: formData.status === "outOfStock" ? 0 : Number(formData.quantity), // converts a string to a number, additional valiation
         };
         onSubmit(formattedData);
