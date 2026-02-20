@@ -68,7 +68,7 @@ const TablesInventory = ({ inventory, setInventory, openDeleteModal }) => {
                         </TableCardField>
 
                         <TableCardActions
-                            editTo={`/inventories/${item.id}/edit`}
+                            editTo={`/inventories/form/${item.id}/edit`}
                             onDelete={() => openDeleteModal(item)}
                             className="inventory-table__actions"
                         />

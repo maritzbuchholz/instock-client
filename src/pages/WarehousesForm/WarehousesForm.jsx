@@ -4,7 +4,7 @@ import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
 import PageHeader from "../../components/PageHeader/PageHeader.jsx";
-import { emptyFieldError, validateEmail, validatePhone, removeErrors, formatPhoneInput } from "../../utils/formValidation.js";
+import { emptyFieldError, validateEmail, validatePhone, removeErrors, formatPhoneInput, isFormValid } from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { postUpdate, fetchUpdate } from "../../utils/apiRequests.js";
@@ -16,6 +16,17 @@ const baseUrl = import.meta.env.VITE_API_BASE_URL;
 // Set intial error state to empty string
 // FormFields set name = id
 const WarehousesForm = ({setWarehouses}) => {
+    const [formData, setFormData] = useState({
+        warehouse_name: "",
+        address: "",
+        city: "",
+        country: "",
+        contact_name: "",
+        contact_position: "",
+        contact_phone: "",
+        contact_email: "",
+    });
+
     const [errors, setError] = useState({ 
         "warehouse_name": "",
         "address": "",
@@ -27,6 +38,17 @@ const WarehousesForm = ({setWarehouses}) => {
         "contact_email": "",
     });
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        let finalValue = value;
+
+        if (name === "contact_phone") {
+            finalValue = formatPhoneInput(value);
+        }
+        setFormData((prev) => ({ ...prev, [name]: finalValue }));
+        removeErrors(e, errors, setError);
+    };
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         let newErrors = { ...errors };
@@ -37,24 +59,26 @@ const WarehousesForm = ({setWarehouses}) => {
         newErrors = validatePhone(e, errors, newErrors);
 
         // Checks if errors exist. If not, form is submitted
-        const errorStateArray = Object.values(newErrors); // Converts the error object into an array of error states
-        const errorExists = errorStateArray.some(inputErrorState => inputErrorState); // checks if error state exists in array (empty strings are falsey) 
+        // const errorStateArray = Object.values(newErrors); // Converts the error object into an array of error states
+        // const errorExists = errorStateArray.some(inputErrorState => inputErrorState); // checks if error state exists in array (empty strings are falsey) 
+        const errorExists = Object.values(newErrors).some(inputErrorState => inputErrorState);
         if (errorExists) {
             setError(newErrors);
             return;
         } else if (!errorExists) {
-            const formData = new FormData(e.currentTarget);
-            const serverData = Object.fromEntries(formData.entries());
-            postUpdate("warehouses", serverData, setWarehouses, "warehouses");
+            // const formData = new FormData(e.currentTarget);
+            // const serverData = Object.fromEntries(formData.entries());
+            // postUpdate("warehouses", serverData, setWarehouses, "warehouses");
+            postUpdate("warehouses", formData, setWarehouses, "warehouses");
         };
     };
 
-    const handleChange = (e) => {
-        removeErrors(e, errors, setError); // Any errors flag are removed once user interacts
-        if (e.currentTarget.name === "contact_phone") {
-            e.currentTarget.value = formatPhoneInput(e.currentTarget.value); // Restricts phone number format live
-        };
-    };
+    // const handleChange = (e) => {
+    //     removeErrors(e, errors, setError); // Any errors flag are removed once user interacts
+    //     if (e.currentTarget.name === "contact_phone") {
+    //         e.currentTarget.value = formatPhoneInput(e.currentTarget.value); // Restricts phone number format live
+    //     };
+    // };
 
 
     const navigate = useNavigate();
@@ -101,7 +125,7 @@ const WarehousesForm = ({setWarehouses}) => {
                     type="submit"
                     className="warehouses-form__add"
                     variant="primary"
-                    disabled={false}>
+                    disabled={!isFormValid(formData)}>
                     + Add Warehouse
                 </Button>
             </section>

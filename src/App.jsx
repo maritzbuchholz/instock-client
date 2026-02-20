@@ -43,6 +43,7 @@ const App = () => {
                     <Route path="/warehouses" element={<WarehousesPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
                     <Route path="/warehouses/form/add" element={<WarehousesForm setWarehouses={setWarehouses} />} />
                     <Route path="/warehouses/form/:id/edit" element={<WarehousesFormEdit warehouses={warehouses} setWarehouses={setWarehouses} />} />
+                    <Route path="/warehouses/form/:id/edit" element={<WarehousesForm />} />
                     <Route path="/inventories" element={<InventoryPage inventory={inventory} setInventory={setInventory} />} />
                     <Route path="/inventories/form/add" element={<AddInventory inventory={inventory} />} />
                     <Route path="/inventories/form/:id/edit" element={<EditInventory inventory={inventory} />} />
