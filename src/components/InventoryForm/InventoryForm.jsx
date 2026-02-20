@@ -6,7 +6,7 @@ import Button from "../Button/Button.jsx";
 import { useState, useEffect } from "react";
 import { fetchUpdate } from "../../utils/apiRequests.js";
 
-const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
+const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData}) => {
 
     const navigate = useNavigate();
     const goToInventories = () => navigate("/inventories");
@@ -26,8 +26,22 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
         description: "",
         category: "",
         status: "",
-        quantity: ""
+        quantity: "",
+        warehouse_id: ""
     });
+
+    useEffect(() => {
+        if (initialData) {
+            setFormData({
+                item_name: initialData.item_name || "",
+                description: initialData.description || "",
+                category: initialData.category || "",
+                status: initialData.status === "In Stock" ? "inStock" : "outOfStock",
+                quantity: initialData.quantity || "",
+                warehouse_id: initialData.warehouse_id || ""
+            });
+        }
+    }, [initialData]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
