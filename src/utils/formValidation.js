@@ -56,8 +56,8 @@ export function formatPhoneInput (value) {
         if (match[1]) formatted += `(${match[1]})`;
         if (match[2]) formatted += (match[2] ? " " : "") + match[2];
         if (match[3]) formatted += (match[3] ? "-" : "") + match[3];
-  }
-  return formatted;
+    }
+    return formatted;
 }
 
 export const errorType = (errorState) => { // updates error message to user depending on error type
@@ -73,4 +73,20 @@ export const errorType = (errorState) => { // updates error message to user depe
     if(errorState === "phone"){
         return "Please provide a valid phone number";
     }
+};
+
+export const isFormValid = (formData) => {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    const phonePattern = /^\+1 \(\d{3}\) \d{3}-\d{4}$/;
+    
+    const requiredFields = [
+        "warehouse_name", "address", "city", "country", 
+        "contact_name", "contact_position", "contact_phone", "contact_email"
+    ];
+    const allFieldsFilled = requiredFields.every(field => 
+        formData[field] && formData[field].trim() !== ""
+    );
+    const isEmailValid = emailPattern.test(formData.contact_email);
+    const isPhoneValid = phonePattern.test(formData.contact_phone);
+    return allFieldsFilled && isEmailValid && isPhoneValid;
 };
