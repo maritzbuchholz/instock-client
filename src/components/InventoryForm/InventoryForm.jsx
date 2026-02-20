@@ -67,7 +67,11 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
                     <Typography variant="h2">Item Details</Typography>
                     <FormFields htmlFor="item_name" inputName="Item Name" value={formData.item_name} onChange={handleChange} />
                     <FormFields htmlFor="description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..." value={formData.description} onChange={handleChange} />
-                    <FormFields htmlFor="category" inputName="Category" type="dropdown" value={formData.category} onChange={handleChange} />
+                    <FormFields htmlFor="category" inputName="Category" type="dropdown" value={formData.category} onChange={handleChange}
+                    options={categories.map((category)=> ({
+                        label: category,
+                        value: category,
+                    }))} />
                 </div>
 
                 <div className="inventory-form-availability">

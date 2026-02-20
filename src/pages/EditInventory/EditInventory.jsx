@@ -1,5 +1,5 @@
 import "./EditInventory.scss";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Typography from "../../components/Typography/Typography.jsx";
 import InventoryForm from "../../components/InventoryForm/InventoryForm.jsx";
 import PageHeader from "../../components/PageHeader/PageHeader.jsx";
