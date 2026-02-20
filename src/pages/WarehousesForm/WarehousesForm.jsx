@@ -66,19 +66,9 @@ const WarehousesForm = ({setWarehouses}) => {
             setError(newErrors);
             return;
         } else if (!errorExists) {
-            // const formData = new FormData(e.currentTarget);
-            // const serverData = Object.fromEntries(formData.entries());
-            // postUpdate("warehouses", serverData, setWarehouses, "warehouses");
             postUpdate("warehouses", formData, setWarehouses, "warehouses");
         };
     };
-
-    // const handleChange = (e) => {
-    //     removeErrors(e, errors, setError); // Any errors flag are removed once user interacts
-    //     if (e.currentTarget.name === "contact_phone") {
-    //         e.currentTarget.value = formatPhoneInput(e.currentTarget.value); // Restricts phone number format live
-    //     };
-    // };
 
 
     const navigate = useNavigate();
@@ -98,18 +88,18 @@ const WarehousesForm = ({setWarehouses}) => {
 
                 <div className="warehouses-form__warehouse-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Warehouse Details</Typography>
-                    <FormFields onChange={handleChange} errorState={errors["warehouse_name"]} htmlFor="warehouse_name" inputName="Warehouse Name" />
-                    <FormFields onChange={handleChange} errorState={errors["address"]} htmlFor="address" inputName="Street Address"/>
-                    <FormFields onChange={handleChange} errorState={errors["city"]} htmlFor="city" inputName="City"/>
-                    <FormFields onChange={handleChange} errorState={errors["country"]} htmlFor="country" inputName="Country"/>
+                    <FormFields value={formData.warehouse_name} onChange={handleChange} errorState={errors["warehouse_name"]} htmlFor="warehouse_name" inputName="Warehouse Name" />
+                    <FormFields value={formData.address} onChange={handleChange} errorState={errors["address"]} htmlFor="address" inputName="Street Address"/>
+                    <FormFields value={formData.city} onChange={handleChange} errorState={errors["city"]} htmlFor="city" inputName="City"/>
+                    <FormFields value={formData.country} onChange={handleChange} errorState={errors["country"]} htmlFor="country" inputName="Country"/>
                 </div>
 
                 <div className="warehouses-form__contact-details">
                     <Typography className="warehouses-form__typography-text--form" variant="h2">Contact Details</Typography>
-                    <FormFields onChange={handleChange} errorState={errors["contact_name"]} htmlFor="contact_name" inputName="Contact Name"/>
-                    <FormFields onChange={handleChange} errorState={errors["contact_position"]} htmlFor="contact_position" inputName="Position"/>
-                    <FormFields onChange={handleChange} errorState={errors["contact_phone"]} htmlFor="contact_phone" inputName="Phone Number"/>
-                    <FormFields onChange={handleChange} errorState={errors["contact_email"]} htmlFor="contact_email" inputName="Email"/>
+                    <FormFields value={formData.contact_name} onChange={handleChange} errorState={errors["contact_name"]} htmlFor="contact_name" inputName="Contact Name"/>
+                    <FormFields value={formData.contact_position} onChange={handleChange} errorState={errors["contact_position"]} htmlFor="contact_position" inputName="Position"/>
+                    <FormFields value={formData.contact_phone} onChange={handleChange} errorState={errors["contact_phone"]} htmlFor="contact_phone" inputName="Phone Number"/>
+                    <FormFields value={formData.contact_email} onChange={handleChange} errorState={errors["contact_email"]} htmlFor="contact_email" inputName="Email"/>
                 </div>
 
             </section>

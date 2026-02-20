@@ -78,19 +78,13 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-
-        removeErrors(e, errors, setError);
-
-        let updatedValue = value;
+        let finalValue = value;
 
         if (name === "contact_phone") {
-            updatedValue = formatPhoneInput(value);
+            finalValue = formatPhoneInput(value);
         }
-
-        setFormData((prev) => ({
-            ...prev,
-            [name]: updatedValue,
-        }));
+        setFormData((prev) => ({ ...prev, [name]: finalValue }));
+        removeErrors(e, errors, setError);
     };
 
 
