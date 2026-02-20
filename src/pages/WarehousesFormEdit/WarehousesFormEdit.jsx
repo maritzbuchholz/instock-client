@@ -55,7 +55,6 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
 
 
     const handleSubmit = async (e) => {
-        console.log(formData);
         e.preventDefault();
         let newErrors = { ...errors };
         // Checks individual errors first, accumulates changes into local object, then updates error states
