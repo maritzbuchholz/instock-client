@@ -43,8 +43,8 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
     useEffect(() => {
         const fetchWarehouses = async () => {
             try {
-                const res = await axios.get(`${baseUrl}/warehouses`);
-                setFormData({...res.data[id-1]});
+                const res = await axios.get(`${baseUrl}/warehouses/${id}`);
+                setFormData({...res.data});
             } catch (err) {
                 console.error('Failed to fetch warehouses', err);
             }
@@ -71,17 +71,27 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
             setError(newErrors);
             return;
         } else if (!errorExists) {
-            const formData = new FormData(e.currentTarget);
-            const serverData = Object.fromEntries(formData.entries());
-            patchUpdate("warehouses/:id", serverData, setWarehouses, "warehouses/:id");
+            const rawData = new FormData(e.currentTarget);
+            const serverData = Object.fromEntries(rawData.entries());
+            patchUpdate(`warehouses/${id}`, serverData, setWarehouses, `warehouses/${id}`);
         };
     };
 
     const handleChange = (e) => {
-        removeErrors(e, errors, setError); // Any errors flag are removed once user interacts
-        if (e.currentTarget.name === "contact_phone") {
-            e.currentTarget.value = formatPhoneInput(e.currentTarget.value); // Restricts phone number format live
-        };
+        const { name, value } = e.target;
+
+        removeErrors(e, errors, setError);
+
+        let updatedValue = value;
+
+        if (name === "contact_phone") {
+            updatedValue = formatPhoneInput(value);
+        }
+
+        setFormData((prev) => ({
+            ...prev,
+            [name]: updatedValue,
+        }));
     };
 
 
