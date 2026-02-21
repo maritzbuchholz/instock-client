@@ -5,7 +5,7 @@ import FormFields from "../FormFields/FormFields.jsx";
 import Button from "../Button/Button.jsx";
 import { useState, useEffect } from "react";
 import { fetchUpdate } from "../../utils/apiRequests.js";
-import { isInventoryFormValid } from "../../utils/formValidation.js";
+import { isInventoryFormValid, emptyFieldError } from "../../utils/formValidation.js";
 
 const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData }) => {
 
@@ -69,6 +69,13 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData }) =>
 
     const handleSubmit = (e) => {
         e.preventDefault();
+
+        let newErrors = {...errors};
+
+        newErrors = emptyFieldError(e, errors, newErrors);
+
+        
+
 
         const formattedData = {
             ...formData,
