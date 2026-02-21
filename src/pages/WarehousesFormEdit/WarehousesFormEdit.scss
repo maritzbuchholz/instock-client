@@ -4,6 +4,7 @@
 
 .warehouses-form {
     &__contain-all {
+        transform: translateY(-64px);
         background-color: $color-primary-white;
         box-shadow: 0 pxToRem(2) pxToRem(5) 0 #13182C1A;
         border-radius: pxToRem(3);
@@ -11,17 +12,13 @@
 
         @include tablet {
             margin: 0 pxToRem(32);
+            transform: translateY(-94px);
         }
 
         @include desktop {
             margin: 0 pxToRem(128);
         }
     }
-
-    // &__form-header {
-    //     border-bottom: $color-secondary-cloud solid 1px;
-    //     padding: pxToRem(40) pxToRem(32) pxToRem(32) pxToRem(32)
-    // }
 
     &__typography-text {
         margin: auto;

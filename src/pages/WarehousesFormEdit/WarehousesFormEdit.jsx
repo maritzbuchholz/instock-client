@@ -4,7 +4,7 @@ import Typography from "../../components/Typography/Typography.jsx";
 import FormFields from "../../components/FormFields/FormFields.jsx";
 import Button from "../../components/Button/Button.jsx";
 import PageHeader from "../../components/PageHeader/PageHeader.jsx";
-import { emptyFieldError, validateEmail, validatePhone, removeErrors, formatPhoneInput } from "../../utils/formValidation.js";
+import { validateEmail, validatePhone, removeErrors, formatPhoneInput, isFormValid } from "../../utils/formValidation.js";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { patchUpdate, fetchUpdate } from "../../utils/apiRequests.js";
@@ -17,7 +17,10 @@ const baseUrl = import.meta.env.VITE_API_BASE_URL;
 // FormFields set name = id
 const WarehousesForm = ({setWarehouses, warehouses}) => {
     const { id } = useParams();
-    const [errors, setError] = useState({ 
+    const navigate = useNavigate();
+    const goToInventories = () => navigate("/warehouses");
+    const [formData, setFormData] = useState({
+        id: "",
         warehouse_name: "",
         address: "",
         city: "",
@@ -28,14 +31,7 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
         contact_email: "",
     });
 
-    const [formData, setFormData] = useState({
-        id: "",
-        warehouse_name: "",
-        address: "",
-        city: "",
-        country: "",
-        contact_name: "",
-        contact_position: "",
+    const [errors, setError] = useState({ 
         contact_phone: "",
         contact_email: "",
     });
@@ -53,49 +49,42 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
         fetchWarehouses();
     }, []);
 
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        let newErrors = { ...errors };
-        // Checks individual errors first, accumulates changes into local object, then updates error states
-        // Required to prevents any asyncronous code from running out of order and allows setError to capture all error states
-        newErrors = emptyFieldError(e, errors, newErrors); // include event, error statevalue, local error collector (object)
-        newErrors = validateEmail(e, errors, newErrors);
-        newErrors = validatePhone(e, errors, newErrors);
-
-        // Checks if errors exist. If not, form is submitted
-        const errorStateArray = Object.values(newErrors); // Converts the error object into an array of error states
-        const errorExists = errorStateArray.some(inputErrorState => inputErrorState); // checks if error state exists in array (empty strings are falsey) 
-        if (errorExists) {
-            setError(newErrors);
-            return;
-        } else if (!errorExists) {
-            const rawData = new FormData(e.currentTarget);
-            const serverData = Object.fromEntries(rawData.entries());
-            patchUpdate(`warehouses/${id}`, serverData, setWarehouses, `warehouses/${id}`);
-        };
-    };
-
     const handleChange = (e) => {
         const { name, value } = e.target;
         let finalValue = value;
 
         if (name === "contact_phone") {
             finalValue = formatPhoneInput(value);
+            let newErrors = { ...errors }
+            newErrors = validatePhone(finalValue, errors, newErrors);
+            setError(newErrors);
+        }
+        if (name === "contact_email") {
+            let newErrors = { ...errors }
+            newErrors = validateEmail(finalValue, errors, newErrors);
+            setError(newErrors);
         }
         setFormData((prev) => ({ ...prev, [name]: finalValue }));
-        removeErrors(e, errors, setError);
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        if (!isFormValid(formData)) {
+            return;
+        } else if (isFormValid(formData)) {
+            const rawData = new FormData(e.currentTarget);
+            const serverData = Object.fromEntries(rawData.entries());
+            patchUpdate(`warehouses/${id}`, serverData, setWarehouses, `warehouses`);
+            navigate("/warehouses");
+        };
     };
 
 
-    const navigate = useNavigate();
-    const goToInventories = () => navigate("/warehouses");
 
     return (
         <form
             onSubmit={handleSubmit}
             className="warehouses-form__contain-all"
-
         >
             <section className="warehouses-form__form-header">
                 <PageHeader headerText="Edit Warehouse" onBack={goToInventories} />
@@ -125,14 +114,15 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
                 <Button
                     type="button"
                     className="warehouses-form__cancel"
-                    variant="secondary">
+                    variant="secondary"
+                    onClick={goToInventories}>
                     Cancel
                 </Button>
                 <Button
                     type="submit"
                     className="warehouses-form__add"
                     variant="primary"
-                    disabled={false}>
+                    disabled={!isFormValid(formData)}>
                     Save
                 </Button>
             </section>

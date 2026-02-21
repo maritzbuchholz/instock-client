@@ -40,7 +40,7 @@ const TableWarehouses = ({ warehouses, setWarehouses, openDeleteModal }) => {
                 searchString={searchString} setSearchString={setSearchString} />
             <TableRowHeader headers={headers} data={warehouses} setData={setWarehouses} />
             <div className="warehouse-table">
-                {filteredArray.map((warehouse) => (
+                {Array.isArray(filteredArray) && filteredArray.map((warehouse) => (
                     <TableCard key={warehouse.id} className="warehouse-table__card">
                         <TableCardField label="WAREHOUSE" className="card__field--alt warehouse-table__warehouse">
                             <Link to={`/warehouses/${warehouse.id}`} className="warehouse-table__link">
