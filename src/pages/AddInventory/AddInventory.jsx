@@ -6,28 +6,28 @@ import InventoryForm from "../../components/InventoryForm/InventoryForm.jsx";
 import PageHeader from "../../components/PageHeader/PageHeader.jsx";
 import TablesHeader from "../../components/TablesHeader/TablesHeader.jsx";
 
-const AddInventory = ( {inventory} ) => {
+const AddInventory = ({ inventory, setInventory }) => {
 
-const navigate = useNavigate();
-const goToInventories = () => navigate("/inventories");
+    const navigate = useNavigate();
+    const goToInventories = () => navigate("/inventories");
 
-const handleAddInventory = async (formData) => {
-    try {
-        const newInventory = await postUpdate ("inventories", formData);
-        navigate(`/inventories/${newInventory.id}`);
-    } catch (error) {
-        console.error("Error creating inventory:", error);
-    }
-};
+    const handleAddInventory = async (formData) => {
+        try {
+            const newInventory = await postUpdate("inventories", formData, setInventory, "inventories");
+            navigate(`/inventories/${newInventory.id}`);
+        } catch (error) {
+            console.error("Error creating inventory:", error);
+        }
+    };
 
 
     return (
         <div className="add-inventory__wrapper">
-      
-        <PageHeader headerText = "Add New Inventory Item" onBack={goToInventories}/>
-       <InventoryForm btn_primary="+ Add Item" btn_secondary="Cancel" onSubmit={handleAddInventory}/>
-      
-       </div>
+
+            <PageHeader headerText="Add New Inventory Item" onBack={goToInventories} />
+            <InventoryForm btn_primary="+ Add Item" btn_secondary="Cancel" onSubmit={handleAddInventory} />
+
+        </div>
     )
 }
 

@@ -23,7 +23,7 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
         { label: "QUANTITY", key: "quantity", flex: 1 },
     ];
 
-    const warehouseInventory = inventory.filter(item => item.warehouse_name === warehouse.warehouse_name)
+    const warehouseInventory = inventory.filter(item => item.warehouse_id === warehouse.warehouse_id)
 
     const navigate = useNavigate();
     const goToWarehouses = () => navigate("/warehouses");
@@ -59,7 +59,7 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
                         </TableCardField>
 
                         <TableCardActions
-                            editTo={`/inventories/${inventory.id}/edit`}
+                            editTo={`/inventories/form/${inventory.id}/edit`}
                             onDelete={() => openDeleteModal(inventory)}
                             className="warehouse-inventory-table__actions"
                         />
