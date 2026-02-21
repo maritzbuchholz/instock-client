@@ -1,0 +1,11 @@
+@use "../../styles/variables" as *;
+@use "../../styles/functions" as *;
+@use "../../styles/mixins" as *;
+
+.error-404 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: pxToRem(8);
+    color: $color-supporting-red;
+}

@@ -11,6 +11,7 @@ import Navigation from "./components/Navigation/Navigation.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import AddInventory from "./pages/AddInventory/AddInventory.jsx";
 import EditInventory from "./pages/EditInventory/EditInventory.jsx";
+import NotFound from "./components/NotFound/NotFound.jsx";
 
 const App = () => {
 
@@ -47,6 +48,7 @@ const App = () => {
                         <Route path="/inventories/form/:id/edit" element={<EditInventory inventory={inventory} setInventory={setInventory} />} />
                         <Route path="/inventories/:id" element={<InventoryDetailsPage inventory={inventory} />} />
                         <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} setWarehouses={setWarehouses} inventory={inventory} setInventory={setInventory} />} />
+                        <Route path="*" element={<NotFound />} />
                     </Routes>
                 </main>
 
