@@ -59,7 +59,7 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
                         </TableCardField>
 
                         <TableCardActions
-                            editTo={`/inventories/${inventory.id}/edit`}
+                            editTo={`/inventories/form/${inventory.id}/edit`}
                             onDelete={() => openDeleteModal(inventory)}
                             className="warehouse-inventory-table__actions"
                         />
