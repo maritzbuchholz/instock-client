@@ -74,7 +74,7 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
         } else if (isFormValid(formData)) {
             const rawData = new FormData(e.currentTarget);
             const serverData = Object.fromEntries(rawData.entries());
-            patchUpdate(`warehouses/${id}`, serverData, setWarehouses, `warehouses/${id}`);
+            patchUpdate(`warehouses/${id}`, serverData, setWarehouses, `warehouses`);
             navigate("/warehouses");
         };
     };
