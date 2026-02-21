@@ -23,7 +23,7 @@ const TablesWarehouse = ({ warehouses, setWarehouses, warehouse, inventory, setI
         { label: "QUANTITY", key: "quantity", flex: 1 },
     ];
 
-    const warehouseInventory = inventory.filter(item => item.warehouse_name === warehouse.warehouse_name)
+    const warehouseInventory = inventory.filter(item => item.warehouse_id === warehouse.warehouse_id)
 
     const navigate = useNavigate();
     const goToWarehouses = () => navigate("/warehouses");
