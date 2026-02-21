@@ -55,9 +55,16 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
 
         if (name === "contact_phone") {
             finalValue = formatPhoneInput(value);
+            let newErrors = { ...errors }
+            newErrors = validatePhone(finalValue, errors, newErrors);
+            setError(newErrors);
+        }
+        if (name === "contact_email") {
+            let newErrors = { ...errors }
+            newErrors = validateEmail(finalValue, errors, newErrors);
+            setError(newErrors);
         }
         setFormData((prev) => ({ ...prev, [name]: finalValue }));
-        removeErrors(e, errors, setError);
     };
 
     const handleSubmit = async (e) => {
