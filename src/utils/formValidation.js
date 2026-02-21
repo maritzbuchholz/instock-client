@@ -78,3 +78,21 @@ export const isFormValid = (formData) => {
     const isPhoneValid = phonePattern.test(formData.contact_phone);
     return allFieldsFilled && isEmailValid && isPhoneValid;
 };
+
+export const isInventoryFormValid = (formData) => {
+    const requiredFields = [
+        "item_name",
+        "description",
+        "category",
+        "status",
+        "warehouse_id"
+    ];
+
+    const allFieldsFilled = requiredFields.every(field => {
+        const value = formData[field];
+        return value !== undefined && value !== null && value.toString().trim() !== "";
+});
+
+if (!allFieldsFilled) return false;
+    return true;
+};
