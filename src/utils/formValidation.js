@@ -1,15 +1,3 @@
-// export const emptyFieldError = (e, errors, newErrors) => {
-//     const eventElements = e.currentTarget.querySelectorAll("input"); // Excludes any buttons in the form 
-
-//     for (let i = 0; i < eventElements.length; i++) {
-//         const inputField = eventElements[i];
-//         if (!inputField.value && errors[inputField.name] !== undefined) { // "errors[inputField.name] !== undefined" ensures dev included field in error useState for validation
-//                 newErrors = {...newErrors, [inputField.name]: "empty"};
-//         };
-//     };
-//     return newErrors;
-// };
-
 export const validateEmail = (finalValue, errors, newErrors) => {
     const emailAddress = finalValue;
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;

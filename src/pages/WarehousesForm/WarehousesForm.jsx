@@ -16,6 +16,8 @@ const baseUrl = import.meta.env.VITE_API_BASE_URL;
 // Set intial error state to empty string
 // FormFields set name = id
 const WarehousesForm = ({setWarehouses}) => {
+    const navigate = useNavigate();
+    const goToInventories = () => navigate("/warehouses");
     const [formData, setFormData] = useState({
         warehouse_name: "",
         address: "",
@@ -28,8 +30,8 @@ const WarehousesForm = ({setWarehouses}) => {
     });
 
     const [errors, setError] = useState({ 
-        "contact_phone": "",
-        "contact_email": "",
+        contact_phone: "",
+        contact_email: "",
     });
 
     const handleChange = (e) => {
@@ -52,34 +54,20 @@ const WarehousesForm = ({setWarehouses}) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let newErrors = { ...errors };
-        // Checks individual errors first, accumulates changes into local object, then updates error states
-        // Required to prevents any asyncronous code from running out of order and allows setError to capture all error states
-        // newErrors = emptyFieldError(e, errors, newErrors); // include event, error statevalue, local error collector (object)
-        // newErrors = validateEmail(e, errors, newErrors);
-        // newErrors = validatePhone(e, errors, newErrors);
-
-        // Checks if errors exist. If not, form is submitted
-        // const errorStateArray = Object.values(newErrors); // Converts the error object into an array of error states
-        // const errorExists = errorStateArray.some(inputErrorState => inputErrorState); // checks if error state exists in array (empty strings are falsey) 
-        const errorExists = Object.values(newErrors).some(inputErrorState => inputErrorState);
-        if (errorExists) {
-            setError(newErrors);
+        if (!isFormValid(formData)) {
             return;
-        } else if (!errorExists) {
+        } else if (isFormValid(formData)) {
             postUpdate("warehouses", formData, setWarehouses, "warehouses");
+            navigate("/warehouses");
         };
     };
 
 
-    const navigate = useNavigate();
-    const goToInventories = () => navigate("/warehouses");
 
     return (
         <form
             onSubmit={handleSubmit}
             className="warehouses-form__contain-all"
-
         >
             <section className="warehouses-form__form-header">
                 <PageHeader headerText="Add New Warehouse" onBack={goToInventories} />
