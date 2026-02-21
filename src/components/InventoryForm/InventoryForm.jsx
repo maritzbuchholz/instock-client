@@ -5,8 +5,9 @@ import FormFields from "../FormFields/FormFields.jsx";
 import Button from "../Button/Button.jsx";
 import { useState, useEffect } from "react";
 import { fetchUpdate } from "../../utils/apiRequests.js";
+import { isInventoryFormValid } from "../../utils/formValidation.js";
 
-const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData}) => {
+const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData }) => {
 
     const navigate = useNavigate();
     const goToInventories = () => navigate("/inventories");
@@ -17,7 +18,7 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData}) => 
     }, []);
 
     const [categories, setCategories] = useState([]);
-    useEffect(()=> {
+    useEffect(() => {
         fetchUpdate("categories", setCategories)
     }, []);
 
@@ -42,6 +43,15 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData}) => 
             });
         }
     }, [initialData]);
+
+    const [errors, setErrors] = useState({
+        item_name: "",
+        description: "",
+        category: "",
+        status: "",
+        quantity: "",
+        warehouse_id: ""
+    });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -77,49 +87,49 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData}) => 
 
             <form className="inventory-form__wrapper" onSubmit={handleSubmit}>
                 <div className="inventory-form__fields">
-                <div className="inventory-form-details">
-                    <Typography variant="h2">Item Details</Typography>
-                    <FormFields htmlFor="item_name" inputName="Item Name" value={formData.item_name} onChange={handleChange} />
-                    <FormFields htmlFor="description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..." value={formData.description} onChange={handleChange} />
-                    <FormFields htmlFor="category" inputName="Category" type="dropdown" value={formData.category} onChange={handleChange}
-                    options={categories.map((category)=> ({
-                        label: category,
-                        value: category,
-                    }))} />
-                </div>
+                    <div className="inventory-form-details">
+                        <Typography variant="h2">Item Details</Typography>
+                        <FormFields htmlFor="item_name" inputName="Item Name" value={formData.item_name} onChange={handleChange} />
+                        <FormFields htmlFor="description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..." value={formData.description} onChange={handleChange} />
+                        <FormFields htmlFor="category" inputName="Category" type="dropdown" value={formData.category} onChange={handleChange}
+                            options={categories.map((category) => ({
+                                label: category,
+                                value: category,
+                            }))} />
+                    </div>
 
-                <div className="inventory-form-availability">
-                    <Typography variant="h2">Item Availability</Typography>
-                    <FormFields
-                        htmlFor="status"
-                        inputName="Status"
-                        type="radio"
-                        value={formData.status}
-                        onChange={handleChange}
-                        options={[
-                            { label: "In stock", value: "inStock" },
-                            { label: "Out of stock", value: "outOfStock" },
-                        ]} />
-                    {formData.status === "inStock" && (
+                    <div className="inventory-form-availability">
+                        <Typography variant="h2">Item Availability</Typography>
                         <FormFields
-                            htmlFor="quantity"
-                            inputName="Quantity"
-                            type="numerical"
-                            value={formData.quantity}
-                            onChange={handleChange} />)}
-                    <FormFields
-                        htmlFor="warehouse_id"
-                        inputName="Warehouse"
-                        type="dropdown"
-                        value={formData.warehouse_id}
-                        onChange={handleChange}
-                        options={warehouses.map((warehouse) => ({
-                            label: warehouse.warehouse_name,
-                            value: warehouse.id,
-                        }))}
-                    />
+                            htmlFor="status"
+                            inputName="Status"
+                            type="radio"
+                            value={formData.status}
+                            onChange={handleChange}
+                            options={[
+                                { label: "In stock", value: "inStock" },
+                                { label: "Out of stock", value: "outOfStock" },
+                            ]} />
+                        {formData.status === "inStock" && (
+                            <FormFields
+                                htmlFor="quantity"
+                                inputName="Quantity"
+                                type="numerical"
+                                value={formData.quantity}
+                                onChange={handleChange} />)}
+                        <FormFields
+                            htmlFor="warehouse_id"
+                            inputName="Warehouse"
+                            type="dropdown"
+                            value={formData.warehouse_id}
+                            onChange={handleChange}
+                            options={warehouses.map((warehouse) => ({
+                                label: warehouse.warehouse_name,
+                                value: warehouse.id,
+                            }))}
+                        />
 
-                </div>
+                    </div>
 
                 </div>
 
