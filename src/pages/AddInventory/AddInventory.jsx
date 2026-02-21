@@ -13,8 +13,8 @@ const goToInventories = () => navigate("/inventories");
 
 const handleAddInventory = async (formData) => {
     try {
-        await postUpdate ("inventories", formData);
-        navigate(`/inventories/${id}`);
+        const newInventory = await postUpdate ("inventories", formData);
+        navigate(`/inventories/${newInventory.id}`);
     } catch (error) {
         console.error("Error creating inventory:", error);
     }
