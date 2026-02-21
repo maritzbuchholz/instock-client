@@ -88,9 +88,11 @@ export const isInventoryFormValid = (formData) => {
         "warehouse_id"
     ];
 
-    const allFieldsFilled = requiredFields.every(field =>
-        formData[field] !== undefined && formData[field] !== null && formData[field].trim() !== ""
-    );
+    const allFieldsFilled = requiredFields.every(field => {
+        const value = formData[field];
+        return value !== undefined && value !== null && value.toString().trim() !== "";
+});
 
-    return allFieldsFilled;
+if (!allFieldsFilled) return false;
+    return true;
 };

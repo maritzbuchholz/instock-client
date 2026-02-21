@@ -5,7 +5,7 @@ import FormFields from "../FormFields/FormFields.jsx";
 import Button from "../Button/Button.jsx";
 import { useState, useEffect } from "react";
 import { fetchUpdate } from "../../utils/apiRequests.js";
-import { isInventoryFormValid, emptyFieldError } from "../../utils/formValidation.js";
+import { isInventoryFormValid } from "../../utils/formValidation.js";
 
 const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData }) => {
 
@@ -56,31 +56,44 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData }) =>
     const handleChange = (e) => {
         const { name, value } = e.target;
 
-        setFormData(prev => {
-            const updated = { ...prev, [name]: value };
+        let finalValue = value;
 
-            if (name === "status" && value === "Out of Stock") {
-                updated.quantity = 0;
-            }
+       if (name === "status" && value === "outOfStock") {
+        setFormData(prev => ({
+            ...prev,
+            status: finalValue,
+            quantity: 0
+        }));
+        return;
+    }
 
-            return updated;
-        });
-    };
+    setFormData(prev => ({
+        ...prev,
+        [name]: finalValue
+    }));
+
+    if (finalValue && errors[name] !== undefined) {
+        setErrors(prev => ({
+            ...prev,
+            [name]: ""
+        }));
+    }
+};
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        let newErrors = {...errors};
+        if (!isInventoryFormValid(formData)) {
+            return;
+        }
 
-        newErrors = emptyFieldError(e, errors, newErrors);
-
-        
-
+        const rawData = new FormData(e.currentTarget);
+        const serverData = Object.fromEntries(rawData.entries());
 
         const formattedData = {
-            ...formData,
-            status: formData.status === "inStock" ? "In Stock" : "Out of Stock", // for api 
-            quantity: formData.status === "outOfStock" ? 0 : Number(formData.quantity), // converts a string to a number, additional valiation
+            ...serverData,
+            status: serverData.status === "inStock" ? "In Stock" : "Out of Stock", // for api 
+            quantity: serverData.status === "outOfStock" ? 0 : Number(formData.quantity), // converts a string to a number, additional valiation
         };
         onSubmit(formattedData);
     }
@@ -142,7 +155,7 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData }) =>
 
                 <div className="inventory-form__buttons">
                     <Button variant="secondary" isLink={true} to={"/inventories"}>{btn_secondary}</Button>
-                    <Button variant="primary" type="submit"> {btn_primary}</Button>
+                    <Button variant="primary" type="submit" disabled={!isInventoryFormValid(formData)}> {btn_primary}</Button>
                 </div>
             </form>
         </section>
