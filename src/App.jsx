@@ -14,8 +14,6 @@ import EditInventory from "./pages/EditInventory/EditInventory.jsx";
 
 const App = () => {
 
-    const baseUrl = import.meta.env.VITE_API_BASE_URL;
-
     const [warehouses, setWarehouses] = useState([]);
     const [inventory, setInventory] = useState([]);
 
@@ -35,25 +33,25 @@ const App = () => {
 
     return (
         <div className="app-layout">
-        <BrowserRouter>
-            <Navigation />
-            <main className = "app-layout__content">
-                <Routes>
-                    <Route path="/" element={<Navigate to="/warehouses" replace />} />
-                    <Route path="/warehouses" element={<WarehousesPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
-                    <Route path="/warehouses/form/add" element={<WarehousesForm setWarehouses={setWarehouses} />} />
-                    <Route path="/warehouses/form/:id/edit" element={<WarehousesFormEdit warehouses={warehouses} setWarehouses={setWarehouses} />} />
-                    <Route path="/warehouses/form/:id/edit" element={<WarehousesForm />} />
-                    <Route path="/inventories" element={<InventoryPage inventory={inventory} setInventory={setInventory} />} />
-                    <Route path="/inventories/form/add" element={<AddInventory inventory={inventory} />} />
-                    <Route path="/inventories/form/:id/edit" element={<EditInventory inventory={inventory} />} />
-                    <Route path="/inventories/:id" element={<InventoryDetailsPage inventory={inventory} />} />
-                    <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} setWarehouses={setWarehouses} inventory={inventory} setInventory={setInventory} />} />
-                </Routes>
-            </main>
+            <BrowserRouter>
+                <Navigation />
+                <main className="app-layout__content">
+                    <Routes>
+                        <Route path="/" element={<Navigate to="/warehouses" replace />} />
+                        <Route path="/warehouses" element={<WarehousesPage warehouses={warehouses} setWarehouses={setWarehouses} />} />
+                        <Route path="/warehouses/form/add" element={<WarehousesForm setWarehouses={setWarehouses} />} />
+                        <Route path="/warehouses/form/:id/edit" element={<WarehousesFormEdit warehouses={warehouses} setWarehouses={setWarehouses} />} />
+                        <Route path="/warehouses/form/:id/edit" element={<WarehousesForm />} />
+                        <Route path="/inventories" element={<InventoryPage inventory={inventory} setInventory={setInventory} />} />
+                        <Route path="/inventories/form/add" element={<AddInventory inventory={inventory} setInventory={setInventory} />} />
+                        <Route path="/inventories/form/:id/edit" element={<EditInventory inventory={inventory} setInventory={setInventory} />} />
+                        <Route path="/inventories/:id" element={<InventoryDetailsPage inventory={inventory} />} />
+                        <Route path="/warehouses/:id" element={<WarehouseDetailsPage warehouses={warehouses} setWarehouses={setWarehouses} inventory={inventory} setInventory={setInventory} />} />
+                    </Routes>
+                </main>
 
-            <Footer />
-        </BrowserRouter>
+                <Footer />
+            </BrowserRouter>
         </div>
     );
 }
