@@ -114,7 +114,8 @@ const WarehousesForm = ({setWarehouses, warehouses}) => {
                 <Button
                     type="button"
                     className="warehouses-form__cancel"
-                    variant="secondary">
+                    variant="secondary"
+                    onClick={goToInventories}>
                     Cancel
                 </Button>
                 <Button
