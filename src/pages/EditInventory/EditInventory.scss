@@ -1,0 +1,15 @@
+@use "../../styles/variables" as *;
+@use "../../styles/functions" as *;
+@use "../../styles/mixins" as *;
+
+.edit-inventory__wrapper {
+    transform: translateY(-64px);
+    margin: pxToRem(0) pxToRem(16);
+    @include tablet {
+        transform: translateY(-96px);
+        margin: pxToRem(0) pxToRem(32);
+    }
+    @include desktop {
+        margin: pxToRem(0) pxToRem(130);
+    }
+}

@@ -6,7 +6,7 @@ import Button from "../Button/Button.jsx";
 import { useState, useEffect } from "react";
 import { fetchUpdate } from "../../utils/apiRequests.js";
 
-const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
+const InventoryForm = ({ btn_primary, btn_secondary, onSubmit, initialData}) => {
 
     const navigate = useNavigate();
     const goToInventories = () => navigate("/inventories");
@@ -16,13 +16,32 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
         fetchUpdate("warehouses", setWarehouses);
     }, []);
 
+    const [categories, setCategories] = useState([]);
+    useEffect(()=> {
+        fetchUpdate("categories", setCategories)
+    }, []);
+
     const [formData, setFormData] = useState({
         item_name: "",
         description: "",
         category: "",
         status: "",
-        quantity: ""
+        quantity: "",
+        warehouse_id: ""
     });
+
+    useEffect(() => {
+        if (initialData) {
+            setFormData({
+                item_name: initialData.item_name || "",
+                description: initialData.description || "",
+                category: initialData.category || "",
+                status: initialData.status === "In Stock" ? "inStock" : "outOfStock", //for API
+                quantity: initialData.quantity || "",
+                warehouse_id: initialData.warehouse_id || ""
+            });
+        }
+    }, [initialData]);
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -43,7 +62,7 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
 
         const formattedData = {
             ...formData,
-            status: formData.status === "inStock" ? "In Stock" : "Out of Stock", // for api to recognize
+            status: formData.status === "inStock" ? "In Stock" : "Out of Stock", // for api 
             quantity: formData.status === "outOfStock" ? 0 : Number(formData.quantity), // converts a string to a number, additional valiation
         };
         onSubmit(formattedData);
@@ -57,11 +76,16 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
             </div> */}
 
             <form className="inventory-form__wrapper" onSubmit={handleSubmit}>
+                <div className="inventory-form__fields">
                 <div className="inventory-form-details">
                     <Typography variant="h2">Item Details</Typography>
                     <FormFields htmlFor="item_name" inputName="Item Name" value={formData.item_name} onChange={handleChange} />
                     <FormFields htmlFor="description" type="text_area" inputName="Description" placeholder="Please enter a brief item description..." value={formData.description} onChange={handleChange} />
-                    <FormFields htmlFor="category" inputName="Category" type="dropdown" value={formData.category} onChange={handleChange} />
+                    <FormFields htmlFor="category" inputName="Category" type="dropdown" value={formData.category} onChange={handleChange}
+                    options={categories.map((category)=> ({
+                        label: category,
+                        value: category,
+                    }))} />
                 </div>
 
                 <div className="inventory-form-availability">
@@ -97,6 +121,7 @@ const InventoryForm = ({ btn_primary, btn_secondary, onSubmit }) => {
 
                 </div>
 
+                </div>
 
                 <div className="inventory-form__buttons">
                     <Button variant="secondary" isLink={true} to={"/inventories"}>{btn_secondary}</Button>

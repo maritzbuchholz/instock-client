@@ -4,13 +4,13 @@
 
 .inventory-form{
     background-color: $color-primary-white;
-    margin: pxToRem(0) pxToRem(16);
+ //  margin: pxToRem(0) pxToRem(16);
     box-shadow: 0 pxToRem(2) pxToRem(5) 0 #13182C1A;
  @include tablet{
-            margin: 0 pxToRem(32);
+    //      margin: 0 pxToRem(32);
         }
         @include desktop{
-            margin: 0 pxToRem(128);
+    //        margin: 0 pxToRem(128);
         }
 
 
@@ -30,13 +30,18 @@
         background-color: $color-primary-white;
    //     border-bottom: $color-secondary-cloud solid 1px;
         border-radius: pxToRem(3);
-        padding: pxToRem(16) 0;
+        //padding: pxToRem(16) 0;
 
         @include tablet {
-        padding: pxToRem(40) pxToRem(32) pxToRem(32) pxToRem(32);
-        display: flex;
+       // padding: pxToRem(40) pxToRem(32) pxToRem(32) pxToRem(32);
         }
         
+    }
+
+    &__fields {
+        @include tablet {
+            display: flex;
+        }
     }
     // &__typography-text{
     //     margin: auto;
@@ -45,16 +50,16 @@
     //         margin-bottom: pxToRem(32);
     //     }
     // }
-    &__form-input-wrapper{
-        display: flex;
-        justify-content: flex-start;
-        flex-direction: column;
-        margin: pxToRem(24) 0;
-        @include tablet{
-            margin: pxToRem(32) 0;
-            flex-direction: row;
-        }
-    }
+    // &__form-input-wrapper{
+    //     display: flex;
+    //     justify-content: flex-start;
+    //     flex-direction: column;
+    //     margin: pxToRem(24) 0;
+    //     @include tablet{
+    //         margin: pxToRem(32) 0;
+    //         flex-direction: row;
+    //     }
+    // }
     &-details{
         box-sizing: border-box;
         width: 100%;
