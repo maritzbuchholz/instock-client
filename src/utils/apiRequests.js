@@ -2,7 +2,6 @@ import axios from "axios";
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 export const fetchUpdate = async (endpoint, setData) => {
-    console.log(baseUrl);
     try {
         const res = await axios.get(`${baseUrl}/${endpoint}`);
         setData(res.data);
